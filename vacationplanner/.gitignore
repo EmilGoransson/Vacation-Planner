@@ -1,0 +1,7 @@
+**/node_modules
+package-lock.json
+**/*solved*
+**/*Config.js*
+!telemetry.config.json
+/public/*.js
+/public/*.html
