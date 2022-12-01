@@ -1,7 +1,8 @@
 //import logo from "./logo.svg";
 import "./App.css";
 import React from "react";
-import SearchForm from "./components/searchForm";
+import SearchForm from "./presenters/searchFormPresenter";
+import Signing from "./presenters/signingPresenter";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         }}
       >
         Vacation Planner
+        <Signing className="signingBtns" />
       </h1>
       <SearchForm />
     </div>
