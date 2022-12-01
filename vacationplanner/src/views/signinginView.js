@@ -1,8 +1,17 @@
 function SigningView(props) {
   return (
     <div>
-      <button onClick={console.log("log in!")}>Sign in</button>
-      <button onClick={console.log("sign up!")}>Sign up</button>
+      <h1
+        style={{
+          fontSize: "2.5rem",
+          marginBottom: "2rem",
+        }}
+      >
+        Vacation Planner
+        <button className="signingBtns" onClick={console.log("log in!")}>
+          Sign in
+        </button>
+      </h1>
     </div>
   );
 }
