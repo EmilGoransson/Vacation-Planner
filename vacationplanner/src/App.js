@@ -1,13 +1,12 @@
 import "./App.css";
 import React from "react";
 
-import Count from "./presenter/sidebarPresenter";
-import useBearStore from "./store";
+import Sidebar from "./presenter/sidebarPresenter";
 
 function App() {
   return (
     <div className="count">
-      <Count bears={useBearStore} />
+      <Sidebar />
     </div>
   );
 }

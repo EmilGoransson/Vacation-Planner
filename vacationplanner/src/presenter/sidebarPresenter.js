@@ -1,15 +1,31 @@
-import sidebarView from "../views/sidebarView";
-import React, { useEffect } from "react";
-import useStoreFavorites from "../store";
+import React, { useState } from "react";
+import useFavoriteStore from "../model/sidebarStore";
+import SidebarView from "../views/sidebarView";
 
-export default function Sidebar() {
-  const [count, setCount] = React.useState(useStoreFavorites);
+import {
+  getAttactions,
+  getAttractionLocation,
+  getRestaurantLocation,
+} from "../attractionSource";
 
-  function wasCreatedACB() {
-    setCount(useStoreFavorites);
+function Sidebar() {
+  const addFavorites = useFavoriteStore((state) => state.addFavorites);
+  const removeFavorites = useFavoriteStore((state) => state.removeFavorites);
+  const [favorites, setFavorites] = useState("");
+
+  console.log("Sidebar rendered");
+
+  function handleFavoriteAdding() {
+    if (!favorites) return alert("Please enter a title");
+    addFavorites({
+      id: Math.ceil(Math.random() * 1000), // just for now maybe change to api call id?
+      title: favorites,
+    });
+  }
+  function handleFavoriteRemoving(id) {
+    removeFavorites({});
   }
 
-  React.useEffect(wasCreatedACB, []);
-
-  return <countView count={count} />;
+  return <SidebarView favorites={favorites} />;
 }
+export default Sidebar;
