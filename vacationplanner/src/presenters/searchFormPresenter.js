@@ -5,7 +5,7 @@ import SearchFormView from "../views/searchFormView";
 const SearchForm = () => {
   //const addCities = useVacationStore((state) => state.addCourse);
 
-  const [cityTitle, setCityTitle] = useState("");
+  const [locationQuery, setLocationQuery] = useState("");
   console.log("SearchForm Rendered");
 
   // const handleCitySearched = () => {
@@ -18,7 +18,7 @@ const SearchForm = () => {
   // };
 
   function tempACB(text) {
-    setCityTitle(text);
+    setLocationQuery(text);
   }
 
   return (

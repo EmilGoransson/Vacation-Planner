@@ -1,6 +1,5 @@
 import create from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import { getRestaurantLocation, searchRestaunrants } from "./restaurantSource";
 
 const vacationStore = (set) => ({
   courses: [],
@@ -16,15 +15,15 @@ const vacationStore = (set) => ({
     }));
   },
 
-  toggleCourseStatus: (courseId) => {
-    set((state) => ({
-      courses: state.courses.map((course) =>
-        course.id === courseId
-          ? { ...course, completed: !course.completed }
-          : course
-      ),
-    }));
-  },
+  // toggleCourseStatus: (courseId) => {
+  //   set((state) => ({
+  //     courses: state.courses.map((course) =>
+  //       course.id === courseId
+  //         ? { ...course, completed: !course.completed }
+  //         : course
+  //     ),
+  //   }));
+  // },
 });
 
 const useVacationStore = create(

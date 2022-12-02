@@ -1,4 +1,4 @@
-//import logo from "./logo.svg";
+import logo from "./logo.png";
 import "./App.css";
 import React from "react";
 import SearchForm from "./presenters/searchFormPresenter";
@@ -10,7 +10,9 @@ import SignInPage from "./presenters/signInPagePresenter";
 function App() {
   return (
     <div className="main-containt">
+      <img src={logo} className="logo" alt="" />
       <Signing />
+      <logo />
       <div className="search-Sidebar-ResultView">
         <Sidebar />
         <div className="search-ResultView">
