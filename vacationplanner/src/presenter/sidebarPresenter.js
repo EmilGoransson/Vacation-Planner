@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import useFavoriteStore from "../model/sidebarStore";
 import SidebarView from "../views/sidebarView";
+import getData from "../presenter/sidebarPresenter";
 
-import {
-  getAttactions,
-  getAttractionLocation,
-  getRestaurantLocation,
-} from "../attractionSource";
+
 
 function Sidebar() {
   const addFavorites = useFavoriteStore((state) => state.addFavorites);

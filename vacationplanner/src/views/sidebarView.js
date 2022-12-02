@@ -1,5 +1,4 @@
 import React from "react";
-import { getAttractionLocation } from "../attractionSource";
 function SidebarView(props) {
   return (
     <div className="main">
