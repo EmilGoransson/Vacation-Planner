@@ -23,9 +23,9 @@ export function Search(){
             'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
         }
     }
-    const getAttractions = async () => {
+    const getLocationId = async () => {
         try{
-            const response = await axios.get('https://travel-advisor.p.rapidapi.com/locations/search?query=' + locationQuery + '&limit=30&offset=0&units=km&location_id=1&currency=USD&sort=relevance&lang=en_US', options);
+            const response = await axios.get('https://travel-advisor.p.rapidapi.com/locations/search?query=' + locationQuery + '&limit=1&offset=0&units=km&location_id=1&currency=USD&sort=relevance&lang=en_US', options);
             const data = response.data;
             if(data) setLocationData(data.data[0].result_object.location_id); //saves specific ID needed for next API call
         } catch (error){
@@ -46,7 +46,7 @@ export function Search(){
         }
     }
     React.useEffect(() => {
-        getAttractions();}, []);
+        getLocationId();}, []);
 
     React.useEffect(() => {
         getAttractions2();}, [locationData]);
