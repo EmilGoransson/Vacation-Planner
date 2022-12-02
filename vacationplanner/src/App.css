@@ -38,9 +38,39 @@
   display: flex;
   flex-direction: column;
   overflow: scroll;
-  height: 500px;
-  width: 1000px;
+  height: 700px;
   background-color: #fff8dc;
-  margin-left: 250px;
-  margin-right: 500px;
+}
+.search-ResultView {
+  padding: 20px;
+  width: 800px;
+  border-style: solid;
+}
+@media (min-width: 500px) {
+  .search-Sidebar-ResultView {
+    display: flex;
+    min-width: 250px;
+    min-height: 600px;
+  }
+}
+.sidebarParents {
+  width: 300px;
+  border-style: solid;
+  height: 800px;
+  background-color: #fff8dc;
+}
+.signInPage {
+  width: 1150px;
+  height: 800px;
+  border: 1px solid #0a0909;
+  display: grid;
+  background-color: #fff8dc;
+}
+.signInBtns {
+  background-color: rgb(20, 137, 220);
+  color: #fff;
+  border: 1px solid;
+  padding: 10px;
+  width: 100px;
+  margin: auto;
 }

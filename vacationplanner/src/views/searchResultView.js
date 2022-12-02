@@ -1,6 +1,6 @@
 function searchResultView(props) {
   return (
-    <div class="resultsParent">
+    <div className="resultsParent">
       {/* {
         props.searchResults.map(resultsCB) // searchResults is an array of data
       } */}
