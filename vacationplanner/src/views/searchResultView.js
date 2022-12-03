@@ -7,24 +7,28 @@ import Button from "react-bootstrap/Button";
 /*
 !!NPM INSTALL!! USES REACT-BOOTSTRAP & POSTBOOT
 @Author Emil <emilgo@kth.se>
-TODO: Title, description, rating, location, price, link to website when clicking on object, CSS
+TODO: 
 DONE: Loading when waiting on image, displaying image.
 */
-
 function SearchResultView(props) {
+  console.log(props.attractionData);
   function pictureFromSearchCB(obj) {
-    console.log(obj);
     function whenClickingOnPictureACB() {
-      console.log("callACBonClick");
+      props.attractionInFocus(obj);
     }
-    function openingHoursDisplay() {
-      console.log(obj.hours.week_ranges);
+    function addToFavoriteOnClickButtonACB() {
+      props.addAttractionToFavorite(obj);
     }
 
-    if (obj.photo) {
+    if (obj.photo && obj.hours) {
+      //HAVING OPENING HOURS WILL SKIP SOME RESULTS!
       // if there is a photo
       return (
-        <div key={obj.location_id} className="card flex-row">
+        <div
+          key={obj.location_id}
+          className="card flex-row"
+          onClick={whenClickingOnPictureACB}
+        >
           <img
             className="temp"
             src={obj.photo.images.medium.url}
@@ -41,15 +45,18 @@ function SearchResultView(props) {
                 width={15}
                 height={15}
               />
-              - display hours here
+              : {props.dateInfo.dayName} 0
+              {obj.hours.week_ranges[props.dateInfo.day - 1][0].open_time} -{" "}
+              {obj.hours.week_ranges[props.dateInfo.day - 1][0].close_time}
             </div>
+
             <div>
               <img
                 src="https://i.imgur.com/l6oK6Lh.png"
                 width={15}
                 height={15}
               />
-              - {obj.address}
+              : {obj.address}
             </div>
             <div>
               <img
@@ -57,19 +64,24 @@ function SearchResultView(props) {
                 width={15}
                 height={15}
               />
-              - <a href={obj.website}>{obj.website}</a>
+              : <a href={obj.website}>{obj.website}</a>
             </div>
             <div className="more-info-button">
-              <Button variant="primary" size="sm" onClick="OpenMoreDetailsACB">
-                More info
-              </Button>{" "}
               <Button
                 variant="primary"
                 size="sm"
-                onClick="AddToFavoriteACB"
+                onClick={whenClickingOnPictureACB}
+              >
+                More info
+              </Button>{" "}
+              <Button
+                className="button-in-card"
+                variant="primary"
+                size="sm"
+                onClick={addToFavoriteOnClickButtonACB}
                 disabled="isAlreadyAFavorite"
               >
-                Add as favorite
+                Add to favorite
               </Button>{" "}
             </div>
           </div>
@@ -78,7 +90,9 @@ function SearchResultView(props) {
     } else return null;
   }
   return (
-    <Container fluid>{props.attractionData.map(pictureFromSearchCB)}</Container>
+    <Container fluid>
+      {props.attractionData.map(pictureFromSearchCB)}{" "}
+    </Container>
   );
 }
 export default SearchResultView;
