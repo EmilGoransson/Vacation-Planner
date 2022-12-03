@@ -3,20 +3,25 @@ import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
+import { Alert } from "react-bootstrap";
 
 /*
 !!NPM INSTALL!! USES REACT-BOOTSTRAP & POSTBOOT
 @Author Emil <emilgo@kth.se>
-TODO: 
-DONE: Loading when waiting on image, displaying image.
+TODO:
+DONE: Loading when waiting on image, displaying image, alert when adding to favorites
 */
 function SearchResultView(props) {
+  function closeAlertBoxACB() {
+    props.closeAlert();
+  }
   console.log(props.attractionData);
   function pictureFromSearchCB(obj) {
     function whenClickingOnPictureACB() {
       props.attractionInFocus(obj);
     }
     function addToFavoriteOnClickButtonACB() {
+      props.showAlert();
       props.addAttractionToFavorite(obj);
     }
 
@@ -79,7 +84,6 @@ function SearchResultView(props) {
                 variant="primary"
                 size="sm"
                 onClick={addToFavoriteOnClickButtonACB}
-                disabled="isAlreadyAFavorite"
               >
                 Add to favorite
               </Button>{" "}
@@ -90,9 +94,24 @@ function SearchResultView(props) {
     } else return null;
   }
   return (
-    <Container fluid>
-      {props.attractionData.map(pictureFromSearchCB)}{" "}
-    </Container>
+    <>
+      <Alert show={props.Alert} variant="success" size="sm">
+        Attraction has been added to favorites
+        <div className="d-flex justify-content-end">
+          <Button
+            onClick={closeAlertBoxACB}
+            variant="outline-success"
+            size="sm"
+          >
+            Close
+          </Button>
+        </div>
+      </Alert>
+
+      <Container fluid>
+        {props.attractionData.map(pictureFromSearchCB)}{" "}
+      </Container>
+    </>
   );
 }
 export default SearchResultView;

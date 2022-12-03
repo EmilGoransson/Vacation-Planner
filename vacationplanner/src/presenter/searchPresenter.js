@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { API_KEY } from "../apiConfig";
 import SearchResultView from "../views/searchResultView";
+import LoadingView from "../views/LoadingView";
 
 /*
 !!NPM INSTALL, IT USES AXIOS!! (npm install axios but npm install should do it)
@@ -15,6 +16,8 @@ export function Search() {
   const [locationData, setLocationData] = React.useState([]);
   const [attractionData, setAttractionData] = React.useState(null);
   const locationQuery = "Stockholm"; //temp should fetch from store
+  const [show, setShow] = React.useState(false);
+  const [, reRender] = React.useState();
 
   const options = {
     method: "GET",
@@ -58,6 +61,7 @@ export function Search() {
   let day = todaysDate.getDay();
 
   let dayName = [
+    //maybe needs to be in store?
     "Monday",
     "Tuesday",
     "Wednesday",
@@ -80,6 +84,15 @@ export function Search() {
     //sends currentSelectedAttraction to store used to display more details about the attraction
     console.log("Attraction added to favorites:");
     console.log(e);
+    setShow(true);
+  }
+  function closeAlertBoxACB() {
+    setShow(false);
+  }
+  function showAlertBoxACB() {
+    if (show) {
+    }
+    setShow(true);
   }
 
   React.useEffect(() => {
@@ -90,22 +103,16 @@ export function Search() {
     getAttractions2();
   }, [locationData]);
 
-  if (!attractionData)
-    return (
-      <div>
-        <img
-          className="imageSearchResult"
-          src={"https://acegif.com/wp-content/uploads/loading-25.gif"}
-          height={"100"}
-        />{" "}
-      </div>
-    );
+  if (!attractionData) return <LoadingView />;
   return (
     <SearchResultView
       attractionData={attractionData}
       dateInfo={weekdays}
       attractionInFocus={setAttractionInFocusACB}
       addAttractionToFavorite={addAttractionToFavoriteACB}
+      Alert={show}
+      closeAlert={closeAlertBoxACB}
+      showAlert={showAlertBoxACB}
     />
   );
 }

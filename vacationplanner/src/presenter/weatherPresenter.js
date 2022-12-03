@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { API_KEY, API_KEY_WEATHER } from "../apiConfig";
 import WeatherView from "../views/weatherPresenter";
+import LoadingView from "../views/LoadingView";
 /*
 https://ipgeolocation.io/documentation/ip-geolocation-api-javascript-sdk.html for initial state maybe?
 
@@ -47,14 +48,7 @@ export function Weather() {
     getWeather();
   }, []);
   if (!weatherData)
-    return (
-      <div>
-        <img
-          className="imageSearchResult"
-          src={"https://acegif.com/wp-content/uploads/loading-25.gif"}
-          height={"100"}
-        />{" "}
-      </div>
-    );
+    //dont know if allowed?
+    return <LoadingView />;
   return <WeatherView data={weatherData} />;
 }
