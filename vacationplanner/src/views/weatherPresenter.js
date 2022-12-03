@@ -3,10 +3,17 @@ import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
 import Container from "react-bootstrap/Container";
 
+/*
+@Author Emil <emilgo@kth.se>
+TODO: fix ugly css
+DONE: displaying data passed by props
+*/
+
 function WeatherView(props) {
+  console.log(props);
   function forecastWeatherCB(obj) {
     return (
-      <div className="card flex-row">
+      <div key={obj.date_epoch} className="card flex-row">
         {obj.date}
         <img
           className="card-img-left example-card-img-responsive"

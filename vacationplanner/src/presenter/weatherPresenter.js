@@ -9,7 +9,7 @@ https://ipgeolocation.io/documentation/ip-geolocation-api-javascript-sdk.html fo
 TO USE!!! ADD export const API_KEY_WEATHER =
   "YOUR KEY FROM HERE: https://rapidapi.com/weatherapi/api/weatherapi-com"; to apiConfig.js
 @Author Emil <emilgo@kth.se>
-TODO: fix css, locationQuery should fetch from store, race condition maybe?
+TODO:  locationQuery should fetch from store, race condition maybe?
 DONE: Fetching data & displaying it.
 */
 

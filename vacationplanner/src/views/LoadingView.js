@@ -1,5 +1,8 @@
 import React from "react";
-
+/*
+@Author Emil <emilgo@kth.se>
+DONE: Displays gif
+*/
 function LoadingView() {
   return (
     <div>
