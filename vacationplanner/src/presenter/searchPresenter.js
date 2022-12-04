@@ -8,7 +8,7 @@ import LoadingView from "../views/LoadingView";
 !!NPM INSTALL, IT USES AXIOS!! (npm install axios but npm install should do it)
 @Author Emil <emilgo@kth.se>
 TODO: Connection to store (needs to get locationQuery, relevant callbacks, CSS (maybe),
- sometimes gets error from api (not sure why but very very very infrequent), locationQuery should fetch from store
+ sometimes gets error from api (not sure why but very very very infrequent, might be the APIs fault), locationQuery should fetch from store
 DONE: Fetches attraction array from API, passes it to view. NEEDS API_KEY to work which can be defined inside apiConfig https://rapidapi.com/apidojo/api/travel-advisor/pricing.
 */
 
