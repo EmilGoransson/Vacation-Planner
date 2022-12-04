@@ -8,7 +8,7 @@ import { Weather } from "./presenter/weatherPresenter";
 function App() {
   return (
     <div className="count">
-      <Weather />
+      <Search />
     </div>
   );
 }
