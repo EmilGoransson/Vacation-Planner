@@ -1,3 +1,6 @@
+import "bootstrap/dist/css/bootstrap.css";
+import React from "react";
+import Container from "react-bootstrap/Container";
 function SidebarFavView(props) {
   return (
     <div className="sidebarParents">

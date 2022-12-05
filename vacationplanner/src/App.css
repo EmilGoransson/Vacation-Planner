@@ -48,11 +48,11 @@
   border-style: solid;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 1000px) {
   .search-Sidebar-ResultView {
     display: flex;
-    min-width: 250px;
-    min-height: 600px;
+    min-width: 500px;
+    min-height: 800px;
   }
 }
 
@@ -73,10 +73,11 @@
   }
 }
 .sidebarParents {
-  width: 200px;
+  width: 400px;
   border-style: solid;
   height: 800px;
-  background-color: #fff8dc;
+  background-color: #fcfbf7;
+  flex-direction: row;
 }
 .signInPage {
   width: 1150px;

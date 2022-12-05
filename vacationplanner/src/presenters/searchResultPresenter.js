@@ -3,7 +3,7 @@ import axios from "axios";
 import { API_KEY } from "../apiConfig";
 import SearchResultView from "../views/searchResultView";
 import LoadingView from "../views/LoadingView";
-import useAttractionStore from "../model/vacationStore";
+import useAttractionStore from "../Model/vacationStore";
 
 /*
 !!NPM INSTALL, IT USES AXIOS!! (npm install axios but npm install should do it)
