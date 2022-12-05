@@ -13,7 +13,6 @@ DONE:
 function SearchResultPage() {
   return (
     <BrowserRouter>
-      <Nav justify variant="tabs" defaultActiveKey="/actvities"></Nav>
       <Nav bg="primary" variant="tabs">
         <Container>
           <Nav className="me-auto">
