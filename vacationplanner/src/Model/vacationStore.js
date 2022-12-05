@@ -15,7 +15,6 @@ const attractionStore = (set) => ({
       searchQuery: query,
     }));
   },
-  /*
   addFavorite: (favorite) => {
     set((state) => ({
       favorite: [favorite, ...state.courses],
@@ -26,7 +25,6 @@ const attractionStore = (set) => ({
       courses: state.courses.filter((c) => c.id !== favoriteId),
     }));
   },
-    */
 });
 
 const useAttractionStore = create(attractionStore);

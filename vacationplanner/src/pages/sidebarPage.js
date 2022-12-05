@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import SidebarFav from "../presenters/sidebarFavPresenter";
-import SidebarReset from "../presenters/sidebarResetPresenter";
+import SidebarRecent from "../presenters/sidebarRecentPresenter";
 
 /*
 @Author Mahdi <mnazari@kth.se>
@@ -18,8 +18,8 @@ function SidebarPage() {
         <Nav bg="primary" variant="tabs">
           <Container>
             <Nav className="me-auto">
-              <Nav.Link as={Link} to="/reset">
-                Reset
+              <Nav.Link as={Link} to="/recent">
+                Recent
               </Nav.Link>
               <Nav.Link as={Link} to="/favorites">
                 Favorites
@@ -30,7 +30,7 @@ function SidebarPage() {
         <div>
           <Routes>
             <Route path="/favorites" element={<SidebarFav />} />
-            <Route path="/reset" element={<SidebarReset />} />
+            <Route path="/recent" element={<SidebarRecent />} />
           </Routes>
         </div>
       </BrowserRouter>

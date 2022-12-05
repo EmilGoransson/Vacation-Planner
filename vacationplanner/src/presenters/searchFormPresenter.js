@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SearchFormView from "../views/searchFormView";
-import useAttractionStore from "../Model/vacationStore";
+import useAttractionStore from "../model/vacationStore";
+import useRecentStore from "../model/recentStore";
 
 /*
 @Author Mahdi <mnazari@kth.se>
