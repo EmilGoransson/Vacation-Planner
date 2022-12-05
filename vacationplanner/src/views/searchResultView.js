@@ -5,7 +5,6 @@ import Button from "react-bootstrap/Button";
 import { Alert } from "react-bootstrap";
 
 /*
-!!NPM INSTALL!! USES REACT-BOOTSTRAP & POSTBOOT
 @Author Emil <emilgo@kth.se>
 TODO:
 DONE: Loading when waiting on image, displaying image, alert when adding to favorites

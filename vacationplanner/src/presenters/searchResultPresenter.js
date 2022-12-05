@@ -7,7 +7,6 @@ import useAttractionStore from "../model/vacationStore";
 import useRecentStore from "../model/recentStore";
 
 /*
-!!NPM INSTALL, IT USES AXIOS!! (npm install axios but npm install should do it)
 @Author Emil <emilgo@kth.se>
 TODO: CSS (maybe),
  sometimes gets error from api (not sure why but very very very infrequent),
