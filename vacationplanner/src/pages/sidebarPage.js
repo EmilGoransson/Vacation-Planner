@@ -19,7 +19,7 @@ function SidebarPage() {
           <Container>
             <Nav className="me-auto">
               <Nav.Link as={Link} to="/recent">
-                Recent
+                Recent Searches
               </Nav.Link>
               <Nav.Link as={Link} to="/favorites">
                 Favorites

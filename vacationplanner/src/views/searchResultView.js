@@ -19,7 +19,6 @@ function SearchResultView(props) {
       props.attractionInFocus(obj);
     }
     function addToFavoriteOnClickButtonACB() {
-      props.showAlert();
       props.addAttractionToFavorite(obj);
     }
 

@@ -17,12 +17,12 @@ const attractionStore = (set) => ({
   },
   addFavorite: (favorite) => {
     set((state) => ({
-      favorite: [favorite, ...state.courses],
+      favorite: [favorite, ...state.favorite],
     }));
   },
   removeFavorite: (favoriteId) => {
     set((state) => ({
-      courses: state.courses.filter((c) => c.id !== favoriteId),
+      favorite: state.favorite.filter((c) => c.location_id !== favoriteId),
     }));
   },
 });

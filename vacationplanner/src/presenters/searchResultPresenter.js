@@ -4,6 +4,7 @@ import { API_KEY } from "../apiConfig";
 import SearchResultView from "../views/searchResultView";
 import LoadingView from "../views/LoadingView";
 import useAttractionStore from "../model/vacationStore";
+import useRecentStore from "../model/recentStore";
 
 /*
 !!NPM INSTALL, IT USES AXIOS!! (npm install axios but npm install should do it)
@@ -20,6 +21,7 @@ function SearchResult() {
   const getSearchQuery = useAttractionStore((state) => state.searchQuery);
   const [isLoading, setIsLoading] = React.useState(true);
   const [show, setShow] = React.useState(false);
+  const addToFavorite = useAttractionStore((state) => state.addFavorite);
 
   const options = {
     method: "GET",
@@ -83,8 +85,9 @@ function SearchResult() {
   }
   function addAttractionToFavoriteACB(e) {
     //sends currentSelectedAttraction to store used to display more details about the attraction
-    console.log("Attraction added to favorites:");
+    addToFavorite(e);
     setShow(true);
+    console.log(e);
   }
   function closeAlertBoxACB() {
     setShow(false);

@@ -14,21 +14,12 @@ const recentStore = (set) => ({
     }));
   },
 
-  /*
-  removeRecent: (favoriteId) => {
+  removeRecent: (string) => {
     set((state) => ({
-      courses: state.courses.filter((c) => c.id !== favoriteId),
+      recent: state.recent.filter((c) => c !== string),
     }));
   },
-  */
 });
 
-const useRecentStore = create(
-  devtools(
-    persist(recentStore, {
-      name: "recentQuery",
-    })
-  )
-);
-
+const useRecentStore = create(recentStore);
 export default useRecentStore;

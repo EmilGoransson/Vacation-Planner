@@ -11,11 +11,14 @@ DONE:
 */
 const SearchForm = () => {
   const setSearchQuery = useAttractionStore((state) => state.setSearchQuery);
+  const addRecent = useRecentStore((state) => state.addRecent);
+  const addToFavorite = useAttractionStore((state) => state.addFavorite);
 
   const [locationQuery, setLocationQuery] = useState("");
 
   function doSearchWithQueryACB() {
     setSearchQuery(locationQuery);
+    addRecent(locationQuery);
   }
   function setSearchQueryACB(e) {
     setLocationQuery(e);

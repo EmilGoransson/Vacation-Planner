@@ -1,17 +1,40 @@
 import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
+import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+
+/*
+!!NPM INSTALL, IT USES AXIOS!! (npm install axios but npm install should do it)
+@Author Emil <emilgo@kth.se>
+TODO: PROBLEM: can add two of the same cities to recent & cant remove multiple entries ina a row (e.g sthml, sthml (doesnt work))
+DONE: Fetches attraction array from API, passes it to view. NEEDS API_KEY to work which can be defined inside apiConfig https://rapidapi.com/apidojo/api/travel-advisor/pricing.
+, Connection to store
+*/
+
 function SidebarRecentView(props) {
+  console.log(props);
+  function renderRecentArrayCB(obj) {
+    function removeFromRecentOnClickButtonACB(e) {
+      props.removeRecent(obj);
+    }
+    return (
+      <div key={obj}>
+        <h3>
+          {obj}{" "}
+          <Button
+            variant="outline-danger"
+            size="sm"
+            onClick={removeFromRecentOnClickButtonACB}
+          >
+            X
+          </Button>
+        </h3>
+      </div>
+    );
+  }
   return (
     <div className="sidebarParents">
-      <h1
-        style={{
-          fontSize: "1.5rem",
-          marginBottom: "2rem",
-        }}
-      >
-        Recent
-      </h1>
+      {props.recentArray.map(renderRecentArrayCB)}
     </div>
   );
 }
