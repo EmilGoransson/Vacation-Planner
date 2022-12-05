@@ -5,12 +5,10 @@ DONE: Displays gif
 */
 function LoadingView() {
   return (
-    <div>
-      <img
-        className="imageSearchResult"
-        src={"https://acegif.com/wp-content/uploads/loading-25.gif"}
-        height={"100"}
-      />{" "}
+    <div className="text-center">
+      <div className="spinner-border m-5" role="status">
+        <span className="sr-only"></span>
+      </div>
     </div>
   );
 }
