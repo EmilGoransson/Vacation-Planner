@@ -1,5 +1,12 @@
 import "./App.css";
 import React from "react";
+import SearchForm from "./presenters/searchFormPresenter";
+import Signing from "./presenters/signingPresenter";
+import SearchResult from "./presenters/searchResultPresenter";
+import SidebarFav from "./presenters/sidebarFavPresenter";
+import SignInPage from "./presenters/signInPagePresenter";
+import Weather from "./presenters/weatherPresenter";
+import SidebarReset from "./presenters/sidebarResetPresenter";
 
 import Sidebar from "./presenter/sidebarPresenter";
 import { Search } from "./presenter/searchPresenter";
@@ -7,8 +14,18 @@ import { Weather } from "./presenter/weatherPresenter";
 
 function App() {
   return (
-    <div className="count">
-      <Search />
+    <div className="main-containt">
+      <Signing />
+      <div className="search-Sidebar-ResultView">
+        <SidebarReset />
+        <SidebarFav />
+        <div className="search-ResultView">
+          <SearchForm />
+          <SearchResult />
+          <Weather />
+        </div>
+      </div>
+      <SignInPage />
     </div>
   );
 }

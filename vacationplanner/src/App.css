@@ -1,32 +1,59 @@
-.App {
+.searchButton {
+  color: rgb(24, 12, 244);
+  padding: 3px;
   text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.form-input {
+  padding: 0.75rem;
+  border: 1px solid rgb(16, 4, 4);
+  width: 18rem;
+}
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.signingBtns {
+  color: rgb(24, 12, 244);
+  padding: 3px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+  float: right;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.searchResults {
+  border: 1.3px solid black;
+  padding-left: 1%;
+  padding-right: 1%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  overflow: scroll;
+  width: 700px;
+  height: 800px;
+  background-color: #fff8dc;
+}
+.search-ResultView {
+  padding: 20px;
+  width: 800px;
+  border-style: solid;
 }
 
-.App-link {
-  color: #61dafb;
-}
+@media (min-width: 500px) {
+  .search-Sidebar-ResultView {
+    display: flex;
+    min-width: 250px;
+    min-height: 600px;
+
 .custom-btn-toolbar {
   display: inline !important;
 }
@@ -42,4 +69,33 @@
   to {
     transform: rotate(360deg);
   }
+}
+.sidebarParents {
+  width: 200px;
+  border-style: solid;
+  height: 800px;
+  background-color: #fff8dc;
+}
+.signInPage {
+  width: 1150px;
+  height: 800px;
+  border: 1px solid #0a0909;
+  display: grid;
+  background-color: #fff8dc;
+}
+.signInBtns {
+  background-color: rgb(20, 137, 220);
+  color: #fff;
+  border: 1px solid;
+  padding: 10px;
+  width: 100px;
+  margin: auto;
+}
+.logo {
+  width: 150 px;
+  height: 150px;
+}
+.signingViewParent {
+  width: 1150px;
+  height: 300px;
 }

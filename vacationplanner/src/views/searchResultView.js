@@ -24,7 +24,9 @@ function SearchResultView(props) {
       props.addAttractionToFavorite(obj);
     }
 
+
     if (obj.photo) {
+
       //HAVING OPENING HOURS WILL SKIP SOME RESULTS!
       // if there is a photo
       return (
