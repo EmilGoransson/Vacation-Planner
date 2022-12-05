@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { API_KEY, API_KEY_WEATHER } from "../apiConfig";
-import WeatherView from "../views/weatherPresenter";
+import WeatherView from "../views/weatherView";
 import LoadingView from "../views/LoadingView";
 /*
 https://ipgeolocation.io/documentation/ip-geolocation-api-javascript-sdk.html for initial state maybe?
