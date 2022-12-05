@@ -1,23 +1,24 @@
-import logo from "./logo.png";
 import "./App.css";
 import React from "react";
 import SearchForm from "./presenters/searchFormPresenter";
 import Signing from "./presenters/signingPresenter";
 import SearchResult from "./presenters/searchResultPresenter";
-import Sidebar from "./presenters/sidebarPresenter";
+import SidebarFav from "./presenters/sidebarFavPresenter";
 import SignInPage from "./presenters/signInPagePresenter";
+import Weather from "./presenters/weatherPresenter";
+import SidebarReset from "./presenters/sidebarResetPresenter";
 
 function App() {
   return (
     <div className="main-containt">
-      <img src={logo} className="logo" alt="" />
       <Signing />
-      <logo />
       <div className="search-Sidebar-ResultView">
-        <Sidebar />
+        <SidebarReset />
+        <SidebarFav />
         <div className="search-ResultView">
           <SearchForm />
           <SearchResult />
+          <Weather />
         </div>
       </div>
       <SignInPage />

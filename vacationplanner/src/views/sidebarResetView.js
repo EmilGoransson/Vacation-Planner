@@ -1,4 +1,4 @@
-function SidebarView(props) {
+function SidebarResetView(props) {
   return (
     <div className="sidebarParents">
       <h1
@@ -7,9 +7,9 @@ function SidebarView(props) {
           marginBottom: "2rem",
         }}
       >
-        Favorites
+        Reset
       </h1>
     </div>
   );
 }
-export default SidebarView;
+export default SidebarResetView;

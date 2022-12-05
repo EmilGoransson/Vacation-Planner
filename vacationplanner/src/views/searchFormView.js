@@ -7,6 +7,10 @@ function SearchFormView(props) {
     return <option>{str}</option>;
   }
 
+  function searchBtnACB() {
+    props.searchNow();
+  }
+
   return (
     <div className="form-container">
       <input
@@ -14,7 +18,7 @@ function SearchFormView(props) {
         onChange={onChangeACB}
         className="form-input"
       />
-      <button className="searchButton" onClick={console.log("Click!")}>
+      <button className="searchButton" onClick={searchBtnACB}>
         Search
       </button>
 

@@ -17,16 +17,11 @@ const SearchForm = () => {
   //   setCityTitle("");
   // };
 
-  function tempACB(text) {
-    setLocationQuery(text);
-  }
-
   return (
     <div>
       {
         <SearchFormView
           dishTypeOptions={["HOTEL", "RESTAURANT", "ACTIVITIES"]}
-          setSearchText={tempACB}
         />
       }
     </div>

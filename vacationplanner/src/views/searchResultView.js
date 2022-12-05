@@ -1,26 +1,116 @@
-function searchResultView(props) {
-  return (
-    <div className="resultsParent">
-      {/* {
-        props.searchResults.map(resultsCB) // searchResults is an array of data
-      } */}
-    </div>
-  );
+import "bootstrap/dist/css/bootstrap.css";
+import React from "react";
+import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
+import { Alert } from "react-bootstrap";
 
-  function resultsCB(dish) {
-    const prepend_URL = "https://spoonacular.com/recipeImages/";
-
-    function dishChosenACB() {
-      props.onSearchResultChosen(dish);
-      window.location.hash = "#details";
+/*
+!!NPM INSTALL!! USES REACT-BOOTSTRAP & POSTBOOT
+@Author Emil <emilgo@kth.se>
+TODO:
+DONE: Loading when waiting on image, displaying image, alert when adding to favorites
+*/
+function SearchResultView(props) {
+  function closeAlertBoxACB() {
+    props.closeAlert();
+  }
+  console.log(props.attractionData);
+  function pictureFromSearchCB(obj) {
+    function whenClickingOnPictureACB() {
+      props.attractionInFocus(obj);
+    }
+    function addToFavoriteOnClickButtonACB() {
+      props.showAlert();
+      props.addAttractionToFavorite(obj);
     }
 
-    return (
-      <span class="searchResult" onClick={dishChosenACB}>
-        <img src={prepend_URL + dish.image} height="100"></img>
-        <div>{dish.title}</div>
-      </span>
-    );
+    if (obj.photo && obj.hours) {
+      //HAVING OPENING HOURS WILL SKIP SOME RESULTS!
+      // if there is a photo
+      return (
+        <div
+          key={obj.location_id}
+          className="card flex-row"
+          onClick={whenClickingOnPictureACB}
+        >
+          <img
+            className="temp"
+            src={obj.photo.images.medium.url}
+            width={250}
+            height={200}
+          />
+          <div className="card-body">
+            <div className="card-title h5 h4-sm">{obj.name}</div>
+            <img src="https://i.imgur.com/RXQNkY2.png" width={15} height={15} />
+            <div className="star-image"> - {obj.rating}/5</div>
+            <div>
+              {/* <img
+                src="https://i.imgur.com/j1hd1pk.png"
+                width={15}
+                height={15}
+              />
+              : {props.dateInfo.dayName} 0
+              {obj.hours.week_ranges[props.dateInfo.day][0].open_time} -{" "}
+              {obj.hours.week_ranges[props.dateInfo.day][0].close_time} */}
+            </div>
+
+            <div>
+              <img
+                src="https://i.imgur.com/l6oK6Lh.png"
+                width={15}
+                height={15}
+              />
+              : {obj.address}
+            </div>
+            <div>
+              <img
+                src="https://i.imgur.com/ZlbR6MO.png"
+                width={15}
+                height={15}
+              />
+              : <a href={obj.website}>{obj.website}</a>
+            </div>
+            <div className="more-info-button">
+              <Button
+                variant="primary"
+                size="sm"
+                onClick={whenClickingOnPictureACB}
+              >
+                More info
+              </Button>{" "}
+              <Button
+                className="button-in-card"
+                variant="primary"
+                size="sm"
+                onClick={addToFavoriteOnClickButtonACB}
+              >
+                Add to favorite
+              </Button>{" "}
+            </div>
+          </div>
+        </div>
+      );
+    } else return null;
   }
+  return (
+    <>
+      <Alert show={props.Alert} variant="success" size="sm">
+        Attraction has been added to favorites
+        <div className="d-flex justify-content-end">
+          <Button
+            onClick={closeAlertBoxACB}
+            variant="outline-success"
+            size="sm"
+          >
+            Close
+          </Button>
+        </div>
+      </Alert>
+
+      <Container fluid>
+        {props.attractionData.map(pictureFromSearchCB)}{" "}
+      </Container>
+    </>
+  );
 }
-export default searchResultView;
+export default SearchResultView;

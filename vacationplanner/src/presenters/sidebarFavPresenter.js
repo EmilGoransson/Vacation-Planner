@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import useVacationStore from "../Model/vacationStore";
-import SidebarView from "../views/sidebarView";
+import SidebarFavView from "../views/sidebarFavView";
 
-function Sidebar(props) {
+function SidebarFav(props) {
   return (
     <div>
-      <SidebarView />
+      <SidebarFavView />
     </div>
   );
 }
-export default Sidebar;
+export default SidebarFav;
