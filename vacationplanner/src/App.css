@@ -47,11 +47,27 @@
   width: 800px;
   border-style: solid;
 }
+
 @media (min-width: 500px) {
   .search-Sidebar-ResultView {
     display: flex;
     min-width: 250px;
     min-height: 600px;
+
+.custom-btn-toolbar {
+  display: inline !important;
+}
+
+.custom-btn-toolbar > .btn {
+  margin-right: 1rem;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 .sidebarParents {

@@ -8,6 +8,10 @@ import SignInPage from "./presenters/signInPagePresenter";
 import Weather from "./presenters/weatherPresenter";
 import SidebarReset from "./presenters/sidebarResetPresenter";
 
+import Sidebar from "./presenter/sidebarPresenter";
+import { Search } from "./presenter/searchPresenter";
+import { Weather } from "./presenter/weatherPresenter";
+
 function App() {
   return (
     <div className="main-containt">
