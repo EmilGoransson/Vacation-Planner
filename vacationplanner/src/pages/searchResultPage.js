@@ -17,7 +17,6 @@ function SearchResultPage() {
       <Nav bg="primary" variant="tabs">
         <Container>
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/"></Nav.Link>
             <Nav.Link as={Link} to="/actvities">
               Activites
             </Nav.Link>
