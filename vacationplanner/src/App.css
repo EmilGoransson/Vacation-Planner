@@ -53,6 +53,8 @@
     display: flex;
     min-width: 250px;
     min-height: 600px;
+  }
+}
 
 .custom-btn-toolbar {
   display: inline !important;
