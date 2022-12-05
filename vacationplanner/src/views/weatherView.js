@@ -10,12 +10,11 @@ DONE: displaying data passed by props
 
 function WeatherView(props) {
   function forecastWeatherCB(obj) {
-    console.log(obj);
     return (
-      <div>
+      <div key={obj.date_epoch}>
         {" "}
         {obj.date}
-        <div key={obj.date_epoch} className="card flex-row">
+        <div className="card flex-row">
           <img
             className="card-img-left example-card-img-responsive"
             src={obj.day.condition.icon}

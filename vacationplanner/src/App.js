@@ -13,11 +13,11 @@ function App() {
     <div className="main-containt">
       <Signing />
       <div className="search-Sidebar-ResultView">
-        <SidebarReset />
-        <SidebarFav />
         <div className="search-ResultView">
           <SearchForm />
           <SearchResult />
+        </div>
+        <div className="search-ResultView">
           <Weather />
         </div>
       </div>

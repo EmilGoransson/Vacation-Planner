@@ -1,37 +1,34 @@
 import create from "zustand";
-import { devtools, persist } from "zustand/middleware";
+
+/*
+@Author Mahdi <mnazari@kth.se>
+@Co-Author Emil <emilgo@kth.se>
+TODO: Favorite array,  add & remove favorite, firebase integration, local storage for recent (maybe?)
+DONE: Serachquery, setSearchQuery
+*/
 
 const attractionStore = (set) => ({
+  searchQuery: "Stockholm",
   favorite: [],
-  addFavorite: (course) => {
-    set((state) => ({
-      favorite: [course, ...state.courses],
+  setSearchQuery: (query) => {
+    set(() => ({
+      searchQuery: query,
     }));
   },
-
-  removeCourse: (courseId) => {
+  /*
+  addFavorite: (favorite) => {
     set((state) => ({
-      courses: state.courses.filter((c) => c.id !== courseId),
+      favorite: [favorite, ...state.courses],
     }));
   },
-
-  // toggleCourseStatus: (courseId) => {
-  //   set((state) => ({
-  //     courses: state.courses.map((course) =>
-  //       course.id === courseId
-  //         ? { ...course, completed: !course.completed }
-  //         : course
-  //     ),
-  //   }));
-  // },
+  removeFavorite: (favoriteId) => {
+    set((state) => ({
+      courses: state.courses.filter((c) => c.id !== favoriteId),
+    }));
+  },
+    */
 });
 
-const useVacationStore = create(
-  devtools(
-    persist(vacationStore, {
-      name: "courses",
-    })
-  )
-);
+const useAttractionStore = create(attractionStore);
 
-export default useVacationStore;
+export default useAttractionStore;

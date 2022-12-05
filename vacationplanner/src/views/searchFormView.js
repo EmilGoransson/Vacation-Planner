@@ -3,10 +3,16 @@ import "bootstrap/dist/css/bootstrap.css";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 
+/*
+@Author Mahdi <mnazari@kth.se>
+@Co-Author Emil <emilgo@kth.se>
+TODO:
+DONE:
+*/
+
 function SearchFormView(props) {
-  function onChangeACB(ev) {
-    props.setSearchText(ev.target.value);
-    console.log("test!!!!");
+  function onChangeACB(e) {
+    props.setSearchTest(e.target.value);
   }
 
   function optionCB(str) {
@@ -14,7 +20,7 @@ function SearchFormView(props) {
   }
 
   function searchBtnACB() {
-    props.searchNow();
+    props.doSearch();
   }
 
   return (

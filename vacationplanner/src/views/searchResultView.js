@@ -14,7 +14,6 @@ function SearchResultView(props) {
   function closeAlertBoxACB() {
     props.closeAlert();
   }
-  console.log(props.attractionData);
   function pictureFromSearchCB(obj) {
     function whenClickingOnPictureACB() {
       props.attractionInFocus(obj);
@@ -24,9 +23,7 @@ function SearchResultView(props) {
       props.addAttractionToFavorite(obj);
     }
 
-
     if (obj.photo) {
-
       //HAVING OPENING HOURS WILL SKIP SOME RESULTS!
       // if there is a photo
       return (

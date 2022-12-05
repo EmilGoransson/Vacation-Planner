@@ -3,21 +3,23 @@ import axios from "axios";
 import { API_KEY } from "../apiConfig";
 import SearchResultView from "../views/searchResultView";
 import LoadingView from "../views/LoadingView";
+import useAttractionStore from "../model/vacationStore";
 
 /*
 !!NPM INSTALL, IT USES AXIOS!! (npm install axios but npm install should do it)
 @Author Emil <emilgo@kth.se>
-TODO: Connection to store (needs to get locationQuery, relevant callbacks, CSS (maybe),
- sometimes gets error from api (not sure why but very very very infrequent), locationQuery should fetch from store
+TODO: CSS (maybe),
+ sometimes gets error from api (not sure why but very very very infrequent),
 DONE: Fetches attraction array from API, passes it to view. NEEDS API_KEY to work which can be defined inside apiConfig https://rapidapi.com/apidojo/api/travel-advisor/pricing.
+, Connection to store
 */
 
 function SearchResult() {
   const [locationData, setLocationData] = React.useState([]);
   const [attractionData, setAttractionData] = React.useState(null);
-  const locationQuery = "Stockholm"; //temp should fetch from store
+  const getSearchQuery = useAttractionStore((state) => state.searchQuery);
+  const [isLoading, setIsLoading] = React.useState(true);
   const [show, setShow] = React.useState(false);
-  const [, reRender] = React.useState();
 
   const options = {
     method: "GET",
@@ -28,9 +30,10 @@ function SearchResult() {
   };
   const getLocationId = async () => {
     try {
+      setIsLoading(true);
       const response = await axios.get(
         "https://travel-advisor.p.rapidapi.com/locations/search?query=" +
-          locationQuery +
+          getSearchQuery +
           "&limit=1&offset=0&units=km&location_id=1&currency=USD&sort=relevance&lang=en_US",
         options
       );
@@ -42,7 +45,6 @@ function SearchResult() {
   };
   const getAttractions2 = async () => {
     try {
-      console.log(locationData);
       const response = await axios.get(
         "https://travel-advisor.p.rapidapi.com/attractions/list?location_id=" +
           locationData +
@@ -53,6 +55,7 @@ function SearchResult() {
       if (attrcData) {
         setAttractionData(attrcData.data);
       }
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -77,13 +80,10 @@ function SearchResult() {
   };
   function setAttractionInFocusACB(e) {
     //sends currentSelectedAttraction to store used to display more details about the attraction
-    console.log("Attraction in focus:");
-    console.log(e);
   }
   function addAttractionToFavoriteACB(e) {
     //sends currentSelectedAttraction to store used to display more details about the attraction
     console.log("Attraction added to favorites:");
-    console.log(e);
     setShow(true);
   }
   function closeAlertBoxACB() {
@@ -97,13 +97,13 @@ function SearchResult() {
 
   React.useEffect(() => {
     getLocationId();
-  }, []);
+  }, [getSearchQuery]);
 
   React.useEffect(() => {
     getAttractions2();
   }, [locationData]);
 
-  if (!attractionData) return <LoadingView />;
+  if (!attractionData || isLoading) return <LoadingView />;
   return (
     <SearchResultView
       attractionData={attractionData}
