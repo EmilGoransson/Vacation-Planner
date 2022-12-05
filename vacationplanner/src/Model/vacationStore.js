@@ -1,11 +1,11 @@
 import create from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
-const vacationStore = (set) => ({
-  courses: [],
-  addCourse: (course) => {
+const attractionStore = (set) => ({
+  favorite: [],
+  addFavorite: (course) => {
     set((state) => ({
-      courses: [course, ...state.courses],
+      favorite: [course, ...state.courses],
     }));
   },
 

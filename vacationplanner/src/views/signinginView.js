@@ -4,7 +4,6 @@ function SigningView(props) {
     <div className="signingViewParent">
       <h1>
         <img src={logo} className="logo" alt="" />
-        <logo />
         <button className="signingBtns" onClick={console.log("log in!")}>
           Sign in
         </button>

@@ -1,6 +1,12 @@
+import Button from "react-bootstrap/Button";
+import "bootstrap/dist/css/bootstrap.css";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+
 function SearchFormView(props) {
   function onChangeACB(ev) {
     props.setSearchText(ev.target.value);
+    console.log("test!!!!");
   }
 
   function optionCB(str) {
@@ -13,19 +19,15 @@ function SearchFormView(props) {
 
   return (
     <div className="form-container">
-      <input
-        placeholder="type here"
-        onChange={onChangeACB}
-        className="form-input"
-      />
-      <button className="searchButton" onClick={searchBtnACB}>
-        Search
-      </button>
-
-      <select onChange={console.log("One option was chosen")}>
-        <option>Choose Options</option>
-        {props.dishTypeOptions.map(optionCB)}
-      </select>
+      <InputGroup className="mb-3">
+        <Form.Control
+          placeholder="E.g Stockholm"
+          aria-label="E.g Stockholm"
+          aria-describedby="basic-addon2"
+          onChange={onChangeACB}
+        />
+        <Button onClick={searchBtnACB}>Search!</Button>
+      </InputGroup>
     </div>
   );
 }
