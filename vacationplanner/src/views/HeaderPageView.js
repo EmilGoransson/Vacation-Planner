@@ -6,22 +6,22 @@ import Button from "react-bootstrap/Button";
 function HeaderPageView() {
   return (
     <div className="signingViewParent">
-      <h1>
-        <img src={logo} className="logo" alt="" />
+      <img src={"https://i.imgur.com/CJBGl6T.png"} width={75} height={75} />
+      <h>
         <div className="signingBtns">
           <Button variant="primary" size="lm" onClick={console.log("Click!")}>
             Sign in!
           </Button>
         </div>
-      </h1>
-      <h2
+      </h>
+      <h3
         style={{
-          fontSize: "2.5rem",
+          fontSize: "2.2rem",
           marginBottom: "2rem",
         }}
       >
         Vacation Planner
-      </h2>
+      </h3>
     </div>
   );
 }

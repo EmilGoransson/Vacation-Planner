@@ -18,17 +18,18 @@ function SidebarRecentView(props) {
       props.removeRecent(obj);
     }
     return (
-      <div key={obj}>
-        <h3>
-          {obj}{" "}
+      <div key={obj} className="sidebarText">
+        <h6>
           <Button
+            className="sidebarRecentBTN"
             variant="outline-danger"
             size="sm"
             onClick={removeFromRecentOnClickButtonACB}
           >
             X
           </Button>
-        </h3>
+          &#8193;{obj}{" "}
+        </h6>
       </div>
     );
   }

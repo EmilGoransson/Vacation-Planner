@@ -4,16 +4,7 @@
 TODO:
 DONE:
 */
-.searchButton {
-  color: rgb(24, 12, 244);
-  padding: 3px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  margin: 10px;
-  cursor: pointer;
-  border-radius: 8px;
-}
+
 .form-input {
   padding: 0.75rem;
   border: 1px solid rgb(16, 4, 4);
@@ -30,28 +21,29 @@ DONE:
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  margin: 10px;
   cursor: pointer;
-  border-radius: 8px;
   float: right;
 }
 
 .searchResults {
-  border: 1.3px solid black;
+  padding: 0.75rem;
   display: flex;
   flex-direction: column;
   overflow: scroll;
-  width: 700px;
+  width: 850px;
   height: 800px;
 }
 .search-ResultView {
-  padding: 20px;
-  width: 800px;
-  border-style: solid;
+  padding-top: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
+  width: 950px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
 }
 
 @media (min-width: 1000px) {
   .search-Sidebar-ResultView {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
     display: flex;
     min-width: 500px;
     min-height: 800px;
@@ -65,44 +57,42 @@ DONE:
 .custom-btn-toolbar > .btn {
   margin-right: 1rem;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 .sidebarParents {
-  width: 400px;
-  border-style: solid;
-  height: 900px;
+  padding-top: 25px;
+
+  width: 315px;
+  height: 800px;
   flex-direction: row;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  padding-right: 40px;
 }
 .signInPage {
   width: 1200px;
   height: 800px;
-  border: 1px solid #0a0909;
   display: grid;
 }
 .signInOpts {
   padding: 3px;
   text-align: center;
   color: #fff;
-  border: 1px solid;
-  padding: 1px;
-  width: 200px;
+  padding: 5px;
+  width: 100px;
   margin: auto;
 }
 .logo {
-  width: 150 px;
+  width: 150px;
   height: 150px;
 }
 .signingViewParent {
-  width: 1150px;
-  height: 300px;
+  padding: 20px;
+  width: 1400px;
+  height: 150px;
+}
+.sidebarText {
+  padding-left: 25px;
+  padding-right: 50px;
+  display: grid;
+}
+.sidebarRecentBTN {
 }

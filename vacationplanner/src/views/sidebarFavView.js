@@ -16,9 +16,8 @@ function SidebarFavView(props) {
       //props.removeFavorite(obj);
     }
     return (
-      <div key={obj}>
-        <h3>
-          {obj.name}{" "}
+      <div key={obj} className="sidebarText">
+        <h6>
           <Button
             variant="outline-danger"
             size="sm"
@@ -26,7 +25,8 @@ function SidebarFavView(props) {
           >
             X
           </Button>
-        </h3>
+          &#8193;{obj.name}{" "}
+        </h6>
       </div>
     );
   }
