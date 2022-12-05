@@ -24,9 +24,7 @@ function SearchResultView(props) {
       props.addAttractionToFavorite(obj);
     }
 
-    if (obj.photo && obj.hours) {
-      console.log(obj.hours);
-      console.log(props.dateInfo.day);
+    if (obj.photo) {
       //HAVING OPENING HOURS WILL SKIP SOME RESULTS!
       // if there is a photo
       return (
@@ -47,13 +45,11 @@ function SearchResultView(props) {
             <div className="star-image"> : {obj.rating}/5</div>
             <div>
               <img
-                src="https://i.imgur.com/j1hd1pk.png"
+                src="https://i.imgur.com/3JusHsK.png"
                 width={15}
                 height={15}
               />
-              : {props.dateInfo.dayName} 0
-              {obj.hours.week_ranges[props.dateInfo.day][0].open_time} -{" "}
-              {obj.hours.week_ranges[props.dateInfo.day][0].close_time}
+              : {obj.subcategory_ranking}
             </div>
 
             <div>
