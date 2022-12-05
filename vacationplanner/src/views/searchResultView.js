@@ -88,7 +88,7 @@ function SearchResultView(props) {
     } else return null;
   }
   return (
-    <>
+    <div className="searchResults">
       <Alert show={props.Alert} variant="success" size="sm">
         Attraction has been added to favorites
         <div className="d-flex justify-content-end">
@@ -105,7 +105,7 @@ function SearchResultView(props) {
       <Container fluid>
         {props.attractionData.map(pictureFromSearchCB)}{" "}
       </Container>
-    </>
+    </div>
   );
 }
 export default SearchResultView;

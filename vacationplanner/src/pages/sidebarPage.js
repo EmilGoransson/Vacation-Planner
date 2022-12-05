@@ -18,6 +18,7 @@ function SidebarPage() {
         <Nav bg="primary" variant="tabs">
           <Container>
             <Nav className="me-auto">
+              <Nav.Link as={Link} to="/"></Nav.Link>
               <Nav.Link as={Link} to="/recent">
                 Recent Searches
               </Nav.Link>
@@ -29,6 +30,7 @@ function SidebarPage() {
         </Nav>
         <div>
           <Routes>
+            <Route path="/" element={<SidebarRecent />} />
             <Route path="/favorites" element={<SidebarFav />} />
             <Route path="/recent" element={<SidebarRecent />} />
           </Routes>
