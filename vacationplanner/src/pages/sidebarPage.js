@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
 import SidebarFav from "../presenters/sidebarFavPresenter";
 import SidebarRecent from "../presenters/sidebarRecentPresenter";
 
@@ -18,7 +18,6 @@ function SidebarPage() {
         <Nav bg="primary" variant="tabs">
           <Container>
             <Nav className="me-auto">
-              <Nav.Link as={Link} to="/"></Nav.Link>
               <Nav.Link as={Link} to="/recent">
                 Recent Searches
               </Nav.Link>
@@ -28,13 +27,12 @@ function SidebarPage() {
             </Nav>
           </Container>
         </Nav>
-        <div>
+        {/* <div>
           <Routes>
-            <Route path="/" element={<SidebarRecent />} />
+            <Route exact path="/" element={<SidebarRecent />} />
             <Route path="/favorites" element={<SidebarFav />} />
-            <Route path="/recent" element={<SidebarRecent />} />
           </Routes>
-        </div>
+        </div> */}
       </>
     </div>
   );
