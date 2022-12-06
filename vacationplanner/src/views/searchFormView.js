@@ -15,10 +15,6 @@ function SearchFormView(props) {
     props.setSearchTest(e.target.value);
   }
 
-  function optionCB(str) {
-    return <option>{str}</option>;
-  }
-
   function searchBtnACB() {
     props.doSearch();
   }

@@ -14,7 +14,7 @@ DONE:
 function SidebarPage() {
   return (
     <div className="sidebarParents">
-      <BrowserRouter>
+      <>
         <Nav bg="primary" variant="tabs">
           <Container>
             <Nav className="me-auto">
@@ -35,7 +35,7 @@ function SidebarPage() {
             <Route path="/recent" element={<SidebarRecent />} />
           </Routes>
         </div>
-      </BrowserRouter>
+      </>
     </div>
   );
 }

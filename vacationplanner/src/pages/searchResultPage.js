@@ -12,10 +12,11 @@ DONE:
 
 function SearchResultPage() {
   return (
-    <BrowserRouter>
+    <>
       <Nav bg="primary" variant="tabs">
         <Container>
           <Nav className="me-auto">
+            <Nav.Link as={Link} to="/"></Nav.Link>
             <Nav.Link as={Link} to="/actvities">
               Activites
             </Nav.Link>
@@ -32,7 +33,7 @@ function SearchResultPage() {
           <Route path="/weather" element={<Weather />} />
         </Routes>
       </div>
-    </BrowserRouter>
+    </>
   );
 }
 export default SearchResultPage;
