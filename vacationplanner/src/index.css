@@ -11,34 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.count{
-  border-style:solid;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 10px;
-  margin-top: 10px;
-  margin-right: 10px;
-  background-color: #f0f0f0;
-  padding: 5px;
-}
-.searchResult{
-  text-align: center;
-  display: inline-block;
-  width: 200px;
-  vertical-align: top;
-  padding: 5px;
-}
-.searchResultViewMain{
-  flex-direction: column;
-  align-items: center;
-  margin-left: 10px;
-  margin-top: 10px;
-  margin-right: 10px;
-  outline: solid;
-
-  background-color: #f0f0f0;
-}
-.star-image{
-  display: inline-block;
-
-}
