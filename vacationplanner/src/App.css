@@ -27,17 +27,18 @@ DONE:
 
 .searchResults {
   padding: 0.75rem;
+  padding-left: 50px;
   display: flex;
   flex-direction: column;
   overflow: scroll;
-  width: 850px;
+  width: 1000px;
   height: 800px;
 }
 .search-ResultView {
   padding-top: 25px;
   padding-left: 50px;
   padding-right: 50px;
-  width: 950px;
+  width: 1200px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -94,5 +95,7 @@ DONE:
   padding-right: 50px;
   display: grid;
 }
-.sidebarRecentBTN {
+.my-modal {
+  width: 90vw;   /* Occupy the 90% of the screen width */
+  max-width: 90vw;
 }

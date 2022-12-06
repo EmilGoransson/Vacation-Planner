@@ -1,6 +1,6 @@
 import React from "react";
 import { Nav, Container } from "react-bootstrap";
-import { Routes, Route, Link, BrowserRouter, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import SearchResult from "../presenters/searchResultPresenter";
 import Weather from "../presenters/weatherPresenter";
 /*
@@ -12,7 +12,8 @@ DONE:
 
 function SearchResultPage() {
   return (
-    <>
+    <BrowserRouter>
+      <Nav justify variant="tabs" defaultActiveKey="/actvities"></Nav>
       <Nav bg="primary" variant="tabs">
         <Container>
           <Nav className="me-auto">
@@ -25,14 +26,14 @@ function SearchResultPage() {
           </Nav>
         </Container>
       </Nav>
-      <Outlet />
-      {/* <div>
+      <div>
         <Routes>
-          <Route exact path="/" element={<Weather />} />
+          <Route path="/" element={<SearchResult />} />
           <Route path="/actvities" element={<SearchResult />} />
+          <Route path="/weather" element={<Weather />} />
         </Routes>
-      </div> */}
-    </>
+      </div>
+    </BrowserRouter>
   );
 }
 export default SearchResultPage;

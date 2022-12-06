@@ -20,6 +20,10 @@ function SearchResult() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [show, setShow] = React.useState(false);
   const addToFavorite = useAttractionStore((state) => state.addFavorite);
+  const setInFocus = useAttractionStore((state) => state.setInFocus);
+  const attraction = useAttractionStore((state) => state.inFocus);
+  const [, reRender] = React.useState();
+  const [showInfo, setShowInfo] = React.useState(false);
 
   const options = {
     method: "GET",
@@ -80,6 +84,8 @@ function SearchResult() {
   };
   function setAttractionInFocusACB(e) {
     //sends currentSelectedAttraction to store used to display more details about the attraction
+    setInFocus(e);
+    setShowInfo(true);
   }
   function addAttractionToFavoriteACB(e) {
     //sends currentSelectedAttraction to store used to display more details about the attraction
@@ -87,13 +93,18 @@ function SearchResult() {
     setShow(true);
     console.log(e);
   }
+
   function closeAlertBoxACB() {
     setShow(false);
   }
   function showAlertBoxACB() {
-    if (show) {
-    }
     setShow(true);
+  }
+  function closeInfoBoxACB() {
+    setShowInfo(false);
+  }
+  function forceRenderACB() {
+    reRender(new Object());
   }
 
   React.useEffect(() => {
@@ -103,6 +114,7 @@ function SearchResult() {
   React.useEffect(() => {
     getAttractions2();
   }, [locationData]);
+  React.useEffect(forceRenderACB, [attraction]);
 
   if (!attractionData || isLoading) return <LoadingView />;
   return (
@@ -114,6 +126,9 @@ function SearchResult() {
       Alert={show}
       closeAlert={closeAlertBoxACB}
       showAlert={showAlertBoxACB}
+      closeInfo={closeInfoBoxACB}
+      showInfo={showInfo}
+      attraction={attraction}
     />
   );
 }

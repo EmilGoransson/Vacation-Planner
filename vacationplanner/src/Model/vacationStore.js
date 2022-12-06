@@ -6,13 +6,23 @@ import create from "zustand";
 TODO: Favorite array,  add & remove favorite, firebase integration, local storage for recent (maybe?)
 DONE: Serachquery, setSearchQuery
 */
-
 const attractionStore = (set) => ({
   searchQuery: "Stockholm",
   favorite: [],
+  inFocus: {
+    photo: {
+      images: { original: { url: "https://i.imgur.com/xeHzkTj.png" } },
+    },
+    description: "temp",
+  },
   setSearchQuery: (query) => {
     set(() => ({
       searchQuery: query,
+    }));
+  },
+  setInFocus: (attraction) => {
+    set(() => ({
+      inFocus: attraction,
     }));
   },
   addFavorite: (favorite) => {

@@ -2,9 +2,13 @@ import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
-import { Alert } from "react-bootstrap";
+import { Alert, Modal } from "react-bootstrap";
+import "./searchResultView.css";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 
 /*
+https://www.npmjs.com/package/react-medium-image-zoom
 @Author Emil <emilgo@kth.se>
 TODO:
 DONE: Loading when waiting on image, displaying image, alert when adding to favorites
@@ -13,23 +17,25 @@ function SearchResultView(props) {
   function closeAlertBoxACB() {
     props.closeAlert();
   }
+  function closeInfoBoxACB() {
+    props.closeInfo();
+  }
+
   function pictureFromSearchCB(obj) {
-    function whenClickingOnPictureACB() {
+    function whenClickingOnMoreDetailsACB() {
       props.attractionInFocus(obj);
     }
     function addToFavoriteOnClickButtonACB() {
       props.addAttractionToFavorite(obj);
     }
-
+    let picture = obj.photo
+      ? obj.photo.images.original.url
+      : "https://i.imgur.com/xeHzkTj.png";
     if (obj.photo) {
       //HAVING OPENING HOURS WILL SKIP SOME RESULTS!
       // if there is a photo
       return (
-        <div
-          key={obj.location_id}
-          className="card flex-row"
-          onClick={whenClickingOnPictureACB}
-        >
+        <div key={obj.location_id} className="card flex-row">
           <img
             className="temp"
             src={obj.photo.images.medium.url}
@@ -69,7 +75,7 @@ function SearchResultView(props) {
               <Button
                 variant="primary"
                 size="sm"
-                onClick={whenClickingOnPictureACB}
+                onClick={whenClickingOnMoreDetailsACB}
               >
                 More info
               </Button>{" "}
@@ -88,24 +94,52 @@ function SearchResultView(props) {
     } else return null;
   }
   return (
-    <div className="searchResults">
-      <Alert show={props.Alert} variant="success" size="sm">
-        Attraction has been added to favorites
-        <div className="d-flex justify-content-end">
-          <Button
-            onClick={closeAlertBoxACB}
-            variant="outline-success"
-            size="sm"
-          >
-            Close
-          </Button>
-        </div>
-      </Alert>
+    <>
+      <Modal
+        show={props.showInfo}
+        onHide={closeInfoBoxACB}
+        dialogClassName="my-modal"
+        aria-labelledby="example-custom-modal-styling-title"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-custom-modal-styling-title">
+            Details
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div>
+            <Zoom>
+              <img
+                src={props.attraction.photo.images.original.url}
+                width="800"
+                height="600"
+              />
+            </Zoom>
+            <div className="detailsViewBody">
+              {props.attraction.description}
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
+      <div className="searchResults">
+        <Alert show={props.Alert} variant="success" size="sm">
+          Attraction has been added to favorites
+          <div className="d-flex justify-content-end">
+            <Button
+              onClick={closeAlertBoxACB}
+              variant="outline-success"
+              size="sm"
+            >
+              Close
+            </Button>
+          </div>
+        </Alert>
 
-      <Container fluid>
-        {props.attractionData.map(pictureFromSearchCB)}{" "}
-      </Container>
-    </div>
+        <Container fluid>
+          {props.attractionData.map(pictureFromSearchCB)}{" "}
+        </Container>
+      </div>
+    </>
   );
 }
 export default SearchResultView;
