@@ -20,6 +20,7 @@ const attractionStore = (set) => ({
       searchQuery: query,
     }));
   },
+
   setInFocus: (attraction) => {
     set(() => ({
       inFocus: attraction,
@@ -30,6 +31,7 @@ const attractionStore = (set) => ({
       favorite: [favorite, ...state.favorite],
     }));
   },
+
   removeFavorite: (favoriteId) => {
     set((state) => ({
       favorite: state.favorite.filter((c) => c.location_id !== favoriteId),

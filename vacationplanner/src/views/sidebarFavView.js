@@ -5,8 +5,8 @@ import Button from "react-bootstrap/Button";
 
 /*
 @Author Emil <emilgo@kth.se>
-TODO: css
-DONE: basic functionality
+TODO:
+DONE: basic functionality, css
 */
 
 function SidebarFavView(props) {
@@ -25,7 +25,8 @@ function SidebarFavView(props) {
           >
             X
           </Button>
-          &#8193;{obj.name}{" "}
+          &#8193;
+          {obj.name}
         </h6>
       </div>
     );

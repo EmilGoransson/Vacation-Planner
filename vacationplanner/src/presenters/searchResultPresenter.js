@@ -16,14 +16,15 @@ DONE: Fetches attraction array from API, passes it to view. NEEDS API_KEY to wor
 function SearchResult() {
   const [locationData, setLocationData] = React.useState([]);
   const [attractionData, setAttractionData] = React.useState(null);
-  const getSearchQuery = useAttractionStore((state) => state.searchQuery);
   const [isLoading, setIsLoading] = React.useState(true);
   const [show, setShow] = React.useState(false);
+  const [, reRender] = React.useState();
+  const [showInfo, setShowInfo] = React.useState(false);
+  const favorites = useAttractionStore((state) => state.favorite);
   const addToFavorite = useAttractionStore((state) => state.addFavorite);
   const setInFocus = useAttractionStore((state) => state.setInFocus);
   const attraction = useAttractionStore((state) => state.inFocus);
-  const [, reRender] = React.useState();
-  const [showInfo, setShowInfo] = React.useState(false);
+  const getSearchQuery = useAttractionStore((state) => state.searchQuery);
 
   const options = {
     method: "GET",
@@ -89,9 +90,12 @@ function SearchResult() {
   }
   function addAttractionToFavoriteACB(e) {
     //sends currentSelectedAttraction to store used to display more details about the attraction
-    addToFavorite(e);
-    setShow(true);
-    console.log(e);
+    if (!favorites.includes(e)) {
+      addToFavorite(e);
+      setShow(true);
+      console.log(e);
+    }
+    console.log("Already in favorites");
   }
 
   function closeAlertBoxACB() {

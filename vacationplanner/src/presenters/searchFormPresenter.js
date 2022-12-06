@@ -12,13 +12,15 @@ DONE:
 const SearchForm = () => {
   const setSearchQuery = useAttractionStore((state) => state.setSearchQuery);
   const addRecent = useRecentStore((state) => state.addRecent);
-  const addToFavorite = useAttractionStore((state) => state.addFavorite);
-
+  const recent = useRecentStore((state) => state.recent);
   const [locationQuery, setLocationQuery] = useState("");
 
   function doSearchWithQueryACB() {
-    setSearchQuery(locationQuery);
-    addRecent(locationQuery);
+    setSearchQuery(locationQuery.toLowerCase());
+    if (!recent.includes(locationQuery.toLowerCase())) {
+      addRecent(locationQuery.toLowerCase());
+    }
+    console.log("Already in recent");
   }
   function setSearchQueryACB(e) {
     setLocationQuery(e);

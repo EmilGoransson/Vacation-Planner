@@ -30,7 +30,7 @@ function WeatherView(props) {
                 width={17}
                 height={17}
               />
-              {obj.day.avgtemp_c}°C
+              &#8192;{obj.day.avgtemp_c}°C
             </div>
             <div>
               <img
@@ -39,7 +39,7 @@ function WeatherView(props) {
                 width={17}
                 height={17}
               />
-              {obj.day.avgvis_km} kph
+              &#8192; {obj.day.avgvis_km} kph
             </div>
           </div>
         </div>
@@ -52,7 +52,6 @@ function WeatherView(props) {
       {props.data.location.name}, {props.data.location.country},{" "}
       {props.data.location.localtime}
       <Container>
-        Today
         <div></div>
         <div className="card flex-row">
           {" "}
@@ -73,7 +72,7 @@ function WeatherView(props) {
                 width={17}
                 height={17}
               />
-              {props.data.current.temp_c}°C
+              &#8192; {props.data.current.temp_c}°C
             </div>
             <div>
               <img
@@ -82,7 +81,7 @@ function WeatherView(props) {
                 width={17}
                 height={17}
               />
-              {props.data.current.wind_kph} kph
+              &#8192; {props.data.current.wind_kph} kph
             </div>
           </div>
         </div>

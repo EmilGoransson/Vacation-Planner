@@ -10,14 +10,15 @@ https://ipgeolocation.io/documentation/ip-geolocation-api-javascript-sdk.html fo
 TO USE!!! ADD export const API_KEY_WEATHER =
   "YOUR KEY FROM HERE: https://rapidapi.com/weatherapi/api/weatherapi-com"; to apiConfig.js
 @Author Emil <emilgo@kth.se>
-TODO:  locationQuery should fetch from store, race condition maybe?, if not city name it should do something
+TODO:  locationQuery should fetch from store, race condition maybe?, if not city name it should do something, date bug
 DONE: Fetching data & displaying it.
 */
 
 function Weather() {
-  const getSearchQuery = useAttractionStore((state) => state.searchQuery);
   const [isLoading, setIsLoading] = React.useState(true);
   const [weatherData, setWeatherData] = React.useState(null);
+  const getSearchQuery = useAttractionStore((state) => state.searchQuery);
+
   //from locationQuery
   const options = {
     method: "GET",
@@ -48,7 +49,7 @@ function Weather() {
   React.useEffect(() => {
     getWeather();
   }, [getSearchQuery]);
-  if (!weatherData || isLoading) return <LoadingView />; //dont know if allowed?
+  if (!weatherData || isLoading) return <LoadingView />;
   return <WeatherView data={weatherData} />;
 }
 export default Weather;

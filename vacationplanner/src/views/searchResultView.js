@@ -6,6 +6,7 @@ import { Alert, Modal } from "react-bootstrap";
 import "./searchResultView.css";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
+import Image from "react-bootstrap/Image";
 
 /*
 https://www.npmjs.com/package/react-medium-image-zoom
@@ -28,16 +29,15 @@ function SearchResultView(props) {
     function addToFavoriteOnClickButtonACB() {
       props.addAttractionToFavorite(obj);
     }
-    let picture = obj.photo
-      ? obj.photo.images.original.url
-      : "https://i.imgur.com/xeHzkTj.png";
+
     if (obj.photo) {
       //HAVING OPENING HOURS WILL SKIP SOME RESULTS!
       // if there is a photo
       return (
         <div key={obj.location_id} className="card flex-row">
-          <img
+          <Image
             className="temp"
+            rounded="true"
             src={obj.photo.images.medium.url}
             width={250}
             height={200}
@@ -107,7 +107,9 @@ function SearchResultView(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div>
+          <div className="Details-View-Main">
+            <h1>{props.attraction.name}</h1>
+
             <Zoom>
               <img
                 src={props.attraction.photo.images.original.url}
@@ -135,9 +137,7 @@ function SearchResultView(props) {
           </div>
         </Alert>
 
-        <Container fluid>
-          {props.attractionData.map(pictureFromSearchCB)}{" "}
-        </Container>
+        <Container>{props.attractionData.map(pictureFromSearchCB)} </Container>
       </div>
     </>
   );

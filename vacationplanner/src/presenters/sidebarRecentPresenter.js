@@ -4,8 +4,8 @@ import useRecentStore from "../model/recentStore";
 
 /*
 @Author Emil <emilgo@kth.se>
-TODO: FIX ISSUE WITH UNIQUE ID (check if already in array), add click functionality to text
-DONE: removal + addition of recent searches, shows recent searches
+TODO: add click functionality to text
+DONE: removal + addition of recent searches, shows recent searches, FIX ISSUE WITH UNIQUE ID (check if already in array)
 */
 
 function SidebarRecent() {
