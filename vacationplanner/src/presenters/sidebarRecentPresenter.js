@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SidebarRecentView from "../views/sidebarRecentView";
-import useRecentStore from "../model/recentStore";
+import useRecentStore from "../Model/recentStore";
 
 /*
 @Author Emil <emilgo@kth.se>

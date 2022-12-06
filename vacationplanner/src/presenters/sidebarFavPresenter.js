@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SidebarFavView from "../views/sidebarFavView";
-import useAttractionStore from "../model/vacationStore";
+import useAttractionStore from "../Model/vacationStore";
 
 /*
 @Author Emil <emilgo@kth.se>
