@@ -3,7 +3,7 @@ import axios from "axios";
 import { API_KEY, API_KEY_WEATHER } from "../apiConfig";
 import WeatherView from "../views/weatherView";
 import LoadingView from "../views/LoadingView";
-import useAttractionStore from "../model/vacationStore";
+import useAttractionStore from "../Model/vacationStore";
 /*
 https://ipgeolocation.io/documentation/ip-geolocation-api-javascript-sdk.html for initial state maybe?
 
