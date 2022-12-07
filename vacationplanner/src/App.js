@@ -28,7 +28,7 @@ function App() {
       <div>
         <Routes>
           <Route exact path="/" element={<HomePage />}>
-            <Route path="/activities" element={<SearchResult />} />
+            <Route index element={<SearchResult />} />
             <Route path="/weather" element={<Weather />} />
           </Route>
           <Route path="/signin" element={<SignInPage />} />
