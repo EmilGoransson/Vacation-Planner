@@ -1,10 +1,10 @@
 import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
-import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 
 /*
 @Author Emil <emilgo@kth.se>
+@Co-Author Mahdi <mnazari@kth.se>
 TODO:
 DONE: basic functionality, css
 */
