@@ -7,3 +7,7 @@ package-lock.json
 !telemetry.config.json
 /public/*.js
 /public/*.html
+vacationplanner/.firebase/hosting.YnVpbGQ.cache
+vacationplanner/.firebaserc
+vacationplanner/build/index.html
+vacationplanner/firebase.json

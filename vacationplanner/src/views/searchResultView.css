@@ -1,0 +1,27 @@
+.my-modal {
+    width: 70vw;    /* Occupy the 90% of the screen width */
+    max-width: 70vw;
+}
+.Details-View-Main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5px;
+}
+.detailsViewBody{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: top;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5px;
+}

@@ -1,0 +1,101 @@
+/*
+@Author Mahdi <mnazari@kth.se>
+@Co-Author Emil <emilgo@kth.se>
+TODO:
+DONE:
+*/
+
+.form-input {
+  padding: 0.75rem;
+  border: 1px solid rgb(16, 4, 4);
+  width: 18rem;
+}
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.signingBtns {
+  padding: 3px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  float: right;
+}
+
+.searchResults {
+  padding: 0.75rem;
+  padding-left: 50px;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  width: 1000px;
+  height: 800px;
+}
+.search-ResultView {
+  padding-top: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
+  width: 1200px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 1000px) {
+  .search-Sidebar-ResultView {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    display: flex;
+    min-width: 500px;
+    min-height: 800px;
+  }
+}
+
+.custom-btn-toolbar {
+  display: inline !important;
+}
+
+.custom-btn-toolbar > .btn {
+  margin-right: 1rem;
+}
+.sidebarParents {
+  padding-top: 25px;
+
+  width: 315px;
+  height: 800px;
+  flex-direction: row;
+  display: flex;
+  flex-direction: column;
+  padding-right: 40px;
+}
+.signInPage {
+  width: 1200px;
+  height: 800px;
+  display: grid;
+}
+.signInOpts {
+  padding: 3px;
+  text-align: center;
+  color: #fff;
+  padding: 5px;
+  width: 200px;
+  margin: auto;
+}
+.logo {
+  width: 150px;
+  height: 150px;
+}
+.signingViewParent {
+  padding: 20px;
+  width: 1400px;
+  height: 150px;
+}
+.sidebarText {
+  padding-left: 25px;
+  padding-right: 50px;
+  display: grid;
+}
+.my-modal {
+  width: 90vw;   /* Occupy the 90% of the screen width */
+  max-width: 90vw;
+}
