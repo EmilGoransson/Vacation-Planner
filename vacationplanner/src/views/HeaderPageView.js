@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
 import Button from "react-bootstrap/Button";
+import { Navigate, useNavigate } from "react-router";
 /*
 @Author Mahdi <mnazari@kth.se>
 @Co-Author Emil <emilgo@kth.se>
@@ -9,12 +10,17 @@ DONE:
 */
 
 function HeaderPageView() {
+  const navigate = useNavigate();
   return (
     <div className="signingViewParent">
       <img src={"https://i.imgur.com/CJBGl6T.png"} width={75} height={75} />
       <h>
         <div className="signingBtns">
-          <Button variant="primary" size="lm" onClick={console.log("Click!")}>
+          <Button
+            variant="primary"
+            size="lm"
+            onClick={() => navigate("/signin")}
+          >
             Sign in!
           </Button>
         </div>

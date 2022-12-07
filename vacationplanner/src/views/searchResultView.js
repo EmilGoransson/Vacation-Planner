@@ -7,10 +7,10 @@ import "./searchResultView.css";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import Image from "react-bootstrap/Image";
-
 /*
 https://www.npmjs.com/package/react-medium-image-zoom
 @Author Emil <emilgo@kth.se>
+@Co-Author Mahdi <mnazari@kth.se>
 TODO:
 DONE: Loading when waiting on image, displaying image, alert when adding to favorites
 */
