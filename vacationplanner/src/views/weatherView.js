@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 
 /*
 @Author Emil <emilgo@kth.se>
+@Co-Author Mahdi <mnazari@kth.se
 TODO: fix ugly css (done ish)
 DONE: displaying data passed by props
 */

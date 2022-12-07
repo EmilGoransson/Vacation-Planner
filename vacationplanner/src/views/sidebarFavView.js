@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 
 /*
 @Author Emil <emilgo@kth.se>
+@Co-Author Mahdi <mnazari@kth.se>
 TODO:
 DONE: basic functionality, css
 */

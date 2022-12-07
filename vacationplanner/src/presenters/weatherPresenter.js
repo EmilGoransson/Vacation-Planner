@@ -5,6 +5,10 @@ import WeatherView from "../views/weatherView";
 import LoadingView from "../views/LoadingView";
 import useAttractionStore from "../model/vacationStore";
 /*
+@Author Mahdi <mnazari@kth.se>
+@Co-Author Emil <emilgo@kth.se>
+TODO:
+DONE:
 https://ipgeolocation.io/documentation/ip-geolocation-api-javascript-sdk.html for initial state maybe?
 
 TO USE!!! ADD export const API_KEY_WEATHER =
