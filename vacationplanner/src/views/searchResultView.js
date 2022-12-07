@@ -11,7 +11,7 @@ import Image from "react-bootstrap/Image";
 /*
 https://www.npmjs.com/package/react-medium-image-zoom
 @Author Emil <emilgo@kth.se>
-TODO:
+TODO: Make the view dumber, move logic & shorten the props. thing (props.attraction.photo.images.original.url TO props.url) to presenter
 DONE: Loading when waiting on image, displaying image, alert when adding to favorites
 */
 function SearchResultView(props) {

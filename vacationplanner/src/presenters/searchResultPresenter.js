@@ -7,8 +7,7 @@ import useAttractionStore from "../model/vacationStore";
 
 /*
 @Author Emil <emilgo@kth.se>
-TODO: CSS (maybe),
- sometimes gets error from api (not sure why but very very very infrequent),
+TODO: CSS (maybe), FIX RACE CONDITION
 DONE: Fetches attraction array from API, passes it to view. NEEDS API_KEY to work which can be defined inside apiConfig https://rapidapi.com/apidojo/api/travel-advisor/pricing.
 , Connection to store
 */
