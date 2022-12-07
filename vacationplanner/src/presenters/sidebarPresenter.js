@@ -38,13 +38,15 @@ function Sidebar(props) {
       <>
         <Container>
           <Nav className="me-auto">
-            <Button onClick={() => setCurrentView("")}>Recent Searches</Button>
-            <Button onClick={() => setCurrentView("recent")}>Favorites</Button>
+            <Button onClick={() => setCurrentView("recent")}>
+              Recent Searches
+            </Button>
+            <Button onClick={() => setCurrentView("")}>Favorites</Button>
           </Nav>
         </Container>
       </>
       <div>
-        {currentView === "recent" ? (
+        {currentView !== "recent" ? (
           <SidebarFavView
             favoriteArray={favorites}
             removeFavorite={removeObjFromFavoriteACB}
