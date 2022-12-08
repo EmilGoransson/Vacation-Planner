@@ -5,6 +5,7 @@ import HeaderPage from "../presenters/headerPagePresenter";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SearchResultPage from "../pages/searchResultPage";
 import Sidebar from "../presenters/sidebarPresenter";
+import Weather from "../presenters/weatherPresenter";
 
 /*
 @Author Mahdi <mnazari@kth.se>
@@ -21,7 +22,13 @@ function HomePage() {
         <Sidebar />
         <div className="search-ResultView">
           <SearchForm />
-          <SearchResultPage />
+          <div className="testing">
+            <SearchResultPage />
+            <div className="weather-sidebar">
+              <h3>Weather</h3>
+              <Weather />
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -53,7 +53,6 @@ function WeatherView(props) {
       {props.data.location.name}, {props.data.location.country},{" "}
       {props.data.location.localtime}
       <Container>
-        <div></div>
         <div className="card flex-row">
           {" "}
           <img

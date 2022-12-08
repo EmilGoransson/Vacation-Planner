@@ -89,6 +89,7 @@ function SearchResult() {
   }
   function addAttractionToFavoriteACB(e) {
     //sends currentSelectedAttraction to store used to display more details about the attraction
+
     if (!favorites.includes(e)) {
       addToFavorite(e);
       setShow(true);

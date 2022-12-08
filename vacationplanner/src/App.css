@@ -38,7 +38,7 @@ DONE:
   padding-top: 25px;
   padding-left: 50px;
   padding-right: 50px;
-  width: 1200px;
+  width: 1500px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -96,6 +96,20 @@ DONE:
   display: grid;
 }
 .my-modal {
-  width: 90vw;   /* Occupy the 90% of the screen width */
+  width: 90vw; /* Occupy the 90% of the screen width */
   max-width: 90vw;
+}
+
+.weather-sidebar {
+  margin: auto;
+  width: 225px;
+}
+
+.testing {
+  display: flex;
+  flex-direction: row;
+}
+
+.wid {
+  width: 1000px;
 }
