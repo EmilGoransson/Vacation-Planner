@@ -26,7 +26,7 @@ function SidebarFavView(props) {
     }
 
     return (
-      <div key={obj} className="sidebarText">
+      <div key={obj.location_id} className="sidebarText">
         <h6>
           <Button
             variant="outline-danger"

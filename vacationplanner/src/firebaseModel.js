@@ -1,9 +1,23 @@
-import firebaseConfig from "/src/firebaseConfig.js";
-import firebase from "firebase/app";
+import firebaseConfig from "../src/firebaseConfig.js";
+import { getDatabase, ref, set } from "firebase/database";
+import { initializeApp } from "firebase/app";
+
 // Initialise firebase
-firebase.initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 const REF = "vacationPlanner";
-firebase
-  .database()
-  .ref(REF + "/test")
-  .set("dummy");
+const database = getDatabase();
+set(ref(database, "test/"), {
+  usename: "dummy",
+});
+
+// import { getDatabase, ref, set } from "firebase/database";
+
+// function writeUserData(userId, name, email, imageUrl) {
+//   const db = getDatabase();
+//   set(ref(db, 'users/' + userId), {
+//     username: name,
+//     email: email,
+//     profile_picture : imageUrl
+//   });
+
+export { database };
