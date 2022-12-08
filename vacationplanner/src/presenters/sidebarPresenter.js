@@ -4,6 +4,8 @@ import useAttractionStore from "../model/vacationStore";
 import useRecentStore from "../model/recentStore";
 import SidebarRecentView from "../views/sidebarRecentView";
 import { Nav, Container, Button } from "react-bootstrap";
+import ToggleButton from "react-bootstrap/ToggleButton";
+import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 
 /*
 @Author Emil <emilgo@kth.se>
@@ -12,11 +14,15 @@ DONE: removal + addition of favorites
 
 @Co-Author Mahdi <mnazari@kth.se>
 TODO:
-DONE:
+DONE: searching from sidebar by clicking on a city is done.
 */
 
 function Sidebar(props) {
+  const setInFocus = useAttractionStore((state) => state.setInFocus);
+  const [showInfo, setShowInfo] = React.useState(false);
   const [currentView, setCurrentView] = useState("recent");
+  const attraction = useAttractionStore((state) => state.inFocus);
+  const setSearchQuery = useAttractionStore((state) => state.setSearchQuery);
 
   const favorites = useAttractionStore((state) => state.favorite);
   const removeFromFavorite = useAttractionStore(
@@ -33,28 +39,56 @@ function Sidebar(props) {
     removeRecent(e);
   }
 
+  function setSearchQueryACB(e) {
+    setSearchQuery(e);
+    console.log("LocationQueryset: " + e);
+  }
+  function setAttractionInFocusACB(e) {
+    //sends currentSelectedAttraction to store used to display more details about the attraction
+    setInFocus(e);
+    setShowInfo(true);
+  }
+  function closeInfoBoxACB() {
+    setShowInfo(false);
+  }
+
   return (
     <div className="sidebarParents">
       <>
-        <Container>
-          <Nav className="me-auto">
-            <Button onClick={() => setCurrentView("recent")}>
-              Recent Searches
-            </Button>
-            <Button onClick={() => setCurrentView("")}>Favorites</Button>
-          </Nav>
-        </Container>
+        <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
+          <ToggleButton
+            variant="outline-primary"
+            onClick={() => setCurrentView("recent")}
+            id="tbg-radio-1"
+            value={1}
+          >
+            Recent Search
+          </ToggleButton>
+          <ToggleButton
+            variant="outline-primary"
+            onClick={() => setCurrentView("")}
+            id="tbg-radio-2"
+            value={2}
+          >
+            Favorites
+          </ToggleButton>
+        </ToggleButtonGroup>
       </>
       <div>
         {currentView !== "recent" ? (
           <SidebarFavView
             favoriteArray={favorites}
             removeFavorite={removeObjFromFavoriteACB}
+            attractionInFocus={setAttractionInFocusACB}
+            closeInfo={closeInfoBoxACB}
+            showInfo={showInfo}
+            attraction={attraction}
           />
         ) : (
           <SidebarRecentView
             recentArray={recent}
             removeRecent={removeStringFromRecentACB}
+            setSearchTest={setSearchQueryACB}
           />
         )}
       </div>
