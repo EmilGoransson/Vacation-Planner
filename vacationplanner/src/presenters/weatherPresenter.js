@@ -5,16 +5,8 @@ import WeatherView from "../views/weatherView";
 import LoadingView from "../views/LoadingView";
 import useAttractionStore from "../model/vacationStore";
 /*
-@Author Mahdi <mnazari@kth.se>
-@Co-Author Emil <emilgo@kth.se>
-TODO:
-DONE:
-https://ipgeolocation.io/documentation/ip-geolocation-api-javascript-sdk.html for initial state maybe?
-
-TO USE!!! ADD export const API_KEY_WEATHER =
-  "YOUR KEY FROM HERE: https://rapidapi.com/weatherapi/api/weatherapi-com"; to apiConfig.js
 @Author Emil <emilgo@kth.se>
-TODO:  locationQuery should fetch from store, race condition maybe?, if not city name it should do something, date bug
+TODO: race condition maybe?, if not city name it should do something
 DONE: Fetching data & displaying it.
 */
 
@@ -22,7 +14,7 @@ function Weather() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [weatherData, setWeatherData] = React.useState(null);
   const getSearchQuery = useAttractionStore((state) => state.searchQuery);
-
+  const [forecast, setForecast] = React.useState(null);
   //from locationQuery
   const options = {
     method: "GET",
@@ -43,6 +35,10 @@ function Weather() {
       const data = response.data;
       if (data) {
         setWeatherData(data);
+        setForecast([
+          data.forecast.forecastday[1],
+          data.forecast.forecastday[2],
+        ]);
       }
       setIsLoading(false);
     } catch (error) {
@@ -53,7 +49,18 @@ function Weather() {
   React.useEffect(() => {
     getWeather();
   }, [getSearchQuery]);
-  if (!weatherData || isLoading) return <LoadingView />;
-  return <WeatherView data={weatherData} />;
+  if (!weatherData || isLoading || !forecast) return <LoadingView />;
+  return (
+    <WeatherView
+      locationCity={weatherData.location.name}
+      locationDate={weatherData.location.localtime}
+      locationCountry={weatherData.location.country}
+      weatherIcon={weatherData.current.condition.icon}
+      weatherCondition={weatherData.current.condition.text}
+      weatherTemp={weatherData.current.temp_c}
+      weatherWind={weatherData.current.wind_kph}
+      forecast={forecast}
+    />
+  );
 }
 export default Weather;

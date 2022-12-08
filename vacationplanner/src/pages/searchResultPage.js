@@ -6,7 +6,6 @@ import SignInPage from "../presenters/signInPagePresenter";
 import Weather from "../presenters/weatherPresenter";
 /*
 @Author Mahdi <mnazari@kth.se>
-@Co-Author Emil <emilgo@kth.se>
 TODO:
 DONE:
 */

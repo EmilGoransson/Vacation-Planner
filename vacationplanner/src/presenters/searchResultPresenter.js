@@ -7,8 +7,7 @@ import useAttractionStore from "../model/vacationStore";
 
 /*
 @Author Emil <emilgo@kth.se>
-TODO: CSS (maybe),
- sometimes gets error from api (not sure why but very very very infrequent),
+TODO: CSS (maybe), FIX RACE CONDITION (tried something but didnt work)
 DONE: Fetches attraction array from API, passes it to view. NEEDS API_KEY to work which can be defined inside apiConfig https://rapidapi.com/apidojo/api/travel-advisor/pricing.
 , Connection to store
 */
@@ -25,6 +24,7 @@ function SearchResult() {
   const setInFocus = useAttractionStore((state) => state.setInFocus);
   const attraction = useAttractionStore((state) => state.inFocus);
   const getSearchQuery = useAttractionStore((state) => state.searchQuery);
+  let locationControl;
 
   const options = {
     method: "GET",
@@ -34,6 +34,7 @@ function SearchResult() {
     },
   };
   const getLocationId = async () => {
+    locationControl = getSearchQuery;
     try {
       setIsLoading(true);
       const response = await axios.get(
@@ -43,7 +44,8 @@ function SearchResult() {
         options
       );
       const data = response.data;
-      if (data) setLocationData(data.data[0].result_object.location_id); //saves specific ID needed for next API call
+      if (data && locationControl === getSearchQuery)
+        setLocationData(data.data[0].result_object.location_id); //saves specific ID needed for next API call
     } catch (error) {
       console.log(error);
     }
@@ -57,7 +59,11 @@ function SearchResult() {
         options
       );
       const attrcData = response.data;
-      if (attrcData) {
+      /* console.log("Location ControL:");
+      console.log(locationControl);
+      console.log("getSearchQuery:");
+      console.log(getSearchQuery); */
+      if (attrcData /*&& locationControl === getSearchQuery*/) {
         setAttractionData(attrcData.data);
       }
       setIsLoading(false);
@@ -124,7 +130,6 @@ function SearchResult() {
   return (
     <SearchResultView
       attractionData={attractionData}
-      dateInfo={weekdays}
       attractionInFocus={setAttractionInFocusACB}
       addAttractionToFavorite={addAttractionToFavoriteACB}
       Alert={show}
