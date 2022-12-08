@@ -25,3 +25,24 @@
     margin-right: 10px;
     padding: 5px;
 }
+.sidebarParents{
+    padding-left: 10px;
+}
+.sidebarText{
+    width : 275px;
+    left: 20px
+
+}
+.sidebar-btn{
+    position : absolute;
+    left: 100px;
+
+}
+.btn-group{
+    position : center;
+    padding-left: 20px;
+}
+.sidebar-bullet{
+    position: relative;
+    left: -27px;
+}

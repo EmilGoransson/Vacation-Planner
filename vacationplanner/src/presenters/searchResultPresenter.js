@@ -19,6 +19,8 @@ function SearchResult() {
   const [show, setShow] = React.useState(false);
   const [, reRender] = React.useState();
   const [showInfo, setShowInfo] = React.useState(false);
+  const [isFavorite, setIsFavorite] = React.useState(false);
+  const [showFavoriteAlert, setShowFavoriteAlert] = React.useState(false);
   const favorites = useAttractionStore((state) => state.favorite);
   const addToFavorite = useAttractionStore((state) => state.addFavorite);
   const setInFocus = useAttractionStore((state) => state.setInFocus);
@@ -99,9 +101,12 @@ function SearchResult() {
     if (!favorites.includes(e)) {
       addToFavorite(e);
       setShow(true);
-      console.log(e);
+    } else {
+      setShowFavoriteAlert(true);
     }
-    console.log("Already in favorites");
+  }
+  function alreadyInFavoritesACB(e) {
+    setIsFavorite(favorites.includes(e));
   }
 
   function closeAlertBoxACB() {
@@ -112,6 +117,9 @@ function SearchResult() {
   }
   function closeInfoBoxACB() {
     setShowInfo(false);
+  }
+  function closeFavoriteAlertBoxACB() {
+    setShowFavoriteAlert(false);
   }
   function forceRenderACB() {
     reRender(new Object());
@@ -138,6 +146,8 @@ function SearchResult() {
       closeInfo={closeInfoBoxACB}
       showInfo={showInfo}
       attraction={attraction}
+      showFavoriteAlertState={showFavoriteAlert}
+      closeFavoriteAlert={closeFavoriteAlertBoxACB}
     />
   );
 }

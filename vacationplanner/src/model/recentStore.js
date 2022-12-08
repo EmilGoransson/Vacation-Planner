@@ -2,15 +2,18 @@ import create from "zustand";
 import { devtools, persist } from "zustand/middleware";
 /*
 @Author Emil <emilgo@kth.se>
-TODO: Cookies/
-DONE:
+TODO:
+DONE: Cookies for recent
 */
 
 const recentStore = (set) => ({
   recent: [], //Persisted with cookies
   addRecent: (recent) => {
     set((state) => ({
-      recent: [recent, ...state.recent],
+      recent: [
+        recent.charAt(0).toUpperCase() + recent.slice(1),
+        ...state.recent,
+      ],
     }));
   },
 
