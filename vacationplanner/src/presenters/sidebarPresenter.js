@@ -58,6 +58,14 @@ function Sidebar(props) {
     setShowInfo(false);
   }
 
+  function changeStartDateTimeACB(date) {
+    setStartDate(date);
+  }
+
+  function changeEndDateTimeACB(date) {
+    setEndDate(date);
+  }
+
   return (
     <div className="sidebarParents">
       <>
@@ -91,9 +99,8 @@ function Sidebar(props) {
             attraction={attraction}
             startDate={startDate}
             endDate={endDate}
-            setStartDateTime={(date) => setStartDate(date)}
-            setEndDateTime={(date) => setEndDate(date)}
-            showSummary={() => setCurrentFavView("summary")}
+            setStartDateTime={changeStartDateTimeACB}
+            setEndDateTime={changeEndDateTimeACB}
           />
         ) : (
           <SidebarRecentView

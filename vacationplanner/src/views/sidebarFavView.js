@@ -74,7 +74,7 @@ function SidebarFavView(props) {
 
     return (
       <ul>
-        <div key={obj.location_id} className="sidebarText">
+        <div key={obj.attractionInfo.location_id} className="sidebarText">
           <li className="sidebar-bullet">
             <h6>
               <a
@@ -82,7 +82,7 @@ function SidebarFavView(props) {
                 onClick="IDClick(id);event.preventDefault();"
                 onClick={getMoreInfoACB}
               >
-                {obj.name}
+                {obj.attractionInfo.name}
               </a>
               &#8193;
               <Button
