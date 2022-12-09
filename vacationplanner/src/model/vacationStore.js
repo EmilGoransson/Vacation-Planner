@@ -40,6 +40,18 @@ const attractionStore = (set) => ({
       ),
     }));
   },
+  //Supposed to find matching obj and update the startDate
+  //1) Find out at what index favorite.attractionInfo.location_id === obj.location_id
+  //2) At that index, update the startDate only.
+
+  //  check(fav.attractionInfo.location_id === obj.location_id) if true, save index.
+
+  updateStartDate: (startDate, obj) => {
+    set((state) => ({
+      date: startDate,
+      obj: obj,
+    }));
+  },
 });
 
 const useAttractionStore = create(attractionStore);

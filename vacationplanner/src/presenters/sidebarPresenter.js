@@ -25,6 +25,7 @@ function Sidebar(props) {
   const [currentFavView, setCurrentFavView] = useState("Favorites");
   const attraction = useAttractionStore((state) => state.inFocus);
   const setSearchQuery = useAttractionStore((state) => state.setSearchQuery);
+  const [attractionFocusDate, setAttractionFocusDate] = useState(null);
 
   const favorites = useAttractionStore((state) => state.favorite);
 
@@ -54,12 +55,14 @@ function Sidebar(props) {
     setInFocus(e);
     setShowInfo(true);
   }
+  function attractionDateChangeACB(e) {}
   function closeInfoBoxACB() {
     setShowInfo(false);
   }
 
-  function changeStartDateTimeACB(date) {
-    setStartDate(date);
+  function changeStartDateTimeACB(e) {
+    setStartDate(e.date);
+    setAttractionFocusDate(e.obj);
   }
 
   function changeEndDateTimeACB(date) {
@@ -101,6 +104,7 @@ function Sidebar(props) {
             endDate={endDate}
             setStartDateTime={changeStartDateTimeACB}
             setEndDateTime={changeEndDateTimeACB}
+            setFocus={attractionDateChangeACB}
           />
         ) : (
           <SidebarRecentView

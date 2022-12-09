@@ -66,10 +66,11 @@ function SidebarFavView(props) {
       props.attractionInFocus(obj);
     }
     function setFromDataACB(date) {
-      props.setStartDateTime(date);
+      const temp = { date, obj };
+      props.setStartDateTime(temp);
     }
     function setToDateACB(date) {
-      props.setEndDateTime(date);
+      props.setEndDateTime(date, obj);
     }
 
     return (
