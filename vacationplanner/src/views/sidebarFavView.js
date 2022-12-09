@@ -56,7 +56,7 @@ function SidebarFavView(props) {
 
   function getFavoriteFromArrayCB(obj) {
     function removeFavoriteACB() {
-      props.removeFavorite(obj.location_id);
+      props.removeFavorite(obj.attractionInfo.location_id);
       //props.removeFavorite(obj);
     }
     function closeInfoBoxACB() {
