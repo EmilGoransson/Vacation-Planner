@@ -97,9 +97,22 @@ function SearchResult() {
     setShowInfo(true);
   }
   function addAttractionToFavoriteACB(e) {
+    console.log("Before if-statement", favorites);
     //sends currentSelectedAttraction to store used to display more details about the attraction
-    if (!favorites.includes(e)) {
-      addToFavorite(e);
+    if (
+      favorites.length === 0 ||
+      !favorites.map((info) => info.attractionInfo).includes(e)
+    ) {
+      console.log("Inside if-statement", favorites);
+      const favorite = {
+        attractionInfo: e,
+        dateInfo: {
+          startDate: new Date().toString(),
+          endDate: new Date().toString(),
+        },
+      };
+      addToFavorite(favorite);
+      console.log(favorite);
       setShow(true);
     } else {
       setShowFavoriteAlert(true);
