@@ -19,6 +19,7 @@ function HeaderPageView() {
           Sign in!
         </Button>
       </div>
+
       <h3
         style={{
           fontSize: "2.2rem",

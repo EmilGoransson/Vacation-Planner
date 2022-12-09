@@ -6,6 +6,7 @@ import SidebarRecentView from "../views/sidebarRecentView";
 import { Nav, Container, Button } from "react-bootstrap";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
+import summarySidebarFavView from "../views/summarySidebarFavView";
 
 /*
 @Author Emil <emilgo@kth.se>
@@ -21,10 +22,15 @@ function Sidebar(props) {
   const setInFocus = useAttractionStore((state) => state.setInFocus);
   const [showInfo, setShowInfo] = React.useState(false);
   const [currentView, setCurrentView] = useState("recent");
+  const [currentFavView, setCurrentFavView] = useState("Favorites");
   const attraction = useAttractionStore((state) => state.inFocus);
   const setSearchQuery = useAttractionStore((state) => state.setSearchQuery);
 
   const favorites = useAttractionStore((state) => state.favorite);
+
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+
   const removeFromFavorite = useAttractionStore(
     (state) => state.removeFavorite
   );
@@ -83,6 +89,11 @@ function Sidebar(props) {
             closeInfo={closeInfoBoxACB}
             showInfo={showInfo}
             attraction={attraction}
+            startDate={startDate}
+            endDate={endDate}
+            setStartDateTime={(date) => setStartDate(date)}
+            setEndDateTime={(date) => setEndDate(date)}
+            showSummary={() => setCurrentFavView("summary")}
           />
         ) : (
           <SidebarRecentView
