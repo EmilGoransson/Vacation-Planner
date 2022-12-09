@@ -1,9 +1,9 @@
-import firebaseConfig from "../src/firebaseConfig.js";
+import firebase from "./firebase";
 import { getDatabase, ref, set } from "firebase/database";
 import { initializeApp } from "firebase/app";
 
 // Initialise firebase
-initializeApp(firebaseConfig);
+initializeApp(firebase);
 const REF = "vacationPlanner";
 const database = getDatabase();
 set(ref(database, "AddToFavorite/"), {

@@ -13,46 +13,46 @@ DONE: basic functionality, css, now we can display the details in the favorite s
 */
 
 function SidebarFavView(props) {
-  function showPlanACB() {
-    {
-      props.favoriteArray.map(getPlanACB);
-    }
-    <>
-      {/* <div>from={props.startDate ? props.startDate.toString() : null}</div>
-        <div>to={props.endDate ? props.endDate.toString() : null}</div> */}
-    </>;
-  }
-  function getPlanACB(obj) {
-    function closeInfoBoxACB() {
-      props.closeInfo();
-    }
-    return (
-      <div key={obj.location_id} className="sidebarText">
-        <Modal
-          show={props.showInfo}
-          onHide={closeInfoBoxACB}
-          dialogClassName="my-modal"
-          aria-labelledby="example-custom-modal-styling-title"
-        >
-          <Modal.Header closeButton>
-            <Modal.Title id="example-custom-modal-styling-title">
-              {props.attraction.name}
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div className="Details-View-Main">
-              <div className="detailsViewBody">
-                <div>
-                  from={props.startDate ? props.startDate.toString() : null}
-                </div>
-                <div>to={props.endDate ? props.endDate.toString() : null}</div>
-              </div>
-            </div>
-          </Modal.Body>
-        </Modal>
-      </div>
-    );
-  }
+  // function showPlanACB() {
+  //   {
+  //     props.favoriteArray.map(getPlanACB);
+  //   }
+  //   <>
+  //     {/* <div>from={props.startDate ? props.startDate.toString() : null}</div>
+  //       <div>to={props.endDate ? props.endDate.toString() : null}</div> */}
+  //   </>;
+  // }
+  // function getPlanACB(obj) {
+  //   function closeInfoBoxACB() {
+  //     props.closeInfo();
+  //   }
+  //   return (
+  //     <div key={obj.location_id} className="sidebarText">
+  //       <Modal
+  //         show={props.showInfo}
+  //         onHide={closeInfoBoxACB}
+  //         dialogClassName="my-modal"
+  //         aria-labelledby="example-custom-modal-styling-title"
+  //       >
+  //         <Modal.Header closeButton>
+  //           <Modal.Title id="example-custom-modal-styling-title">
+  //             {props.attraction.name}
+  //           </Modal.Title>
+  //         </Modal.Header>
+  //         <Modal.Body>
+  //           <div className="Details-View-Main">
+  //             <div className="detailsViewBody">
+  //               <div>
+  //                 from={props.startDate ? props.startDate.toString() : null}
+  //               </div>
+  //               <div>to={props.endDate ? props.endDate.toString() : null}</div>
+  //             </div>
+  //           </div>
+  //         </Modal.Body>
+  //       </Modal>
+  //     </div>
+  //   );
+  // }
 
   function getFavoriteFromArrayCB(obj) {
     function removeFavoriteACB() {
@@ -157,7 +157,11 @@ function SidebarFavView(props) {
   return (
     <div className="sidebarParents">
       {props.favoriteArray.map(getFavoriteFromArrayCB)}
-      <Button variant="outline-primary" size="sm" onClick={showPlanACB}>
+      <Button
+        variant="outline-primary"
+        size="sm"
+        onClick={console.log("summary")}
+      >
         Summary
       </Button>
     </div>
