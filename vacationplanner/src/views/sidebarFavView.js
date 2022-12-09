@@ -8,9 +8,8 @@ import DatePicker from "react-datepicker";
 /*
 @Author Emil <emilgo@kth.se>
 TODO:
-DONE: basic functionality, css
+DONE: basic functionality, css, now we can display the details in the favorite sidebar by clicking on each favorite attractions name.
 @Co-Author Mahdi <mnazari@kth.se>
-DONE: now we can display the details in the favorite sidebar by clicking on each favorite attractions name.
 */
 
 function SidebarFavView(props) {
@@ -74,81 +73,85 @@ function SidebarFavView(props) {
     }
 
     return (
-      <div key={obj.location_id} className="sidebarText">
-        <h6>
-          <Button
-            variant="outline-danger"
-            size="sm"
-            onClick={removeFavoriteACB}
-          >
-            X
-          </Button>
-          &#8193;
-          <a
-            href="#"
-            onClick="IDClick(id);event.preventDefault();"
-            onClick={getMoreInfoACB}
-          >
-            {obj.name}
-          </a>
-        </h6>
-        <div>
-          Start:
-          <DatePicker
-            placeholderText="from"
-            showTimeSelect
-            dateFormat="MMM d, yy h:mmaa"
-            selected={props.startDate}
-            selectsStart
-            startDate={props.startDate}
-            endDate={props.endDate}
-            onChange={setFromDataACB}
-          />
-          End:
-          <DatePicker
-            placeholderText="to"
-            showTimeSelect
-            dateFormat="MMM d, yy h:mmaa"
-            selected={props.endDate}
-            selectsEnd
-            startDate={props.startDate}
-            endDate={props.endDate}
-            minDate={props.startDate}
-            onChange={setToDateACB}
-          />
-        </div>
-        {/* <div>From ={props.startDate ? props.startDate.toString() : null}</div>
+      <ul>
+        <div key={obj.location_id} className="sidebarText">
+          <li className="sidebar-bullet">
+            <h6>
+              <a
+                href="#"
+                onClick="IDClick(id);event.preventDefault();"
+                onClick={getMoreInfoACB}
+              >
+                {obj.name}
+              </a>
+              &#8193;
+              <Button
+                variant="outline-danger"
+                size="sm"
+                onClick={removeFavoriteACB}
+              >
+                X
+              </Button>
+            </h6>
+            <div>
+              Start:
+              <DatePicker
+                placeholderText="from"
+                showTimeSelect
+                dateFormat="MMM d, yy h:mmaa"
+                selected={props.startDate}
+                selectsStart
+                startDate={props.startDate}
+                endDate={props.endDate}
+                onChange={setFromDataACB}
+              />
+              End:
+              <DatePicker
+                placeholderText="to"
+                showTimeSelect
+                dateFormat="MMM d, yy h:mmaa"
+                selected={props.endDate}
+                selectsEnd
+                startDate={props.startDate}
+                endDate={props.endDate}
+                minDate={props.startDate}
+                onChange={setToDateACB}
+              />
+            </div>
+            {/* <div>From ={props.startDate ? props.startDate.toString() : null}</div>
         <div>To ={props.endDate ? props.endDate.toString() : null}</div> */}
 
-        <Modal
-          show={props.showInfo}
-          onHide={closeInfoBoxACB}
-          dialogClassName="my-modal"
-          aria-labelledby="example-custom-modal-styling-title"
-        >
-          <Modal.Header closeButton>
-            <Modal.Title id="example-custom-modal-styling-title">
-              Details
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div className="Details-View-Main">
-              <h1>{props.attraction.name}</h1>
+            <Modal
+              show={props.showInfo}
+              onHide={closeInfoBoxACB}
+              dialogClassName="my-modal"
+              aria-labelledby="example-custom-modal-styling-title"
+            >
+              <Modal.Header closeButton>
+                <Modal.Title id="example-custom-modal-styling-title">
+                  Details
+                </Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <div className="Details-View-Main">
+                  <h1>{props.attraction.name}</h1>
 
-              <Zoom>
-                <img
-                  src={props.attraction.photo.images.original.url}
-                  width="300"
-                  height="300"
-                />
-              </Zoom>
-              <div className="detailsViewBody">
-                {props.attraction.description}
-              </div>
-            </div>
-          </Modal.Body>
-        </Modal>
-      </div>
+                  <Zoom>
+                    <img
+                      src={props.attraction.photo.images.original.url}
+                      width="300"
+                      height="300"
+                    />
+                  </Zoom>
+                  <div className="detailsViewBody">
+                    {props.attraction.description}
+                  </div>
+                </div>
+              </Modal.Body>
+            </Modal>
+          </li>
+        </div>
+      </ul>
     );
   }
   return (

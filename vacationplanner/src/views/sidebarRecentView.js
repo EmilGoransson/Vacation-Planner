@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+import "./viewStyles.css";
 
 /*
 !!NPM INSTALL, IT USES AXIOS!! (npm install axios but npm install should do it)
@@ -24,28 +25,32 @@ function SidebarRecentView(props) {
       //console.log(obj);
     }
     return (
-      <div key={obj} className="sidebarText">
-        <h6>
-          <Button
-            className="sidebarRecentBTN"
-            variant="outline-danger"
-            size="sm"
-            onClick={removeFromRecentOnClickButtonACB}
-          >
-            X
-          </Button>
-          &#8193;
-          {
-            <a
-              href="#"
-              onClick="IDClick(id);event.preventDefault();"
-              onClick={addButtonACB}
-            >
-              {obj}
-            </a>
-          }{" "}
-        </h6>
-      </div>
+      <ul>
+        <div key={obj.location_id} className="sidebarText">
+          <li className="sidebar-bullet">
+            <h6>
+              {
+                <a
+                  href="#"
+                  onClick="IDClick(id);event.preventDefault();"
+                  onClick={addButtonACB}
+                >
+                  {obj}
+                </a>
+              }{" "}
+              &#8193;
+              <Button
+                className="sidebarRecentBTN"
+                variant="outline-danger"
+                size="sm"
+                onClick={removeFromRecentOnClickButtonACB}
+              >
+                X
+              </Button>
+            </h6>
+          </li>
+        </div>
+      </ul>
     );
   }
   return (

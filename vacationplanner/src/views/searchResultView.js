@@ -3,7 +3,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { Alert, Modal } from "react-bootstrap";
-import "./searchResultView.css";
+import "./viewStyles.css";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import Image from "react-bootstrap/Image";
@@ -14,11 +14,15 @@ TODO: Make the view dumber, move logic & shorten the props. thing (props.attract
 DONE: Loading when waiting on image, displaying image, alert when adding to favorites
 */
 function SearchResultView(props) {
+  console.log(props);
   function closeAlertBoxACB() {
     props.closeAlert();
   }
   function closeInfoBoxACB() {
     props.closeInfo();
+  }
+  function closeFavoriteAlertBoxACB() {
+    props.closeFavoriteAlert();
   }
 
   function pictureFromSearchCB(obj) {
@@ -34,13 +38,15 @@ function SearchResultView(props) {
       // if there is a photo
       return (
         <div key={obj.location_id} className="card flex-row">
-          <Image
-            className="temp"
-            rounded="true"
-            src={obj.photo.images.medium.url}
-            width={250}
-            height={200}
-          />
+          <Zoom>
+            <Image
+              className="temp"
+              rounded="true"
+              src={obj.photo.images.large.url}
+              width={250}
+              height={200}
+            />
+          </Zoom>
           <div className="card-body">
             <div className="card-title h5 h4-sm">{obj.name}</div>
             <img src="https://i.imgur.com/RXQNkY2.png" width={15} height={15} />
@@ -123,17 +129,23 @@ function SearchResultView(props) {
         </Modal.Body>
       </Modal>
       <div className="searchResults">
-        <Alert show={props.Alert} variant="success" size="sm">
-          Attraction has been added to favorites
-          <div className="d-flex justify-content-end">
-            <Button
-              onClick={closeAlertBoxACB}
-              variant="outline-success"
-              size="sm"
-            >
-              Close
-            </Button>
-          </div>
+        <Alert
+          show={props.showFavoriteAlertState}
+          key={"danger"}
+          variant={"danger"}
+          onClose={closeFavoriteAlertBoxACB}
+          dismissible={true}
+        >
+          Already added in favorites
+        </Alert>
+        <Alert
+          show={props.Alert}
+          variant="success"
+          size="sm"
+          onClick={closeAlertBoxACB}
+          dismissible
+        >
+          Added to favorites
         </Alert>
 
         <Container>{props.attractionData.map(pictureFromSearchCB)} </Container>
