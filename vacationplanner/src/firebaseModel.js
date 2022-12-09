@@ -6,8 +6,8 @@ import { initializeApp } from "firebase/app";
 initializeApp(firebaseConfig);
 const REF = "vacationPlanner";
 const database = getDatabase();
-set(ref(database, "test/"), {
-  usename: "dummy",
+set(ref(database, "AddToFavorite/"), {
+  usename: "Vasa Museet",
 });
 
 // import { getDatabase, ref, set } from "firebase/database";

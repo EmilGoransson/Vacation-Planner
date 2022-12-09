@@ -26,6 +26,7 @@ const attractionStore = (set) => ({
       inFocus: attraction,
     }));
   },
+
   addFavorite: (favorite) => {
     set((state) => ({
       favorite: [favorite, ...state.favorite],

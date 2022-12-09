@@ -1,8 +1,9 @@
 import "bootstrap/dist/css/bootstrap.css";
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { Modal } from "react-bootstrap";
 import Zoom from "react-medium-image-zoom";
+import DatePicker from "react-datepicker";
 
 /*
 @Author Emil <emilgo@kth.se>
@@ -13,6 +14,47 @@ DONE: now we can display the details in the favorite sidebar by clicking on each
 */
 
 function SidebarFavView(props) {
+  function showPlanACB() {
+    {
+      props.favoriteArray.map(getPlanACB);
+    }
+    <>
+      {/* <div>from={props.startDate ? props.startDate.toString() : null}</div>
+        <div>to={props.endDate ? props.endDate.toString() : null}</div> */}
+    </>;
+  }
+  function getPlanACB(obj) {
+    function closeInfoBoxACB() {
+      props.closeInfo();
+    }
+    return (
+      <div key={obj.location_id} className="sidebarText">
+        <Modal
+          show={props.showInfo}
+          onHide={closeInfoBoxACB}
+          dialogClassName="my-modal"
+          aria-labelledby="example-custom-modal-styling-title"
+        >
+          <Modal.Header closeButton>
+            <Modal.Title id="example-custom-modal-styling-title">
+              {props.attraction.name}
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="Details-View-Main">
+              <div className="detailsViewBody">
+                <div>
+                  from={props.startDate ? props.startDate.toString() : null}
+                </div>
+                <div>to={props.endDate ? props.endDate.toString() : null}</div>
+              </div>
+            </div>
+          </Modal.Body>
+        </Modal>
+      </div>
+    );
+  }
+
   function getFavoriteFromArrayCB(obj) {
     function removeFavoriteACB() {
       props.removeFavorite(obj.location_id);
@@ -23,6 +65,12 @@ function SidebarFavView(props) {
     }
     function getMoreInfoACB() {
       props.attractionInFocus(obj);
+    }
+    function setFromDataACB(date) {
+      props.setStartDateTime(date);
+    }
+    function setToDateACB(date) {
+      props.setEndDateTime(date);
     }
 
     return (
@@ -44,6 +92,34 @@ function SidebarFavView(props) {
             {obj.name}
           </a>
         </h6>
+        <div>
+          Start:
+          <DatePicker
+            placeholderText="from"
+            showTimeSelect
+            dateFormat="MMM d, yy h:mmaa"
+            selected={props.startDate}
+            selectsStart
+            startDate={props.startDate}
+            endDate={props.endDate}
+            onChange={setFromDataACB}
+          />
+          End:
+          <DatePicker
+            placeholderText="to"
+            showTimeSelect
+            dateFormat="MMM d, yy h:mmaa"
+            selected={props.endDate}
+            selectsEnd
+            startDate={props.startDate}
+            endDate={props.endDate}
+            minDate={props.startDate}
+            onChange={setToDateACB}
+          />
+        </div>
+        {/* <div>From ={props.startDate ? props.startDate.toString() : null}</div>
+        <div>To ={props.endDate ? props.endDate.toString() : null}</div> */}
+
         <Modal
           show={props.showInfo}
           onHide={closeInfoBoxACB}
@@ -78,6 +154,9 @@ function SidebarFavView(props) {
   return (
     <div className="sidebarParents">
       {props.favoriteArray.map(getFavoriteFromArrayCB)}
+      <Button variant="outline-primary" size="sm" onClick={showPlanACB}>
+        Summary
+      </Button>
     </div>
   );
 }

@@ -8,6 +8,7 @@ import HomePage from "./pages/homePage";
 import Weather from "./presenters/weatherPresenter";
 import SearchResult from "./presenters/searchResultPresenter";
 import "./firebaseModel.js";
+import Sidebar from "./presenters/sidebarPresenter";
 /*
 @Author Mahdi <mnazari@kth.se>
 @Co-Author Emil <emilgo@kth.se>
