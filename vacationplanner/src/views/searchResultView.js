@@ -14,6 +14,7 @@ TODO: Make the view dumber, move logic & shorten the props. thing (props.attract
 DONE: Loading when waiting on image, displaying image, alert when adding to favorites
 */
 function SearchResultView(props) {
+  console.log(props);
   function closeAlertBoxACB() {
     props.closeAlert();
   }
@@ -37,13 +38,15 @@ function SearchResultView(props) {
       // if there is a photo
       return (
         <div key={obj.location_id} className="card flex-row">
-          <Image
-            className="temp"
-            rounded="true"
-            src={obj.photo.images.medium.url}
-            width={250}
-            height={200}
-          />
+          <Zoom>
+            <Image
+              className="temp"
+              rounded="true"
+              src={obj.photo.images.large.url}
+              width={250}
+              height={200}
+            />
+          </Zoom>
           <div className="card-body">
             <div className="card-title h5 h4-sm">{obj.name}</div>
             <img src="https://i.imgur.com/RXQNkY2.png" width={15} height={15} />
@@ -135,17 +138,14 @@ function SearchResultView(props) {
         >
           Already added in favorites
         </Alert>
-        <Alert show={props.Alert} variant="success" size="sm">
+        <Alert
+          show={props.Alert}
+          variant="success"
+          size="sm"
+          onClick={closeAlertBoxACB}
+          dismissible
+        >
           Added to favorites
-          <div className="d-flex justify-content-end">
-            <Button
-              onClick={closeAlertBoxACB}
-              variant="outline-success"
-              size="sm"
-            >
-              Dismiss
-            </Button>
-          </div>
         </Alert>
 
         <Container>{props.attractionData.map(pictureFromSearchCB)} </Container>
