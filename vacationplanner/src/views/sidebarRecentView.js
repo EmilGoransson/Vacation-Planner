@@ -15,7 +15,6 @@ DONE: Now we can search from "recent search" sidebar by clicking on a city in th
 */
 
 function SidebarRecentView(props) {
-  console.log(props);
   function renderRecentArrayCB(obj) {
     function removeFromRecentOnClickButtonACB(e) {
       props.removeRecent(obj);
@@ -24,9 +23,10 @@ function SidebarRecentView(props) {
       props.setSearchTest(obj);
       //console.log(obj);
     }
+    console.log(obj);
     return (
-      <ul>
-        <div key={obj.location_id} className="sidebarText">
+      <ul key={obj}>
+        <div className="sidebarText">
           <li className="sidebar-bullet">
             <h6>
               {

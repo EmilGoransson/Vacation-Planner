@@ -26,12 +26,19 @@ function Sidebar(props) {
   const attraction = useAttractionStore((state) => state.inFocus);
   const setSearchQuery = useAttractionStore((state) => state.setSearchQuery);
   const [attractionFocusDate, setAttractionFocusDate] = useState(null);
+  const [timeInfoArrayEndTime, setTimeInfoArrayEndTime] = useState([]);
+  const [timeInfoArrayStartTime, setTimeInfoArrayStartTime] = useState([]);
 
   const favorites = useAttractionStore((state) => state.favorite);
+  let arrEnd = "";
+  let arrStart = "";
 
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+  const updateStartDate = useAttractionStore((state) => state.updateStartDate);
+  const setObjForDateInFocus = useAttractionStore(
+    (state) => state.setChangeTimeInFocus
+  );
   const removeFromFavorite = useAttractionStore(
     (state) => state.removeFavorite
   );
@@ -48,25 +55,45 @@ function Sidebar(props) {
 
   function setSearchQueryACB(e) {
     setSearchQuery(e);
-    console.log("LocationQueryset: " + e);
   }
   function setAttractionInFocusACB(e) {
     //sends currentSelectedAttraction to store used to display more details about the attraction
-    setInFocus(e);
+    console.log(e);
+    setInFocus(e.attractionInfo);
     setShowInfo(true);
   }
   function attractionDateChangeACB(e) {}
   function closeInfoBoxACB() {
     setShowInfo(false);
   }
-
+  //updates favorite in store
   function changeStartDateTimeACB(e) {
+    const index = favorites.findIndex(
+      (obj) =>
+        obj.attractionInfo.location_id === e.obj.attractionInfo.location_id
+    );
+    const temp = [...favorites];
+    temp[index].dateInfo.startDate = e.date.toString();
+    //Doesnt work below this, need to think about how
+    arrStart = temp;
     setStartDate(e.date);
-    setAttractionFocusDate(e.obj);
+    arrStart = favorites.map((fav) => fav.dateInfo.startDate);
+    setTimeInfoArrayStartTime(arrStart);
   }
 
-  function changeEndDateTimeACB(date) {
-    setEndDate(date);
+  function changeEndDateTimeACB(e) {
+    const index = favorites.findIndex(
+      (obj) =>
+        obj.attractionInfo.location_id === e.obj.attractionInfo.location_id
+    );
+    const temp = [...favorites];
+
+    temp[index].dateInfo.endDate = e.date.toString();
+    //Doesnt work below this, need to think about how
+    arrEnd = temp;
+    setEndDate(e.date);
+    arrEnd = favorites.map((fav) => fav.dateInfo.endDate);
+    setTimeInfoArrayEndTime(arrEnd);
   }
 
   return (
@@ -105,6 +132,8 @@ function Sidebar(props) {
             setStartDateTime={changeStartDateTimeACB}
             setEndDateTime={changeEndDateTimeACB}
             setFocus={attractionDateChangeACB}
+            startDateInfo={timeInfoArrayStartTime}
+            endDateInfo={timeInfoArrayEndTime}
           />
         ) : (
           <SidebarRecentView

@@ -13,6 +13,7 @@ DONE: basic functionality, css, now we can display the details in the favorite s
 */
 
 function SidebarFavView(props) {
+  console.log(props);
   // function showPlanACB() {
   //   {
   //     props.favoriteArray.map(getPlanACB);
@@ -54,7 +55,7 @@ function SidebarFavView(props) {
   //   );
   // }
 
-  function getFavoriteFromArrayCB(obj) {
+  function getFavoriteFromArrayCB(obj, index) {
     function removeFavoriteACB() {
       props.removeFavorite(obj.attractionInfo.location_id);
       //props.removeFavorite(obj);
@@ -70,12 +71,12 @@ function SidebarFavView(props) {
       props.setStartDateTime(temp);
     }
     function setToDateACB(date) {
-      props.setEndDateTime(date, obj);
+      const temp = { date, obj };
+      props.setEndDateTime(temp);
     }
-
     return (
-      <ul>
-        <div key={obj.attractionInfo.location_id} className="sidebarText">
+      <ul key={obj.attractionInfo.location_id}>
+        <div className="sidebarText">
           <li className="sidebar-bullet">
             <h6>
               <a
@@ -158,11 +159,7 @@ function SidebarFavView(props) {
   return (
     <div className="sidebarParents">
       {props.favoriteArray.map(getFavoriteFromArrayCB)}
-      <Button
-        variant="outline-primary"
-        size="sm"
-        onClick={console.log("summary")}
-      >
+      <Button variant="outline-primary" size="sm">
         Summary
       </Button>
     </div>

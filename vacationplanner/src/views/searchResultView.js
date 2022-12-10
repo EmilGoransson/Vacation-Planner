@@ -14,7 +14,6 @@ TODO: Make the view dumber, move logic & shorten the props. thing (props.attract
 DONE: Loading when waiting on image, displaying image, alert when adding to favorites
 */
 function SearchResultView(props) {
-  console.log(props);
   function closeAlertBoxACB() {
     props.closeAlert();
   }

@@ -6,9 +6,11 @@ import create from "zustand";
 TODO: Favorite array,  add & remove favorite, firebase integration, local storage for recent (maybe?)
 DONE: Serachquery, setSearchQuery
 */
+
 const attractionStore = (set) => ({
   searchQuery: "Stockholm",
   favorite: [],
+  changeTimeInFocusId: "",
   inFocus: {
     photo: {
       images: { original: { url: "https://i.imgur.com/xeHzkTj.png" } },
@@ -29,15 +31,18 @@ const attractionStore = (set) => ({
 
   addFavorite: (favorite) => {
     set((state) => ({
-      favorite: [favorite, ...state.favorite],
+      favorite: [...state.favorite, favorite],
+    }));
+  },
+  setChangeTimeInFocus(obj) {
+    set(() => ({
+      changeTimeInFocusId: obj,
     }));
   },
 
   removeFavorite: (favoriteId) => {
     set((state) => ({
-      favorite: state.favorite.filter(
-        (c) => c.attractionInfo.location_id !== favoriteId
-      ),
+      favorite: [favoriteId, ...state.favorite],
     }));
   },
   //Supposed to find matching obj and update the startDate
@@ -46,10 +51,9 @@ const attractionStore = (set) => ({
 
   //  check(fav.attractionInfo.location_id === obj.location_id) if true, save index.
 
-  updateStartDate: (startDate, obj) => {
+  updateStartDate: (updatedFavorite) => {
     set((state) => ({
-      date: startDate,
-      obj: obj,
+      favorite: updatedFavorite,
     }));
   },
 });
