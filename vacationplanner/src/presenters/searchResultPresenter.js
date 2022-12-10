@@ -86,11 +86,6 @@ function SearchResult() {
     "Saturday",
     "Sunday",
   ];
-  const weekdays = {
-    day: day,
-    dayName: dayName[day - 1],
-    todaysDay: dayName,
-  };
   function setAttractionInFocusACB(e) {
     //sends currentSelectedAttraction to store used to display more details about the attraction
     setInFocus(e);
@@ -107,8 +102,8 @@ function SearchResult() {
       const favorite = {
         attractionInfo: e,
         dateInfo: {
-          startDate: new Date().toString(),
-          endDate: new Date().toString(),
+          startDate: new Date(),
+          endDate: new Date(),
         },
       };
       addToFavorite(favorite);

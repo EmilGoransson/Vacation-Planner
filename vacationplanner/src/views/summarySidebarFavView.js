@@ -1,10 +1,9 @@
 function summarySidebarFavView(props) {
   function getFavoriteFromArrayCB(obj) {
+    console.log(obj);
     return (
-      <div key={obj.location_id} className="sidebarText">
-        {obj.name}
-        <div>from={props.startDate ? props.startDate.toString() : null}</div>
-        <div>to={props.endDate ? props.endDate.toString() : null}</div>
+      <div key={obj.attractionInfo.location_id} className="sidebarText">
+        <div></div>
       </div>
     );
   }

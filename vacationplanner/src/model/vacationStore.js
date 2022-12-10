@@ -42,7 +42,9 @@ const attractionStore = (set) => ({
 
   removeFavorite: (favoriteId) => {
     set((state) => ({
-      favorite: [favoriteId, ...state.favorite],
+      favorite: state.favorite.filter(
+        (c) => c.attractionInfo.location_id !== favoriteId
+      ),
     }));
   },
   //Supposed to find matching obj and update the startDate

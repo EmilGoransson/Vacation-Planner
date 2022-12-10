@@ -30,8 +30,6 @@ function Sidebar(props) {
   const [timeInfoArrayStartTime, setTimeInfoArrayStartTime] = useState([]);
 
   const favorites = useAttractionStore((state) => state.favorite);
-  let arrEnd = "";
-  let arrStart = "";
 
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
@@ -75,10 +73,7 @@ function Sidebar(props) {
     const temp = [...favorites];
     temp[index].dateInfo.startDate = e.date.toString();
     //Doesnt work below this, need to think about how
-    arrStart = temp;
     setStartDate(e.date);
-    arrStart = favorites.map((fav) => fav.dateInfo.startDate);
-    setTimeInfoArrayStartTime(arrStart);
   }
 
   function changeEndDateTimeACB(e) {
@@ -90,10 +85,7 @@ function Sidebar(props) {
 
     temp[index].dateInfo.endDate = e.date.toString();
     //Doesnt work below this, need to think about how
-    arrEnd = temp;
     setEndDate(e.date);
-    arrEnd = favorites.map((fav) => fav.dateInfo.endDate);
-    setTimeInfoArrayEndTime(arrEnd);
   }
 
   return (
