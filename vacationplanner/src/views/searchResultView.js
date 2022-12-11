@@ -31,10 +31,8 @@ function SearchResultView(props) {
     function addToFavoriteOnClickButtonACB() {
       props.addAttractionToFavorite(obj);
     }
-
+    // if there is a photo
     if (obj.photo) {
-      //HAVING OPENING HOURS WILL SKIP SOME RESULTS!
-      // if there is a photo
       return (
         <div key={obj.location_id} className="card flex-row">
           <Zoom>

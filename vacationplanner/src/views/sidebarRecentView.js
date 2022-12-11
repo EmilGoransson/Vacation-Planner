@@ -53,6 +53,13 @@ function SidebarRecentView(props) {
       </ul>
     );
   }
+  if (props.recentArray.length === 0) {
+    return (
+      <div className="sidebarParents">
+        <h6>Your recent searches will be shown here</h6>
+      </div>
+    );
+  }
   return (
     <div className="sidebarParents">
       {props.recentArray.map(renderRecentArrayCB)}

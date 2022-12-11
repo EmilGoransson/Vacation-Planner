@@ -4,6 +4,7 @@ import { API_KEY } from "../apiConfig";
 import SearchResultView from "../views/searchResultView";
 import LoadingView from "../views/LoadingView";
 import useAttractionStore from "../model/vacationStore";
+import NoQueryView from "../views/noQueryView";
 
 /*
 @Author Emil <emilgo@kth.se>
@@ -19,7 +20,6 @@ function SearchResult() {
   const [show, setShow] = React.useState(false);
   const [, reRender] = React.useState();
   const [showInfo, setShowInfo] = React.useState(false);
-  const [isFavorite, setIsFavorite] = React.useState(false);
   const [showFavoriteAlert, setShowFavoriteAlert] = React.useState(false);
   const favorites = useAttractionStore((state) => state.favorite);
   const addToFavorite = useAttractionStore((state) => state.addFavorite);
@@ -73,19 +73,6 @@ function SearchResult() {
       console.log(error);
     }
   };
-  const todaysDate = new Date();
-  let day = todaysDate.getDay();
-
-  let dayName = [
-    //maybe needs to be in store?
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
   function setAttractionInFocusACB(e) {
     //sends currentSelectedAttraction to store used to display more details about the attraction
     setInFocus(e);
@@ -113,10 +100,6 @@ function SearchResult() {
       setShowFavoriteAlert(true);
     }
   }
-  function alreadyInFavoritesACB(e) {
-    setIsFavorite(favorites.includes(e));
-  }
-
   function closeAlertBoxACB() {
     setShow(false);
   }
@@ -141,6 +124,8 @@ function SearchResult() {
     getAttractions2();
   }, [locationData]);
   React.useEffect(forceRenderACB, [attraction]);
+
+  if (getSearchQuery === "") return <NoQueryView />;
 
   if (!attractionData || isLoading) return <LoadingView />;
   return (

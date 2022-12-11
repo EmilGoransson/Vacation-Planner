@@ -23,22 +23,14 @@ function Sidebar(props) {
   const [showInfo, setShowInfo] = React.useState(false);
   const [showSummary, setShowSummary] = React.useState(false);
   const [currentView, setCurrentView] = useState("recent");
-  const [currentFavView, setCurrentFavView] = useState("Favorites");
   const attraction = useAttractionStore((state) => state.inFocus);
   const setSearchQuery = useAttractionStore((state) => state.setSearchQuery);
-  const [attractionFocusDate, setAttractionFocusDate] = useState(null);
-  const [timeInfoArrayEndTime, setTimeInfoArrayEndTime] = useState([]);
-  const [timeInfoArrayStartTime, setTimeInfoArrayStartTime] = useState([]);
-
+  const [timeInfoArrayEndTime] = useState([]);
+  const [timeInfoArrayStartTime] = useState([]);
   const favorites = useAttractionStore((state) => state.favorite);
   const componentRef = useRef();
-
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
-  const updateStartDate = useAttractionStore((state) => state.updateStartDate);
-  const setObjForDateInFocus = useAttractionStore(
-    (state) => state.setChangeTimeInFocus
-  );
   const removeFromFavorite = useAttractionStore(
     (state) => state.removeFavorite
   );
@@ -58,7 +50,6 @@ function Sidebar(props) {
   }
   function setAttractionInFocusACB(e) {
     //sends currentSelectedAttraction to store used to display more details about the attraction
-    console.log(e);
     setInFocus(e.attractionInfo);
     setShowInfo(true);
   }
@@ -81,7 +72,6 @@ function Sidebar(props) {
     );
     const temp = [...favorites];
     temp[index].dateInfo.startDate = e.date.toString();
-    //Doesnt work below this, need to think about how
     setStartDate(e.date);
   }
 
@@ -93,7 +83,6 @@ function Sidebar(props) {
     const temp = [...favorites];
 
     temp[index].dateInfo.endDate = e.date.toString();
-    //Doesnt work below this, need to think about how
     setEndDate(e.date);
   }
 

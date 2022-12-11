@@ -44,7 +44,6 @@ function SidebarFavView(props) {
     function removeFavoriteACB() {
       console.log(obj.attractionInfo.location_id);
       props.removeFavorite(obj.attractionInfo.location_id);
-      //props.removeFavorite(obj);
     }
     function closeInfoBoxACB() {
       props.closeInfo();
@@ -101,9 +100,6 @@ function SidebarFavView(props) {
                 onChange={setToDateACB}
               />
             </div>
-            {/* <div>From ={props.startDate ? props.startDate.toString() : null}</div>
-        <div>To ={props.endDate ? props.endDate.toString() : null}</div> */}
-
             <Modal
               show={props.showInfo}
               onHide={closeInfoBoxACB}
@@ -135,6 +131,16 @@ function SidebarFavView(props) {
           </li>
         </div>
       </ul>
+    );
+  }
+  if (props.favoriteArray.length === 0) {
+    return (
+      <div className="sidebarParents">
+        <h6>
+          Your favorite attractions will be shown here, add a favorite by
+          searching for a famous city & clicking on the button "Add to favorite"{" "}
+        </h6>
+      </div>
     );
   }
   return (
