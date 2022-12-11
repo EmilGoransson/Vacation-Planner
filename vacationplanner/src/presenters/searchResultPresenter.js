@@ -17,7 +17,6 @@ function SearchResult() {
   const [attractionData, setAttractionData] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(true);
   const [show, setShow] = React.useState(false);
-  const [, reRender] = React.useState();
   const [showInfo, setShowInfo] = React.useState(false);
   const [showFavoriteAlert, setShowFavoriteAlert] = React.useState(false);
   const favorites = useAttractionStore((state) => state.favorite);
@@ -33,40 +32,7 @@ function SearchResult() {
       "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
     },
   };
-  const getLocationId = async () => {
-    const locationControl = getSearchQuery;
-    let locationDataJustNow; //to get locationID data instant
-    try {
-      setIsLoading(true);
-      const response = await axios.get(
-        "https://travel-advisor.p.rapidapi.com/locations/search?query=" +
-          getSearchQuery +
-          "&limit=1&offset=0&units=km&location_id=1&currency=USD&sort=relevance&lang=en_US",
-        options
-      );
-      const data = response.data;
-      if (data && locationControl === getSearchQuery)
-        locationDataJustNow = data.data[0].result_object.location_id;
-    } catch (error) {
-      console.log(error);
-    }
 
-    try {
-      const response = await axios.get(
-        "https://travel-advisor.p.rapidapi.com/attractions/list?location_id=" +
-          locationDataJustNow +
-          "&currency=USD&lang=en_US&lunit=km&sort=recommended",
-        options
-      );
-      const attrcData = response.data;
-      if (attrcData && locationControl === getSearchQuery) {
-        setAttractionData(attrcData.data);
-      }
-      setIsLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   function setAttractionInFocusACB(e) {
     //sends currentSelectedAttraction to store used to display more details about the attraction
     setInFocus(e);
@@ -104,7 +70,46 @@ function SearchResult() {
     setShowFavoriteAlert(false);
   }
   React.useEffect(() => {
+    let canceled = false;
+
+    const getLocationId = async () => {
+      let locationDataJustNow; //to get locationID data instant
+      try {
+        setIsLoading(true);
+        const response = await axios.get(
+          "https://travel-advisor.p.rapidapi.com/locations/search?query=" +
+            getSearchQuery +
+            "&limit=1&offset=0&units=km&location_id=1&currency=USD&sort=relevance&lang=en_US",
+          options
+        );
+        const data = response.data;
+
+        if (data && !canceled)
+          locationDataJustNow = data.data[0].result_object.location_id;
+      } catch (error) {
+        console.log(error);
+      }
+
+      try {
+        const response = await axios.get(
+          "https://travel-advisor.p.rapidapi.com/attractions/list?location_id=" +
+            locationDataJustNow +
+            "&currency=USD&lang=en_US&lunit=km&sort=recommended",
+          options
+        );
+        const attrcData = response.data;
+        if (attrcData && !canceled) {
+          setAttractionData(attrcData.data);
+        }
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
     getLocationId();
+    return () => {
+      canceled = true;
+    };
   }, [getSearchQuery]);
   //React.useEffect(forceRenderACB, [attraction]);
 
