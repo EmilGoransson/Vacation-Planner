@@ -14,7 +14,6 @@ DONE: Fetches attraction array from API, passes it to view. NEEDS API_KEY to wor
 */
 
 function SearchResult() {
-  const [locationData, setLocationData] = React.useState([]);
   const [attractionData, setAttractionData] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(true);
   const [show, setShow] = React.useState(false);
@@ -26,7 +25,6 @@ function SearchResult() {
   const setInFocus = useAttractionStore((state) => state.setInFocus);
   const attraction = useAttractionStore((state) => state.inFocus);
   const getSearchQuery = useAttractionStore((state) => state.searchQuery);
-  let locationControl = getSearchQuery;
 
   const options = {
     method: "GET",
@@ -36,6 +34,8 @@ function SearchResult() {
     },
   };
   const getLocationId = async () => {
+    const locationControl = getSearchQuery;
+    let locationDataJustNow; //to get locationID data instant
     try {
       setIsLoading(true);
       const response = await axios.get(
@@ -46,16 +46,15 @@ function SearchResult() {
       );
       const data = response.data;
       if (data && locationControl === getSearchQuery)
-        setLocationData(data.data[0].result_object.location_id); //saves specific ID needed for next API call
+        locationDataJustNow = data.data[0].result_object.location_id;
     } catch (error) {
       console.log(error);
     }
-  };
-  const getAttractions2 = async () => {
+
     try {
       const response = await axios.get(
         "https://travel-advisor.p.rapidapi.com/attractions/list?location_id=" +
-          locationData +
+          locationDataJustNow +
           "&currency=USD&lang=en_US&lunit=km&sort=recommended",
         options
       );
@@ -104,18 +103,10 @@ function SearchResult() {
   function closeFavoriteAlertBoxACB() {
     setShowFavoriteAlert(false);
   }
-  function forceRenderACB() {
-    reRender(new Object());
-  }
-
   React.useEffect(() => {
     getLocationId();
   }, [getSearchQuery]);
-
-  React.useEffect(() => {
-    getAttractions2();
-  }, [locationData]);
-  React.useEffect(forceRenderACB, [attraction]);
+  //React.useEffect(forceRenderACB, [attraction]);
 
   if (getSearchQuery === "") return <NoQueryView />;
 
