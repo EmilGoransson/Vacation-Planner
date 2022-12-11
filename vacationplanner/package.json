@@ -25,6 +25,7 @@
     "react-simple-image-slider": "^2.4.1",
     "react-slick": "^0.29.0",
     "react-time-picker": "^5.1.0",
+    "react-to-print": "^2.14.10",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.6",
     "weather-widget001": "^0.1.7",

@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
-import React, { useState } from "react";
+import React from "react";
 import Button from "react-bootstrap/Button";
-import { Modal } from "react-bootstrap";
+import { Alert, Modal } from "react-bootstrap";
 import Zoom from "react-medium-image-zoom";
 import DatePicker from "react-datepicker";
 
@@ -13,47 +13,31 @@ DONE: basic functionality, css, now we can display the details in the favorite s
 */
 
 function SidebarFavView(props) {
+  function handlePrintACB() {
+    props.handlePrintBtn();
+  }
+
   console.log("Props!", props);
-  // function showPlanACB() {
-  //   {
-  //     props.favoriteArray.map(getPlanACB);
-  //   }
-  //   <>
-  //     {/* <div>from={props.startDate ? props.startDate.toString() : null}</div>
-  //       <div>to={props.endDate ? props.endDate.toString() : null}</div> */}
-  //   </>;
-  // }
-  // function getPlanACB(obj) {
-  //   function closeInfoBoxACB() {
-  //     props.closeInfo();
-  //   }
-  //   return (
-  //     <div key={obj.location_id} className="sidebarText">
-  //       <Modal
-  //         show={props.showInfo}
-  //         onHide={closeInfoBoxACB}
-  //         dialogClassName="my-modal"
-  //         aria-labelledby="example-custom-modal-styling-title"
-  //       >
-  //         <Modal.Header closeButton>
-  //           <Modal.Title id="example-custom-modal-styling-title">
-  //             {props.attraction.name}
-  //           </Modal.Title>
-  //         </Modal.Header>
-  //         <Modal.Body>
-  //           <div className="Details-View-Main">
-  //             <div className="detailsViewBody">
-  //               <div>
-  //                 from={props.startDate ? props.startDate.toString() : null}
-  //               </div>
-  //               <div>to={props.endDate ? props.endDate.toString() : null}</div>
-  //             </div>
-  //           </div>
-  //         </Modal.Body>
-  //       </Modal>
-  //     </div>
-  //   );
-  // }
+  function closeSumBoxACB() {
+    props.closeSummary();
+  }
+
+  function showSummaryACB() {
+    props.summaryInFocus();
+  }
+
+  function getSummaryFromArrayCB(obj) {
+    return (
+      <div>
+        &#8226;
+        {" " + obj.attractionInfo.name}
+        <div>From: {obj.dateInfo.startDate.toString()}</div>
+        <div>To: {obj.dateInfo.endDate.toString()}</div>
+        <div>Adress: {obj.attractionInfo.address}</div>
+        <br />
+      </div>
+    );
+  }
 
   function getFavoriteFromArrayCB(obj) {
     console.log("current obj!", obj);
@@ -156,9 +140,33 @@ function SidebarFavView(props) {
   return (
     <div className="sidebarParents">
       {props.favoriteArray.map(getFavoriteFromArrayCB)}
-      <Button variant="outline-primary" size="sm">
+      <Button variant="outline-primary" size="sm" onClick={showSummaryACB}>
         Summary
       </Button>
+      <Modal
+        show={props.showSummary}
+        onHide={closeSumBoxACB}
+        dialogClassName="my-modal"
+        aria-labelledby="example-custom-modal-styling-title"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-custom-modal-styling-title">
+            Summary
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="Details-View-Main">
+            <div className="detailsViewBody" ref={props.componentRef}>
+              {props.favoriteArray.map(getSummaryFromArrayCB)}
+            </div>
+            <div>
+              <button className="printBtn" onClick={handlePrintACB}>
+                &#128424;
+              </button>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }

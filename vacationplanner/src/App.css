@@ -25,6 +25,12 @@ DONE:
   float: right;
 }
 
+.printBtn {
+  padding: 3px;
+  width: auto;
+  float: right;
+}
+
 .searchResults {
   padding: 0.75rem;
   padding-left: 50px;
