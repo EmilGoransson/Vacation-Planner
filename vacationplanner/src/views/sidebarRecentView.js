@@ -21,9 +21,7 @@ function SidebarRecentView(props) {
     }
     function addButtonACB() {
       props.setSearchTest(obj);
-      //console.log(obj);
     }
-    console.log(obj);
     return (
       <ul key={obj}>
         <div className="sidebarText">
@@ -35,7 +33,7 @@ function SidebarRecentView(props) {
                   onClick="IDClick(id);event.preventDefault();"
                   onClick={addButtonACB}
                 >
-                  {obj}
+                  {obj.charAt(0).toUpperCase() + obj.slice(1)}
                 </a>
               }{" "}
               &#8193;

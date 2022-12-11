@@ -10,7 +10,6 @@ DONE: displaying data passed by props,
 */
 
 function WeatherView(props) {
-  console.log(props.forecast);
   function forecastWeatherCB(obj) {
     return (
       <div key={obj.date_epoch}>

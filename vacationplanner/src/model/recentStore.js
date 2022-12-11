@@ -10,10 +10,7 @@ const recentStore = (set) => ({
   recent: [], //Persisted with cookies
   addRecent: (recent) => {
     set((state) => ({
-      recent: [
-        recent.charAt(0).toUpperCase() + recent.slice(1),
-        ...state.recent,
-      ],
+      recent: [recent, ...state.recent],
     }));
   },
 

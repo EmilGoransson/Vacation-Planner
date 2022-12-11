@@ -26,7 +26,7 @@ function SearchResult() {
   const setInFocus = useAttractionStore((state) => state.setInFocus);
   const attraction = useAttractionStore((state) => state.inFocus);
   const getSearchQuery = useAttractionStore((state) => state.searchQuery);
-  let locationControl;
+  let locationControl = getSearchQuery;
 
   const options = {
     method: "GET",
@@ -36,7 +36,6 @@ function SearchResult() {
     },
   };
   const getLocationId = async () => {
-    locationControl = getSearchQuery;
     try {
       setIsLoading(true);
       const response = await axios.get(
@@ -61,11 +60,7 @@ function SearchResult() {
         options
       );
       const attrcData = response.data;
-      /* console.log("Location ControL:");
-      console.log(locationControl);
-      console.log("getSearchQuery:");
-      console.log(getSearchQuery); */
-      if (attrcData /*&& locationControl === getSearchQuery*/) {
+      if (attrcData && locationControl === getSearchQuery) {
         setAttractionData(attrcData.data);
       }
       setIsLoading(false);
@@ -79,13 +74,11 @@ function SearchResult() {
     setShowInfo(true);
   }
   function addAttractionToFavoriteACB(e) {
-    console.log("Before if-statement", favorites);
     //sends currentSelectedAttraction to store used to display more details about the attraction
     if (
       favorites.length === 0 ||
       !favorites.map((info) => info.attractionInfo).includes(e)
     ) {
-      console.log("Inside if-statement", favorites);
       const favorite = {
         attractionInfo: e,
         dateInfo: {
@@ -94,7 +87,6 @@ function SearchResult() {
         },
       };
       addToFavorite(favorite);
-      console.log(favorite);
       setShow(true);
     } else {
       setShowFavoriteAlert(true);

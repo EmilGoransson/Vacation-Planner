@@ -25,6 +25,7 @@ function Sidebar(props) {
   const [currentView, setCurrentView] = useState("recent");
   const attraction = useAttractionStore((state) => state.inFocus);
   const setSearchQuery = useAttractionStore((state) => state.setSearchQuery);
+  const getSearchQuery = useAttractionStore((state) => state.searchQuery);
   const [timeInfoArrayEndTime] = useState([]);
   const [timeInfoArrayStartTime] = useState([]);
   const favorites = useAttractionStore((state) => state.favorite);
@@ -46,7 +47,7 @@ function Sidebar(props) {
   }
 
   function setSearchQueryACB(e) {
-    setSearchQuery(e);
+    if (getSearchQuery.toLowerCase() !== e.toLowerCase()) setSearchQuery(e);
   }
   function setAttractionInFocusACB(e) {
     //sends currentSelectedAttraction to store used to display more details about the attraction

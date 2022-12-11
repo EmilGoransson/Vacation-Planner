@@ -17,7 +17,6 @@ function SidebarFavView(props) {
     props.handlePrintBtn();
   }
 
-  console.log("Props!", props);
   function closeSumBoxACB() {
     props.closeSummary();
   }
@@ -28,21 +27,25 @@ function SidebarFavView(props) {
 
   function getSummaryFromArrayCB(obj) {
     return (
-      <div>
-        &#8226;
-        {" " + obj.attractionInfo.name}
-        <div>From: {obj.dateInfo.startDate.toString()}</div>
-        <div>To: {obj.dateInfo.endDate.toString()}</div>
-        <div>Adress: {obj.attractionInfo.address}</div>
+      <div key={obj.attractionInfo.location_id}>
+        <h5>&#8226; {" " + obj.attractionInfo.name}</h5>
+        <div>
+          {" "}
+          <b>From: </b> {obj.dateInfo.startDate.toString()}
+        </div>
+        <div>
+          <b>To: </b> {obj.dateInfo.endDate.toString()}
+        </div>
+        <div>
+          <b>Address : </b> {obj.attractionInfo.address}
+        </div>
         <br />
       </div>
     );
   }
 
   function getFavoriteFromArrayCB(obj) {
-    console.log("current obj!", obj);
     function removeFavoriteACB() {
-      console.log(obj.attractionInfo.location_id);
       props.removeFavorite(obj.attractionInfo.location_id);
     }
     function closeInfoBoxACB() {
@@ -136,10 +139,11 @@ function SidebarFavView(props) {
   if (props.favoriteArray.length === 0) {
     return (
       <div className="sidebarParents">
-        <h6>
-          Your favorite attractions will be shown here, add a favorite by
-          searching for a famous city & clicking on the button "Add to favorite"{" "}
-        </h6>
+        <h6>Your favorite attractions will be shown here. </h6>
+        <div>
+          Add a favorite by searching for a famous city & clicking on the button
+          "Add to favorite"
+        </div>
       </div>
     );
   }
