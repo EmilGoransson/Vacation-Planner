@@ -2,25 +2,25 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { FacebookAuthProvider } from "firebase/auth";
+import { firebaseConfig } from "./firebaseConfig";
+import { getDatabase, ref, set } from "firebase/database";
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyAAtBnfvvGycvdb-PJethv1LFiUV3t0Ysg",
-    authDomain: "vacation-planner-3aa4f.firebaseapp.com",
-    projectId: "vacation-planner-3aa4f",
-    storageBucket: "vacation-planner-3aa4f.appspot.com",
-    messagingSenderId: "972133800195",
-    appId: "1:972133800195:web:79a82de79a3bbf23a87136"
-};
+
+
+// Initialize Realtime Database and get a reference to the service
+const database = getDatabase();
+
+set(ref(database, 'test/'), { username: 'dummy' });
+
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// Initialize Firebase Authentication and get a reference to the service
+
 export const auth = getAuth(app);
 
-const provider = new GoogleAuthProvider();
-
 export const singInWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
         .then((result) => { console.log(result); })
 
@@ -36,3 +36,5 @@ export const singInWithFacebook = () => {
 
         .catch((error) => { console.log(error); });
 };
+
+export { database };
