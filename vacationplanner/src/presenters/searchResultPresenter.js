@@ -8,7 +8,7 @@ import NoQueryView from "../views/noQueryView";
 
 /*
 @Author Emil <emilgo@kth.se>
-TODO: CSS (maybe), FIX RACE CONDITION (tried something but didnt work)
+TODO: DONE
 DONE: Fetches attraction array from API, passes it to view. NEEDS API_KEY to work which can be defined inside apiConfig https://rapidapi.com/apidojo/api/travel-advisor/pricing.
 , Connection to store
 */
@@ -69,11 +69,12 @@ function SearchResult() {
   function closeFavoriteAlertBoxACB() {
     setShowFavoriteAlert(false);
   }
+  let locationDataJustNow = 189852;
   React.useEffect(() => {
     let canceled = false;
 
     const getLocationId = async () => {
-      let locationDataJustNow; //to get locationID data instant
+      //to get locationID data instant
       try {
         setIsLoading(true);
         const response = await axios.get(
@@ -86,6 +87,8 @@ function SearchResult() {
 
         if (data && !canceled)
           locationDataJustNow = data.data[0].result_object.location_id;
+
+        console.log(data.data[0].result_object.location_id);
       } catch (error) {
         console.log(error);
       }
@@ -101,35 +104,40 @@ function SearchResult() {
         if (attrcData && !canceled) {
           setAttractionData(attrcData.data);
         }
-        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
     };
-    getLocationId();
+    getLocationId().then(() => {
+      setIsLoading(false);
+    });
     return () => {
       canceled = true;
+      setAttractionData(null);
     };
   }, [getSearchQuery]);
-  //React.useEffect(forceRenderACB, [attraction]);
-
   if (getSearchQuery === "") return <NoQueryView />;
+  if (!attractionData || isLoading) {
+    return <LoadingView />;
+  }
 
-  if (!attractionData || isLoading) return <LoadingView />;
-  return (
-    <SearchResultView
-      attractionData={attractionData}
-      attractionInFocus={setAttractionInFocusACB}
-      addAttractionToFavorite={addAttractionToFavoriteACB}
-      Alert={show}
-      closeAlert={closeAlertBoxACB}
-      showAlert={showAlertBoxACB}
-      closeInfo={closeInfoBoxACB}
-      showInfo={showInfo}
-      attraction={attraction}
-      showFavoriteAlertState={showFavoriteAlert}
-      closeFavoriteAlert={closeFavoriteAlertBoxACB}
-    />
-  );
+  if (attractionData && !isLoading) {
+    console.log(attractionData);
+    return (
+      <SearchResultView
+        attractionData={attractionData}
+        attractionInFocus={setAttractionInFocusACB}
+        addAttractionToFavorite={addAttractionToFavoriteACB}
+        Alert={show}
+        closeAlert={closeAlertBoxACB}
+        showAlert={showAlertBoxACB}
+        closeInfo={closeInfoBoxACB}
+        showInfo={showInfo}
+        attraction={attraction}
+        showFavoriteAlertState={showFavoriteAlert}
+        closeFavoriteAlert={closeFavoriteAlertBoxACB}
+      />
+    );
+  }
 }
 export default SearchResult;
