@@ -7,6 +7,7 @@ import { Alert } from "react-bootstrap";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import { useReactToPrint } from "react-to-print";
+import SidebarParentsView from "../views/sidebarParentsView";
 
 /*
 @Author Emil <emilgo@kth.se>
@@ -94,57 +95,41 @@ function Sidebar(props) {
   });
 
   return (
-    <div className="sidebarParents">
-      <>
-        <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
-          <ToggleButton
-            variant="outline-primary"
-            onClick={() => setCurrentView("recent")}
-            id="tbg-radio-1"
-            value={1}
-          >
-            Recent Search
-          </ToggleButton>
-          <ToggleButton
-            variant="outline-primary"
-            onClick={() => setCurrentView("")}
-            id="tbg-radio-2"
-            value={2}
-          >
-            Favorites
-          </ToggleButton>
-        </ToggleButtonGroup>
-      </>
-      <div>
-        {currentView !== "recent" ? (
-          <SidebarFavView
-            favoriteArray={favorites}
-            removeFavorite={removeObjFromFavoriteACB}
-            attractionInFocus={setAttractionInFocusACB}
-            closeInfo={closeInfoBoxACB}
-            closeSummary={closeSummaryBoxACB}
-            showInfo={showInfo}
-            showSummary={showSummary}
-            attraction={attraction}
-            startDate={startDate}
-            endDate={endDate}
-            setStartDateTime={changeStartDateTimeACB}
-            setEndDateTime={changeEndDateTimeACB}
-            setFocus={attractionDateChangeACB}
-            startDateInfo={timeInfoArrayStartTime}
-            endDateInfo={timeInfoArrayEndTime}
-            summaryInFocus={setSummaryInFocus}
-            componentRef={componentRef}
-            handlePrintBtn={handlePrint}
-          />
-        ) : (
-          <SidebarRecentView
-            recentArray={recent}
-            removeRecent={removeStringFromRecentACB}
-            setSearchTest={setSearchQueryACB}
-          />
-        )}
-      </div>
+    <div>
+      {
+        <SidebarParentsView
+          setCurrentViewToRecent={() => setCurrentView("recent")}
+          setCurrentViewToFavorite={() => setCurrentView("")}
+        />
+      }
+      {currentView !== "recent" ? (
+        <SidebarFavView
+          favoriteArray={favorites}
+          removeFavorite={removeObjFromFavoriteACB}
+          attractionInFocus={setAttractionInFocusACB}
+          closeInfo={closeInfoBoxACB}
+          closeSummary={closeSummaryBoxACB}
+          showInfo={showInfo}
+          showSummary={showSummary}
+          attraction={attraction}
+          startDate={startDate}
+          endDate={endDate}
+          setStartDateTime={changeStartDateTimeACB}
+          setEndDateTime={changeEndDateTimeACB}
+          setFocus={attractionDateChangeACB}
+          startDateInfo={timeInfoArrayStartTime}
+          endDateInfo={timeInfoArrayEndTime}
+          summaryInFocus={setSummaryInFocus}
+          componentRef={componentRef}
+          handlePrintBtn={handlePrint}
+        />
+      ) : (
+        <SidebarRecentView
+          recentArray={recent}
+          removeRecent={removeStringFromRecentACB}
+          setSearchTest={setSearchQueryACB}
+        />
+      )}
     </div>
   );
 }
