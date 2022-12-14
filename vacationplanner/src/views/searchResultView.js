@@ -108,7 +108,7 @@ function SearchResultView(props) {
         </Modal.Header>
         <Modal.Body>
           <div className="Details-View-Main">
-            <h1>{props.attraction.name}</h1>
+
 
             <Zoom>
               <img

@@ -7,6 +7,8 @@ import { Nav, Container } from "react-bootstrap";
 import HomePage from "./pages/homePage";
 import Weather from "./presenters/weatherPresenter";
 import SearchResult from "./presenters/searchResultPresenter";
+//import "./firebase.js";
+import { addCourseACB } from "./firebase.js";
 /*
 @Author Mahdi <mnazari@kth.se>
 @Co-Author Emil <emilgo@kth.se>
@@ -15,6 +17,7 @@ DONE:
 */
 
 function App() {
+  addCourseACB();
   return (
     <>
       <Nav bg="primary" variant="tabs">
