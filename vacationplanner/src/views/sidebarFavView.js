@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import { Alert, Modal } from "react-bootstrap";
 import Zoom from "react-medium-image-zoom";
 import DatePicker from "react-datepicker";
+import TimePicker from "react-time-picker";
 
 /*
 @Author Emil <emilgo@kth.se>
@@ -84,23 +85,29 @@ function SidebarFavView(props) {
               </Button>
             </h6>
             <div>
-              Start:
+              <h6>Start:</h6>
               <DatePicker
                 placeholderText="from"
-                showTimeSelect
-                dateFormat="MMM d, yy h:mmaa"
+                dateFormat="dd-MMM-yyy   HH:mm"
                 selected={new Date(obj.dateInfo.startDate)}
                 selectsStart
                 onChange={setFromDataACB}
+                showYearDropdown
+                scrollableMonthYearDropdown
+                showTimeSelect
+                timeIntervals={15}
               />
-              End:
+              <h6>End:</h6>
               <DatePicker
                 placeholderText="to"
-                showTimeSelect
-                dateFormat="MMM d, yy h:mmaa"
+                dateFormat="dd-MMM-yyy   HH:mm"
                 selected={new Date(obj.dateInfo.endDate)}
                 selectsEnd
                 onChange={setToDateACB}
+                showYearDropdown
+                scrollableMonthYearDropdown
+                showTimeSelect
+                timeIntervals={15}
               />
             </div>
             <Modal
