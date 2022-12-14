@@ -7,8 +7,8 @@ import { Nav, Container } from "react-bootstrap";
 import HomePage from "./pages/homePage";
 import Weather from "./presenters/weatherPresenter";
 import SearchResult from "./presenters/searchResultPresenter";
-import "./firebaseModel.js";
 import Sidebar from "./presenters/sidebarPresenter";
+import "./firebaseModel.js";
 /*
 @Author Mahdi <mnazari@kth.se>
 @Co-Author Emil <emilgo@kth.se>

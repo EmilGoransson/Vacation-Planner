@@ -1,4 +1,7 @@
 import create from "zustand";
+import { getDatabase, ref, set } from "firebase/database";
+import { database } from '../firebaseModel';
+import { set as setfirebase } from 'firebase/database';
 
 /*
 @Author Mahdi <mnazari@kth.se>
@@ -29,18 +32,43 @@ const attractionStore = (set) => ({
     }));
   },
 
-  addFavorite: (favorite) => {
-    set((state) => ({
-      favorite: [...state.favorite, favorite],
-    }));
+  addFavorite: (newfavorite) => {
+    set((state) => {
+      setfirebase(ref(database, 'AddToFavorite'), { favorite: [newfavorite, ...state.favorite] });
+
+      return { favorite: [newfavorite, ...state.favorite] }
+    });
+
   },
+
+  /*function addToFavorite(favorite){
+   addToFavoriteCB(state){ 
+     return {favorite : [favorite, ...state.favorite]};
+   }
+   set (addToFavoriteCB);
+ },*/
+
+
   removeFavorite: (favoriteId) => {
-    set((state) => ({
-      favorite: state.favorite.filter(
-        (c) => c.attractionInfo.location_id !== favoriteId
-      ),
-    }));
+    set((state) => {
+
+      setfirebase(ref(database, 'RemoveFavorite'), { favorite: state.favorite.filter((c) => c.attractionInfo.location_id !== favoriteId) });
+
+
+      return { favorite: state.favorite.filter((c) => c.attractionInfo.location_id !== favoriteId) }
+    });
   },
+
+  /*
+removeFavorite: (favoriteId) => {
+  set((state) => ({
+    favorite: state.favorite.filter(
+      (c) => c.attractionInfo.location_id !== favoriteId
+    ),
+  }));
+},*/
+
+
 });
 
 const useAttractionStore = create(attractionStore);
