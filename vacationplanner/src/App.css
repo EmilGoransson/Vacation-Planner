@@ -37,26 +37,30 @@ DONE:
   display: flex;
   flex-direction: column;
   overflow: scroll;
-  width: 1000px;
+  width: 700px;
   height: 800px;
 }
 .search-ResultView {
   padding-top: 25px;
   padding-left: 50px;
   padding-right: 50px;
-  width: 1200px;
+  width: 900px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
 }
 
-@media (min-width: 1000px) {
-  .search-Sidebar-ResultView {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
-    display: flex;
-    min-width: 500px;
+@media (min-width: 500px) {
+  .main-containt {
+    min-width: 800px;
     min-height: 800px;
   }
 }
 
+.search-Sidebar-ResultView {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+  display: flex;
+  min-width: 800px;
+  min-height: 800px;
+}
 .custom-btn-toolbar {
   display: inline !important;
 }
@@ -66,9 +70,18 @@ DONE:
 }
 .sidebarParents {
   padding-top: 25px;
-
-  width: 315px;
+  width: 300px;
   height: 800px;
+  flex-direction: row;
+  display: flex;
+  flex-direction: column;
+  padding-right: 40px;
+}
+.weatherSidebar {
+  padding-top: 25px;
+  margin-left: 25px;
+  width: 315px;
+  height: auto;
   flex-direction: row;
   display: flex;
   flex-direction: column;
@@ -93,7 +106,7 @@ DONE:
 }
 .signingViewParent {
   padding: 20px;
-  width: 1400px;
+  width: auto;
   height: 150px;
 }
 .sidebarText {
@@ -105,5 +118,5 @@ DONE:
   width: 90vw; /* Occupy the 90% of the screen width */
   max-width: 90vw;
 }
+
 @import "react-datepicker/dist/react-datepicker.css";
-@import url("https://cdn.syncfusion.com/ej2/material.css");

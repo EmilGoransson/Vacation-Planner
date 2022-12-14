@@ -3,8 +3,9 @@ import React from "react";
 import SearchForm from "../presenters/searchFormPresenter";
 import HeaderPage from "../presenters/headerPagePresenter";
 import "bootstrap/dist/css/bootstrap.min.css";
-import SearchResultPage from "../pages/searchResultPage";
 import Sidebar from "../presenters/sidebarPresenter";
+import SearchResult from "../presenters/searchResultPresenter";
+import Weather from "../presenters/weatherPresenter";
 
 /*
 @Author Mahdi <mnazari@kth.se>
@@ -21,8 +22,9 @@ function HomePage() {
         <Sidebar />
         <div className="search-ResultView">
           <SearchForm />
-          <SearchResultPage />
+          <SearchResult />
         </div>
+        <Weather />
       </div>
     </div>
   );

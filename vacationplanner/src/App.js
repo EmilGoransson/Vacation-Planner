@@ -29,10 +29,7 @@ function App() {
       </Nav>
       <div>
         <Routes>
-          <Route exact path="/" element={<HomePage />}>
-            <Route index element={<SearchResult />} />
-            <Route path="/weather" element={<Weather />} />
-          </Route>
+          <Route exact path="/" element={<HomePage />} />
           <Route path="/signin" element={<SignInPage />} />
         </Routes>
       </div>

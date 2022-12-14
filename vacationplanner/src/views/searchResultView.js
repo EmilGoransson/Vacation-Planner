@@ -71,7 +71,10 @@ function SearchResultView(props) {
                 width={15}
                 height={15}
               />
-              : <a href={obj.website}>{obj.website}</a>
+              :
+              <a href={obj.website} className="card-link">
+                Website
+              </a>
             </div>
             <div className="more-info-button">
               <Button

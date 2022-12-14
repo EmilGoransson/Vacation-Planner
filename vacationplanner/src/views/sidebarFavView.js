@@ -65,8 +65,8 @@ function SidebarFavView(props) {
     }
     return (
       <ul key={obj.attractionInfo.location_id}>
-        <div className="sidebarText">
-          <li className="sidebar-bullet">
+        <div>
+          <li>
             <h6>
               <a
                 href="#"
@@ -97,6 +97,7 @@ function SidebarFavView(props) {
                 showTimeSelect
                 timeIntervals={15}
               />
+
               <h6>End:</h6>
               <DatePicker
                 placeholderText="to"

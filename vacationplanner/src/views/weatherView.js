@@ -49,8 +49,12 @@ function WeatherView(props) {
   }
 
   return (
-    <div>
-      {props.locationCity}, {props.locationCountry}, {props.locationDate}
+    <div className="weatherSidebar">
+      <h4>Weather Forecast</h4>
+      <h6>
+        {props.locationCity}, {props.locationCountry}
+      </h6>
+      {props.locationDate}
       <Container>
         <h5>Today</h5>
         <div className="card flex-row">
