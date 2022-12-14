@@ -1,3 +1,4 @@
+
 // Import the functions you need from the SDKs you need
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { initializeApp } from "firebase/app";
@@ -53,3 +54,5 @@ export const singInWithFacebook = () => {
 };
 
 export { database };
+
+

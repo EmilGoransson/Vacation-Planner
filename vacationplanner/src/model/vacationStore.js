@@ -10,9 +10,11 @@ import { set as setfirebase } from 'firebase/database';
 TODO: Favorite array,  add & remove favorite, firebase integration, local storage for recent (maybe?)
 DONE: Serachquery, setSearchQuery
 */
+
 const attractionStore = (set) => ({
   searchQuery: "Stockholm",
   favorite: [],
+  changeTimeInFocusId: "",
   inFocus: {
     photo: {
       images: { original: { url: "https://i.imgur.com/xeHzkTj.png" } },
@@ -31,6 +33,7 @@ const attractionStore = (set) => ({
     }));
   },
 
+<<<<<<< HEAD
   addFavorite: (newfavorite) => {
     set((state) => {
       setfirebase(ref(database, 'AddToFavorite'), { favorite: [newfavorite, ...state.favorite] });
@@ -66,6 +69,18 @@ const attractionStore = (set) => ({
     set((state) => ({
 
       favorite: state.favorite.filter((c) => c.location_id !== favoriteId),
+=======
+  addFavorite: (favorite) => {
+    set((state) => ({
+      favorite: [...state.favorite, favorite],
+    }));
+  },
+  removeFavorite: (favoriteId) => {
+    set((state) => ({
+      favorite: state.favorite.filter(
+        (c) => c.attractionInfo.location_id !== favoriteId
+      ),
+>>>>>>> Mahdi-Branch
     }));
   },
 

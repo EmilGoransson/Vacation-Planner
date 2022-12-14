@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 @Author Emil <emilgo@kth.se>
 @Co-Author Mahdi <mnazari@kth.se
 TODO: fix ugly css (done ish)
-DONE: displaying data passed by props
+DONE: displaying data passed by props,
 */
 
 function WeatherView(props) {
@@ -14,7 +14,7 @@ function WeatherView(props) {
     return (
       <div key={obj.date_epoch}>
         {" "}
-        {obj.date}
+        <h5>{obj.date}</h5>
         <div className="card flex-row">
           <img
             className="card-img-left example-card-img-responsive"
@@ -50,22 +50,19 @@ function WeatherView(props) {
 
   return (
     <div>
-      {props.data.location.name}, {props.data.location.country},{" "}
-      {props.data.location.localtime}
+      {props.locationCity}, {props.locationCountry}, {props.locationDate}
       <Container>
-        <div></div>
+        <h5>Today</h5>
         <div className="card flex-row">
           {" "}
           <img
             className="card-img-left example-card-img-responsive"
-            src={props.data.current.condition.icon}
+            src={props.weatherIcon}
             width={75}
             height={75}
           />
           <div className="card-body">
-            <h1 className="card-title h5 h4-sm">
-              {props.data.current.condition.text}
-            </h1>
+            <h1 className="card-title h5 h4-sm">{props.weatherCondition}</h1>
             <div className="card-text">
               <img
                 className="card-img-left example-card-img-responsive"
@@ -73,7 +70,7 @@ function WeatherView(props) {
                 width={17}
                 height={17}
               />
-              &#8192; {props.data.current.temp_c}°C
+              &#8192; {props.weatherTemp}°C
             </div>
             <div>
               <img
@@ -82,12 +79,12 @@ function WeatherView(props) {
                 width={17}
                 height={17}
               />
-              &#8192; {props.data.current.wind_kph} kph
+              &#8192; {props.weatherWind} kph
             </div>
           </div>
         </div>
         <div className=""></div>
-        {props.data.forecast.forecastday.map(forecastWeatherCB)}
+        {props.forecast.map(forecastWeatherCB)}
       </Container>
     </div>
   );

@@ -20,7 +20,6 @@ const SearchForm = () => {
     if (!recent.includes(locationQuery.toLowerCase())) {
       addRecent(locationQuery.toLowerCase());
     }
-    console.log("Already in recent");
   }
   function setSearchQueryACB(e) {
     setLocationQuery(e);

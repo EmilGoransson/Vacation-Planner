@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import SidebarFavView from "../views/sidebarFavView";
 import useAttractionStore from "../model/vacationStore";
 import useRecentStore from "../model/recentStore";
 import SidebarRecentView from "../views/sidebarRecentView";
-import { Nav, Container, Button } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
+import ToggleButton from "react-bootstrap/ToggleButton";
+import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
+import { useReactToPrint } from "react-to-print";
+import SidebarParentsView from "../views/sidebarParentsView";
 
 /*
 @Author Emil <emilgo@kth.se>
@@ -12,13 +16,23 @@ DONE: removal + addition of favorites
 
 @Co-Author Mahdi <mnazari@kth.se>
 TODO:
-DONE:
+DONE: searching from sidebar by clicking on a city is done.
 */
 
 function Sidebar(props) {
+  const setInFocus = useAttractionStore((state) => state.setInFocus);
+  const [showInfo, setShowInfo] = React.useState(false);
+  const [showSummary, setShowSummary] = React.useState(false);
   const [currentView, setCurrentView] = useState("recent");
-
+  const attraction = useAttractionStore((state) => state.inFocus);
+  const setSearchQuery = useAttractionStore((state) => state.setSearchQuery);
+  const getSearchQuery = useAttractionStore((state) => state.searchQuery);
+  const [timeInfoArrayEndTime] = useState([]);
+  const [timeInfoArrayStartTime] = useState([]);
   const favorites = useAttractionStore((state) => state.favorite);
+  const componentRef = useRef();
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
   const removeFromFavorite = useAttractionStore(
     (state) => state.removeFavorite
   );
@@ -33,31 +47,89 @@ function Sidebar(props) {
     removeRecent(e);
   }
 
+  function setSearchQueryACB(e) {
+    if (getSearchQuery.toLowerCase() !== e.toLowerCase()) setSearchQuery(e);
+  }
+  function setAttractionInFocusACB(e) {
+    //sends currentSelectedAttraction to store used to display more details about the attraction
+    setInFocus(e.attractionInfo);
+    setShowInfo(true);
+  }
+  function setSummaryInFocus() {
+    setShowSummary(true);
+  }
+  function attractionDateChangeACB(e) {}
+  function closeInfoBoxACB() {
+    setShowInfo(false);
+  }
+
+  function closeSummaryBoxACB() {
+    setShowSummary(false);
+  }
+  //updates favorite in store
+  function changeStartDateTimeACB(e) {
+    const index = favorites.findIndex(
+      (obj) =>
+        obj.attractionInfo.location_id === e.obj.attractionInfo.location_id
+    );
+    const temp = [...favorites];
+    temp[index].dateInfo.startDate = e.date.toString();
+    setStartDate(e.date);
+  }
+
+  function changeEndDateTimeACB(e) {
+    const index = favorites.findIndex(
+      (obj) =>
+        obj.attractionInfo.location_id === e.obj.attractionInfo.location_id
+    );
+    const temp = [...favorites];
+
+    temp[index].dateInfo.endDate = e.date.toString();
+    setEndDate(e.date);
+  }
+
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    documentTitle: "My Visiting Plan",
+    onAfterPrint: () => Alert("Summary was printed!"),
+  });
+
   return (
-    <div className="sidebarParents">
-      <>
-        <Container>
-          <Nav className="me-auto">
-            <Button onClick={() => setCurrentView("recent")}>
-              Recent Searches
-            </Button>
-            <Button onClick={() => setCurrentView("")}>Favorites</Button>
-          </Nav>
-        </Container>
-      </>
-      <div>
-        {currentView !== "recent" ? (
-          <SidebarFavView
-            favoriteArray={favorites}
-            removeFavorite={removeObjFromFavoriteACB}
-          />
-        ) : (
-          <SidebarRecentView
-            recentArray={recent}
-            removeRecent={removeStringFromRecentACB}
-          />
-        )}
-      </div>
+    <div>
+      {
+        <SidebarParentsView
+          setCurrentViewToRecent={() => setCurrentView("recent")}
+          setCurrentViewToFavorite={() => setCurrentView("")}
+        />
+      }
+      {currentView !== "recent" ? (
+        <SidebarFavView
+          favoriteArray={favorites}
+          removeFavorite={removeObjFromFavoriteACB}
+          attractionInFocus={setAttractionInFocusACB}
+          closeInfo={closeInfoBoxACB}
+          closeSummary={closeSummaryBoxACB}
+          showInfo={showInfo}
+          showSummary={showSummary}
+          attraction={attraction}
+          startDate={startDate}
+          endDate={endDate}
+          setStartDateTime={changeStartDateTimeACB}
+          setEndDateTime={changeEndDateTimeACB}
+          setFocus={attractionDateChangeACB}
+          startDateInfo={timeInfoArrayStartTime}
+          endDateInfo={timeInfoArrayEndTime}
+          summaryInFocus={setSummaryInFocus}
+          componentRef={componentRef}
+          handlePrintBtn={handlePrint}
+        />
+      ) : (
+        <SidebarRecentView
+          recentArray={recent}
+          removeRecent={removeStringFromRecentACB}
+          setSearchTest={setSearchQueryACB}
+        />
+      )}
     </div>
   );
 }

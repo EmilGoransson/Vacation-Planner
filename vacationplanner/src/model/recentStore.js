@@ -3,11 +3,11 @@ import { devtools, persist } from "zustand/middleware";
 /*
 @Author Emil <emilgo@kth.se>
 TODO:
-DONE:
+DONE: Cookies for recent
 */
 
 const recentStore = (set) => ({
-  recent: [],
+  recent: [], //Persisted with cookies
   addRecent: (recent) => {
     set((state) => ({
       recent: [recent, ...state.recent],
@@ -21,5 +21,12 @@ const recentStore = (set) => ({
   },
 });
 
-const useRecentStore = create(recentStore);
+const useRecentStore = create(
+  //Persisted with cookies
+  devtools(
+    persist(recentStore, {
+      name: "recent",
+    })
+  )
+);
 export default useRecentStore;
