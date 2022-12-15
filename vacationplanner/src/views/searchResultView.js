@@ -31,6 +31,7 @@ function SearchResultView(props) {
     function addToFavoriteOnClickButtonACB() {
       props.addAttractionToFavorite(obj);
     }
+
     // if there is a photo
     if (obj.photo) {
       return (
@@ -73,7 +74,7 @@ function SearchResultView(props) {
               />
               :
               <a href={obj.website} className="card-link">
-                Website
+                Website Link
               </a>
             </div>
             <div className="more-info-button">

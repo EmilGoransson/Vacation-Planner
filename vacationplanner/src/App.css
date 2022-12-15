@@ -44,23 +44,23 @@ DONE:
   padding-top: 25px;
   padding-left: 50px;
   padding-right: 50px;
-  width: 900px;
+  width: 800px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
 }
 
-@media (min-width: 500px) {
-  .main-containt {
+@media (min-width: 400px) {
+  .search-Sidebar-ResultView {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    display: flex;
     min-width: 800px;
     min-height: 800px;
   }
 }
-
-.search-Sidebar-ResultView {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
-  display: flex;
+.main-containt {
   min-width: 800px;
   min-height: 800px;
 }
+
 .custom-btn-toolbar {
   display: inline !important;
 }
@@ -88,7 +88,7 @@ DONE:
   padding-right: 40px;
 }
 .signInPage {
-  width: 1200px;
+  width: auto;
   height: 800px;
   display: grid;
 }
