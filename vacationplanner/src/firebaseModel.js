@@ -4,6 +4,7 @@ import { initializeApp } from "firebase/app";
 import { FacebookAuthProvider } from "firebase/auth";
 import { firebaseConfig } from "./firebase";
 import { getDatabase, ref, set } from "firebase/database";
+import { attractionStore } from "./model/vacationStore";
 
 
 
@@ -33,6 +34,18 @@ export function addCourseACB() {
 
 
 export const auth = getAuth(app);
+const user = auth.currentUser;
+
+
+if (user !== null) {
+    // User is signed in, see docs for a list of available properties
+
+} else {
+    // No user is signed in.
+
+}
+
+
 
 export const singInWithGoogle = () => {
     const provider = new GoogleAuthProvider();

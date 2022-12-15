@@ -2,6 +2,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
 import Button from "react-bootstrap/Button";
 import { Navigate, useNavigate } from "react-router";
+import GoogleButton from 'react-google-button';
+import { singInWithGoogle, singInWithFacebook } from "../firebaseModel";
 /*
 @Author Mahdi <mnazari@kth.se>
 TODO:
@@ -18,9 +20,9 @@ function SignInPageView() {
         </Button>
       </div>
       <div className="signInOpts">
-        <Button variant="primary" size="lm" onClick={console.log("Click!")}>
-          Sign in with google!
-        </Button>
+        <GoogleButton onClick={singInWithGoogle}
+
+        />
       </div>
       <div className="signInOpts">
         <Button variant="primary" size="lm" onClick={console.log("Click!")}>
