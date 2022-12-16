@@ -4,7 +4,6 @@ import Button from "react-bootstrap/Button";
 import { Alert, Modal } from "react-bootstrap";
 import Zoom from "react-medium-image-zoom";
 import DatePicker from "react-datepicker";
-import TimePicker from "react-time-picker";
 
 /*
 @Author Emil <emilgo@kth.se>
@@ -91,6 +90,7 @@ function SidebarFavView(props) {
                 dateFormat="dd-MMM-yyy   HH:mm"
                 selected={new Date(obj.dateInfo.startDate)}
                 selectsStart
+                minDate={new Date()}
                 onChange={setFromDataACB}
                 showYearDropdown
                 scrollableMonthYearDropdown
@@ -104,6 +104,7 @@ function SidebarFavView(props) {
                 dateFormat="dd-MMM-yyy   HH:mm"
                 selected={new Date(obj.dateInfo.endDate)}
                 selectsEnd
+                minDate={new Date(obj.dateInfo.startDate)}
                 onChange={setToDateACB}
                 showYearDropdown
                 scrollableMonthYearDropdown
@@ -159,7 +160,7 @@ function SidebarFavView(props) {
     <div className="sidebarParents">
       {props.favoriteArray.map(getFavoriteFromArrayCB)}
       <Button variant="outline-primary" size="sm" onClick={showSummaryACB}>
-        Summary
+        Your Visiting Plan
       </Button>
       <Modal
         show={props.showSummary}
@@ -169,7 +170,7 @@ function SidebarFavView(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="example-custom-modal-styling-title">
-            Summary
+            Your Visiting Plan
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

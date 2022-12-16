@@ -1,6 +1,16 @@
 import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
 import Container from "react-bootstrap/Container";
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  EmailIcon,
+  FacebookIcon,
+  TwitterIcon,
+  WhatsappIcon,
+} from "react-share";
 
 /*
 @Author Emil <emilgo@kth.se>
@@ -10,6 +20,7 @@ DONE: displaying data passed by props,
 */
 
 function WeatherView(props) {
+  const currenPageUrl = "https://vacationplanner-d5ea1.web.app/";
   function forecastWeatherCB(obj) {
     return (
       <div key={obj.date_epoch}>
@@ -54,6 +65,7 @@ function WeatherView(props) {
       <h6>
         {props.locationCity}, {props.locationCountry}
       </h6>
+      <h6> Retrieved at localtime:</h6>
       {props.locationDate}
       <Container>
         <h5>Today</h5>
@@ -87,9 +99,23 @@ function WeatherView(props) {
             </div>
           </div>
         </div>
-        <div className=""></div>
         {props.forecast.map(forecastWeatherCB)}
       </Container>
+      <div className="shareBtns">
+        <h5>Share us:</h5>
+        <FacebookShareButton url={currenPageUrl}>
+          <FacebookIcon round={true} size={40} />
+        </FacebookShareButton>
+        <EmailShareButton url={currenPageUrl}>
+          <EmailIcon round={true} size={40} />
+        </EmailShareButton>
+        <TwitterShareButton url={currenPageUrl}>
+          <TwitterIcon round={true} size={40} />
+        </TwitterShareButton>
+        <WhatsappShareButton url={currenPageUrl}>
+          <WhatsappIcon round={true} size={40} />
+        </WhatsappShareButton>
+      </div>
     </div>
   );
 }
