@@ -4,6 +4,7 @@ import { API_KEY, API_KEY_WEATHER } from "../apiConfig";
 import WeatherView from "../views/weatherView";
 import LoadingView from "../views/LoadingView";
 import useAttractionStore from "../model/vacationStore";
+import BadSearchView from "../views/badSearchVIew";
 /*
 @Author Emil <emilgo@kth.se>
 TODO: race condition maybe?, if not city name it should do something
@@ -15,6 +16,7 @@ function Weather() {
   const [weatherData, setWeatherData] = React.useState(null);
   const getSearchQuery = useAttractionStore((state) => state.searchQuery);
   const [forecast, setForecast] = React.useState(null);
+  const [error, setError] = React.useState(false);
   //from locationQuery
   const options = {
     method: "GET",
@@ -23,32 +25,42 @@ function Weather() {
       "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com",
     },
   };
-  const getWeather = async () => {
-    try {
-      setIsLoading(true);
-      const response = await axios.get(
-        "https://weatherapi-com.p.rapidapi.com/forecast.json?q=" +
-          getSearchQuery +
-          "&days=5",
-        options
-      );
-      const data = response.data;
-      if (data) {
-        setWeatherData(data);
-        setForecast([
-          data.forecast.forecastday[1],
-          data.forecast.forecastday[2],
-        ]);
-      }
-      setIsLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   React.useEffect(() => {
+    let canceled = false;
+    const getWeather = async () => {
+      try {
+        setError(false);
+        setIsLoading(true);
+        const response = await axios.get(
+          "https://weatherapi-com.p.rapidapi.com/forecast.json?q=" +
+            getSearchQuery +
+            "&days=5",
+          options
+        );
+        const data = response.data;
+        if (data && !canceled) {
+          setWeatherData(data);
+          setForecast([
+            data.forecast.forecastday[1],
+            data.forecast.forecastday[2],
+          ]);
+        }
+        setIsLoading(false);
+      } catch (error) {
+        if (error.response) {
+          setError(error.response.status);
+        }
+      }
+    };
     getWeather();
+    return () => {
+      canceled = true;
+    };
   }, [getSearchQuery]);
+  if (error === 400) {
+    return <BadSearchView />;
+  }
   if (!weatherData || isLoading || !forecast) return <LoadingView />;
   return (
     <WeatherView

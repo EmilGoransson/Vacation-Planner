@@ -5,6 +5,7 @@ import SearchResultView from "../views/searchResultView";
 import LoadingView from "../views/LoadingView";
 import useAttractionStore from "../model/vacationStore";
 import NoQueryView from "../views/noQueryView";
+import BadSearchView from "../views/badSearchVIew";
 
 /*
 @Author Emil <emilgo@kth.se>
@@ -19,6 +20,7 @@ function SearchResult() {
   const [show, setShow] = React.useState(false);
   const [showInfo, setShowInfo] = React.useState(false);
   const [showFavoriteAlert, setShowFavoriteAlert] = React.useState(false);
+  const [error, setError] = React.useState(false);
   const favorites = useAttractionStore((state) => state.favorite);
   const addToFavorite = useAttractionStore((state) => state.addFavorite);
   const setInFocus = useAttractionStore((state) => state.setInFocus);
@@ -75,11 +77,13 @@ function SearchResult() {
   function closeFavoriteAlertBoxACB() {
     setShowFavoriteAlert(false);
   }
-  let locationDataJustNow = 189852;
+  let locationDataJustNow;
   React.useEffect(() => {
+    console.log();
     let canceled = false;
 
     const getLocationId = async () => {
+      setError(false);
       //to get locationID data instant
       try {
         setIsLoading(true);
@@ -89,12 +93,15 @@ function SearchResult() {
             "&limit=1&offset=0&units=km&location_id=1&currency=USD&sort=relevance&lang=en_US",
           options
         );
+
         const data = response.data;
+        if (data.data.length === 0) {
+          setError(true);
+        }
 
-        if (data && !canceled)
+        if (data.data[0] && !canceled) {
           locationDataJustNow = data.data[0].result_object.location_id;
-
-        console.log(data.data[0].result_object.location_id);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -113,22 +120,21 @@ function SearchResult() {
       } catch (error) {
         console.log(error);
       }
-    };
-    getLocationId().then(() => {
       setIsLoading(false);
-    });
+    };
+    getLocationId();
     return () => {
       canceled = true;
       setAttractionData(null);
     };
   }, [getSearchQuery]);
+  if (error) return <BadSearchView />;
   if (getSearchQuery === "") return <NoQueryView />;
   if (!attractionData || isLoading) {
     return <LoadingView />;
   }
 
   if (attractionData && !isLoading) {
-    console.log(attractionData);
     return (
       <SearchResultView
         attractionData={attractionData}
