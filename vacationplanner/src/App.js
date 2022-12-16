@@ -6,7 +6,10 @@ import { Link, Routes, Route } from "react-router-dom";
 import { Nav, Container } from "react-bootstrap";
 import HomePage from "./pages/homePage";
 import "./firebaseModel.js";
-import AboutPageView from "./views/aboutPageView";
+import AboutPageView from "./views/aboutParentPageView";
+import AboutVacationPlannerView from "./views/aboutVacationPlannerView";
+import ContactView from "./views/contactView";
+import MakeVisitingPlanView from "./views/makeVisitingPlanView";
 
 /*
 @Author Mahdi <mnazari@kth.se>
@@ -31,7 +34,11 @@ function App() {
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route path="/signin" element={<SignInPage />} />
-          <Route path="/about" element={<AboutPageView />} />
+          <Route path="/about" element={<AboutPageView />}>
+            <Route index element={<AboutVacationPlannerView />} />
+            <Route path="/about/makePlan" element={<MakeVisitingPlanView />} />
+            <Route path="/about/contact" element={<ContactView />} />
+          </Route>
         </Routes>
       </div>
     </>
