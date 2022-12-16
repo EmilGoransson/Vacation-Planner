@@ -23,7 +23,6 @@ function Sidebar(props) {
   const setInFocus = useAttractionStore((state) => state.setInFocus);
   const [showInfo, setShowInfo] = React.useState(false);
   const [showSummary, setShowSummary] = React.useState(false);
-  const [currentView, setCurrentView] = useState("recent");
   const attraction = useAttractionStore((state) => state.inFocus);
   const setSearchQuery = useAttractionStore((state) => state.setSearchQuery);
   const getSearchQuery = useAttractionStore((state) => state.searchQuery);
@@ -36,6 +35,8 @@ function Sidebar(props) {
   const removeFromFavorite = useAttractionStore(
     (state) => state.removeFavorite
   );
+  const setSidebarInFocus = useAttractionStore((state) => state.setCurrentView);
+  const sidebarInfo = useAttractionStore((state) => state.currentView);
 
   function removeObjFromFavoriteACB(e) {
     removeFromFavorite(e);
@@ -93,16 +94,24 @@ function Sidebar(props) {
     documentTitle: "My Visiting Plan",
     onAfterPrint: () => Alert("Summary was printed!"),
   });
+  function test() {
+    console.log("test");
+  }
 
   return (
     <div>
       {
         <SidebarParentsView
-          setCurrentViewToRecent={() => setCurrentView("recent")}
-          setCurrentViewToFavorite={() => setCurrentView("")}
+          setCurrentViewToRecent={() =>
+            setSidebarInFocus({ view: "recent", value: 1 })
+          }
+          setCurrentViewToFavorite={() =>
+            setSidebarInFocus({ view: "", value: 2 })
+          }
+          buttonInFocus={sidebarInfo.value}
         />
       }
-      {currentView !== "recent" ? (
+      {sidebarInfo.view !== "recent" ? (
         <SidebarFavView
           favoriteArray={favorites}
           removeFavorite={removeObjFromFavoriteACB}

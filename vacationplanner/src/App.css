@@ -123,5 +123,8 @@ DONE:
   width: 90vw; /* Occupy the 90% of the screen width */
   max-width: 90vw;
 }
+.Sidebar-Button-Pair{
+  padding-left : 25px;
+}
 
 @import "react-datepicker/dist/react-datepicker.css";

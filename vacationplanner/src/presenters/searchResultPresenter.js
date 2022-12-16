@@ -24,6 +24,7 @@ function SearchResult() {
   const setInFocus = useAttractionStore((state) => state.setInFocus);
   const attraction = useAttractionStore((state) => state.inFocus);
   const getSearchQuery = useAttractionStore((state) => state.searchQuery);
+  const setSidebarInFocus = useAttractionStore((state) => state.setCurrentView);
 
   const options = {
     method: "GET",
@@ -44,15 +45,19 @@ function SearchResult() {
       favorites.length === 0 ||
       !favorites.map((info) => info.attractionInfo).includes(e)
     ) {
+      let endDate = new Date();
+      endDate.setHours(endDate.getHours() + 1);
+
       const favorite = {
         attractionInfo: e,
         dateInfo: {
           startDate: new Date(),
-          endDate: new Date(),
+          endDate: endDate,
         },
       };
       addToFavorite(favorite);
       setShow(true);
+      setSidebarInFocus({ view: "", value: 2 });
     } else {
       setShowFavoriteAlert(true);
     }

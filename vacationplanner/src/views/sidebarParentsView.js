@@ -5,7 +5,11 @@ import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 function SidebarParentsView(props) {
   return (
     <>
-      <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
+      <ToggleButtonGroup
+        type="radio"
+        name="options"
+        value={props.buttonInFocus}
+      >
         <ToggleButton
           variant="outline-primary"
           id="tbg-radio-1"

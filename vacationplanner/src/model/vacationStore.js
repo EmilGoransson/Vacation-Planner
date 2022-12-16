@@ -17,6 +17,12 @@ const attractionStore = (set) => ({
     },
     description: "temp",
   },
+  currentView: { view: "recent", value: 1 },
+  setCurrentView: (info) => {
+    set(() => ({
+      currentView: info,
+    }));
+  },
   setSearchQuery: (query) => {
     set(() => ({
       searchQuery: query,
