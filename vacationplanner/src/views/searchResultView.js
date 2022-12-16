@@ -101,6 +101,24 @@ function SearchResultView(props) {
   }
   return (
     <div>
+      <Alert
+        show={props.showFavoriteAlertState}
+        key={"danger"}
+        variant={"danger"}
+        onClose={closeFavoriteAlertBoxACB}
+        dismissible={true}
+      >
+        Already added in favorites
+      </Alert>
+      <Alert
+        show={props.Alert}
+        variant="success"
+        size="sm"
+        onClick={closeAlertBoxACB}
+        dismissible
+      >
+        Added to favorites
+      </Alert>
       <Modal
         show={props.showInfo}
         onHide={closeInfoBoxACB}
@@ -130,25 +148,6 @@ function SearchResultView(props) {
         </Modal.Body>
       </Modal>
       <div className="searchResults">
-        <Alert
-          show={props.showFavoriteAlertState}
-          key={"danger"}
-          variant={"danger"}
-          onClose={closeFavoriteAlertBoxACB}
-          dismissible={true}
-        >
-          Already added in favorites
-        </Alert>
-        <Alert
-          show={props.Alert}
-          variant="success"
-          size="sm"
-          onClick={closeAlertBoxACB}
-          dismissible
-        >
-          Added to favorites
-        </Alert>
-
         <Container>{props.attractionData.map(pictureFromSearchCB)} </Container>
       </div>
     </div>

@@ -16,7 +16,12 @@ function HeaderPageView() {
       <img src={"https://i.imgur.com/CJBGl6T.png"} width={75} height={75} />
       <div className="signingBtns">
         <Button variant="primary" size="lm" onClick={() => navigate("/signin")}>
-          Sign in!
+          Sign in
+        </Button>
+      </div>
+      <div className="signingBtns">
+        <Button variant="info" size="lm" onClick={() => navigate("/about")}>
+          About
         </Button>
       </div>
 

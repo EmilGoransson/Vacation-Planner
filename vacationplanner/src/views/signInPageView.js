@@ -13,7 +13,7 @@ function SignInPageView() {
   return (
     <div className="signInPage">
       <div className="signinBtns">
-        <Button variant="primary" size="lm" onClick={() => navigate("/")}>
+        <Button variant="primary" size="sm" onClick={() => navigate("/")}>
           Back to Home
         </Button>
       </div>

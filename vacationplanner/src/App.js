@@ -5,10 +5,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, Routes, Route } from "react-router-dom";
 import { Nav, Container } from "react-bootstrap";
 import HomePage from "./pages/homePage";
-import Weather from "./presenters/weatherPresenter";
-import SearchResult from "./presenters/searchResultPresenter";
 import "./firebaseModel.js";
-import Sidebar from "./presenters/sidebarPresenter";
+import AboutPageView from "./views/aboutPageView";
+
 /*
 @Author Mahdi <mnazari@kth.se>
 @Co-Author Emil <emilgo@kth.se>
@@ -24,6 +23,7 @@ function App() {
           <Nav className="me-auto">
             <Link as={Link} to="/"></Link>
             <Link as={Link} to="/signin"></Link>
+            <Link as={Link} to="/about"></Link>
           </Nav>
         </Container>
       </Nav>
@@ -31,6 +31,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route path="/signin" element={<SignInPage />} />
+          <Route path="/about" element={<AboutPageView />} />
         </Routes>
       </div>
     </>
