@@ -75,13 +75,11 @@ function SidebarFavView(props) {
                 {obj.attractionInfo.name}
               </a>
               &#8193;
-              <Button
-                variant="outline-danger"
-                size="sm"
+              <img
+                className="sidebar-remove"
+                src="https://i.imgur.com/YLEGXIK.png"
                 onClick={removeFavoriteACB}
-              >
-                X
-              </Button>
+              ></img>
             </h6>
             <div>
               <h6>Start:</h6>
