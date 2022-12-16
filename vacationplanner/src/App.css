@@ -126,5 +126,9 @@ DONE:
 .Sidebar-Button-Pair{
   padding-left : 25px;
 }
+.sidebar-remove{
+  height: 20px;
+  cursor:pointer
+}
 
 @import "react-datepicker/dist/react-datepicker.css";

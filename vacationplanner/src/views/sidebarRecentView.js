@@ -37,14 +37,11 @@ function SidebarRecentView(props) {
                 </a>
               }{" "}
               &#8193;
-              <Button
-                className="sidebarRecentBTN"
-                variant="outline-danger"
-                size="sm"
+              <img
+                src="https://i.imgur.com/YLEGXIK.png"
                 onClick={removeFromRecentOnClickButtonACB}
-              >
-                X
-              </Button>
+                className={"sidebar-remove"}
+              ></img>
             </h6>
           </li>
         </div>

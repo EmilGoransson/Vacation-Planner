@@ -41,6 +41,8 @@ function SearchResult() {
   }
   function addAttractionToFavoriteACB(e) {
     //sends currentSelectedAttraction to store used to display more details about the attraction
+    setSidebarInFocus({ view: "", value: 2 });
+
     if (
       favorites.length === 0 ||
       !favorites.map((info) => info.attractionInfo).includes(e)
@@ -57,7 +59,6 @@ function SearchResult() {
       };
       addToFavorite(favorite);
       setShow(true);
-      setSidebarInFocus({ view: "", value: 2 });
     } else {
       setShowFavoriteAlert(true);
     }
