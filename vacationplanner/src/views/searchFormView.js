@@ -2,6 +2,7 @@ import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.css";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+import React from "react";
 
 /*
 @Author Mahdi <mnazari@kth.se>
@@ -18,6 +19,11 @@ function SearchFormView(props) {
   function searchBtnACB() {
     props.doSearch();
   }
+  function handleKeyPressACB(target) {
+    if (target.charCode === 13) {
+      props.doSearch();
+    }
+  }
 
   return (
     <div className="form-container">
@@ -27,6 +33,7 @@ function SearchFormView(props) {
           aria-label="E.g Stockholm"
           aria-describedby="basic-addon2"
           onChange={onChangeACB}
+          onKeyPress={handleKeyPressACB}
         />
         <Button onClick={searchBtnACB}>Search!</Button>
       </InputGroup>

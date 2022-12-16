@@ -73,7 +73,7 @@ function SearchResultView(props) {
                 height={15}
               />
               :
-              <a href={obj.website} className="card-link">
+              <a href={obj.website} target="blank" className="card-link">
                 Website Link
               </a>
             </div>
@@ -100,7 +100,7 @@ function SearchResultView(props) {
     } else return null;
   }
   return (
-    <>
+    <div>
       <Modal
         show={props.showInfo}
         onHide={closeInfoBoxACB}
@@ -151,7 +151,7 @@ function SearchResultView(props) {
 
         <Container>{props.attractionData.map(pictureFromSearchCB)} </Container>
       </div>
-    </>
+    </div>
   );
 }
 export default SearchResultView;
