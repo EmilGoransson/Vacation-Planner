@@ -6,6 +6,7 @@ import LoadingView from "../views/LoadingView";
 import useAttractionStore from "../model/vacationStore";
 import NoQueryView from "../views/noQueryView";
 import BadSearchView from "../views/badSearchVIew";
+import ChromeDinoGame from "react-chrome-dino";
 
 /*
 @Author Emil <emilgo@kth.se>
@@ -144,7 +145,13 @@ function SearchResult() {
       setAttractionData(null);
     };
   }, [getSearchQuery]);
-  if (error) return <BadSearchView />;
+  if (error)
+    return (
+      <div>
+        <BadSearchView />
+        <ChromeDinoGame />
+      </div>
+    );
   if (getSearchQuery === "") return <NoQueryView />;
   if (!attractionData || isLoading) {
     return <LoadingView />;
