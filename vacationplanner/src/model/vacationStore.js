@@ -34,7 +34,7 @@ const attractionStore = (set) => ({
 
   addFavorite: (newfavorite) => {
     set((state) => {
-      setfirebase(ref(database, 'AddToFavorite'), { favorite: [newfavorite, ...state.favorite] });
+      setfirebase(ref(database, 'users/1231/favorite'), [newfavorite, ...state.favorite]);
 
       return { favorite: [newfavorite, ...state.favorite] }
     });
@@ -52,9 +52,7 @@ const attractionStore = (set) => ({
   removeFavorite: (favoriteId) => {
     set((state) => {
 
-      setfirebase(ref(database, 'RemoveFavorite'), { favorite: state.favorite.filter((c) => c.attractionInfo.location_id !== favoriteId) });
-
-
+      setfirebase(ref(database, 'users/1231/favorite'), state.favorite.filter((c) => c.attractionInfo.location_id !== favoriteId));
       return { favorite: state.favorite.filter((c) => c.attractionInfo.location_id !== favoriteId) }
     });
   },

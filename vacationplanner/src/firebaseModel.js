@@ -1,4 +1,3 @@
-
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { FacebookAuthProvider } from "firebase/auth";
@@ -14,50 +13,47 @@ const app = initializeApp(firebaseConfig);
 // Initialize Realtime Database and get a reference to the service
 const database = getDatabase();
 
+// testing set function 
 set(ref(database, 'user/'), { username: 'dummyyyy' });
 
 
 
-/*
-export const addToFavoriteFirebase = () => {
-    set (ref(database, 'favorite/'), {favorite: [favorite, ...state.favorite]})
- }*/
-
-
-export function addCourseACB() {
-    set(ref(database, "users/" + 1231), {
-        code: "SF1626",
-        name: "Flervariabel",
-        hourSpent: 0,
-    });
-}
-
-
 export const auth = getAuth(app);
-const user = auth.currentUser;
 
 
-if (user !== null) {
-    // User is signed in, see docs for a list of available properties
+export const getCurrentUserID = () => {
+    const user = auth.currentUser;
 
-} else {
-    // No user is signed in.
+    if (user) {
+        // get the user id 
+        const userID = user.uid;
 
+    }
 }
+
+
+
 
 
 
 export const singInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
-        .then((result) => { console.log(result); })
+        .then((result) => {
+            const name = result.user.displayName;
+            const email = result.user.email;
+            // const profilPic = result.user.photoURL;
+
+            localStorage.setItem("name", name)
+            localStorage.setItem("email", email)
+            //localStorage.setItem("profilPic", profilPic)
+        })
 
         .catch((error) => { console.log(error); });
 };
 
 
 export const singInWithFacebook = () => {
-
     const provider = new FacebookAuthProvider();
     signInWithPopup(auth, provider)
         .then((result) => { console.log(result); })

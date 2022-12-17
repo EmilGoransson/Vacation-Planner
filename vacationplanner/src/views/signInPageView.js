@@ -20,9 +20,9 @@ function SignInPageView() {
         </Button>
       </div>
       <div className="signInOpts">
-        <GoogleButton onClick={singInWithGoogle}
-
-        />
+        <GoogleButton onClick={singInWithGoogle} />
+        <h1>{localStorage.getItem("name")}</h1>
+        <h1>{localStorage.getItem("email")}</h1>
       </div>
       <div className="signInOpts">
         <Button variant="primary" size="lm" onClick={console.log("Click!")}>
