@@ -14,6 +14,7 @@ TODO: Make the view dumber, move logic & shorten the props. thing (props.attract
 DONE: Loading when waiting on image, displaying image, alert when adding to favorites
 */
 function SearchResultView(props) {
+  console.log(props.recentAdddedAttraction);
   function closeAlertBoxACB() {
     props.closeAlert();
   }
@@ -108,7 +109,7 @@ function SearchResultView(props) {
         onClose={closeFavoriteAlertBoxACB}
         dismissible={true}
       >
-        Already added in favorites
+        <b>{props.recentAdddedAttraction.name}</b> is already in favorites
       </Alert>
       <Alert
         show={props.Alert}
@@ -117,7 +118,7 @@ function SearchResultView(props) {
         onClick={closeAlertBoxACB}
         dismissible
       >
-        Added to favorites
+        <b>{props.recentAdddedAttraction.name}</b> added to favorites
       </Alert>
       <Modal
         show={props.showInfo}

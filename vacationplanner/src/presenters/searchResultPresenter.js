@@ -27,6 +27,12 @@ function SearchResult() {
   const attraction = useAttractionStore((state) => state.inFocus);
   const getSearchQuery = useAttractionStore((state) => state.searchQuery);
   const setSidebarInFocus = useAttractionStore((state) => state.setCurrentView);
+  const recentAdddedAttraction = useAttractionStore(
+    (state) => state.recentAddedAttraction
+  );
+  const setRecentAddedAttraction = useAttractionStore(
+    (state) => state.setRecentAddedAttraction
+  );
 
   const options = {
     method: "GET",
@@ -44,6 +50,7 @@ function SearchResult() {
   function addAttractionToFavoriteACB(e) {
     //sends currentSelectedAttraction to store used to display more details about the attraction
     setSidebarInFocus({ view: "", value: 2 });
+    setRecentAddedAttraction(e);
 
     if (
       favorites.length === 0 ||
@@ -148,6 +155,7 @@ function SearchResult() {
         attraction={attraction}
         showFavoriteAlertState={showFavoriteAlert}
         closeFavoriteAlert={closeFavoriteAlertBoxACB}
+        recentAdddedAttraction={recentAdddedAttraction}
       />
     );
   }
