@@ -3,6 +3,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import "./viewStyles.css";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 /*
 !!NPM INSTALL, IT USES AXIOS!! (npm install axios but npm install should do it)
@@ -28,20 +29,37 @@ function SidebarRecentView(props) {
           <li className="sidebar-bullet">
             <h6>
               {
-                <a
-                  href="#"
-                  onClick="IDClick(id);event.preventDefault();"
-                  onClick={addButtonACB}
+                <OverlayTrigger
+                  key="text-search"
+                  placement={"top"}
+                  overlay={
+                    <Tooltip id="tooltop-search">
+                      Press to search for{" "}
+                      {obj.charAt(0).toUpperCase() + obj.slice(1)}{" "}
+                    </Tooltip>
+                  }
                 >
-                  {obj.charAt(0).toUpperCase() + obj.slice(1)}
-                </a>
+                  <a
+                    href="#"
+                    onClick="IDClick(id);event.preventDefault();"
+                    onClick={addButtonACB}
+                  >
+                    {obj.charAt(0).toUpperCase() + obj.slice(1)}
+                  </a>
+                </OverlayTrigger>
               }{" "}
               &#8193;
-              <img
-                src="https://i.imgur.com/YLEGXIK.png"
-                onClick={removeFromRecentOnClickButtonACB}
-                className={"sidebar-remove"}
-              ></img>
+              <OverlayTrigger
+                key="image-remove"
+                placement={"top"}
+                overlay={<Tooltip id="tooltop-remove">Remove search </Tooltip>}
+              >
+                <img
+                  src="https://i.imgur.com/YLEGXIK.png"
+                  onClick={removeFromRecentOnClickButtonACB}
+                  className={"sidebar-remove"}
+                ></img>
+              </OverlayTrigger>
             </h6>
           </li>
         </div>

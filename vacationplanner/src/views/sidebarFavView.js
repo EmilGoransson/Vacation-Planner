@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
 import Button from "react-bootstrap/Button";
-import { Alert, Modal } from "react-bootstrap";
+import { Alert, Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Zoom from "react-medium-image-zoom";
 import DatePicker from "react-datepicker";
 
@@ -67,19 +67,33 @@ function SidebarFavView(props) {
         <div>
           <li>
             <h6>
-              <a
-                href="#"
-                onClick="IDClick(id);event.preventDefault();"
-                onClick={getMoreInfoACB}
+              <OverlayTrigger
+                key="top"
+                placement={"top"}
+                overlay={<Tooltip id="tooltop-top">More info</Tooltip>}
               >
-                {obj.attractionInfo.name}
-              </a>
+                <a
+                  href="#"
+                  onClick="IDClick(id);event.preventDefault();"
+                  onClick={getMoreInfoACB}
+                >
+                  {obj.attractionInfo.name}
+                </a>
+              </OverlayTrigger>
               &#8193;
-              <img
-                className="sidebar-remove"
-                src="https://i.imgur.com/YLEGXIK.png"
-                onClick={removeFavoriteACB}
-              ></img>
+              <OverlayTrigger
+                key="image-remove"
+                placement={"top"}
+                overlay={
+                  <Tooltip id="tooltop-remove">Remove attraction </Tooltip>
+                }
+              >
+                <img
+                  className="sidebar-remove"
+                  src="https://i.imgur.com/YLEGXIK.png"
+                  onClick={removeFavoriteACB}
+                ></img>
+              </OverlayTrigger>
             </h6>
             <div>
               <h6>Start:</h6>
@@ -157,9 +171,11 @@ function SidebarFavView(props) {
   return (
     <div className="sidebarParents">
       {props.favoriteArray.map(getFavoriteFromArrayCB)}
+
       <Button variant="outline-primary" size="sm" onClick={showSummaryACB}>
         Your Visiting Plan
       </Button>
+
       <Modal
         show={props.showSummary}
         onHide={closeSumBoxACB}

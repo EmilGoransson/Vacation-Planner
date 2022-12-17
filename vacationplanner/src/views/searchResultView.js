@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
-import { Alert, Modal } from "react-bootstrap";
+import { Alert, Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
 import "./viewStyles.css";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
@@ -73,9 +73,17 @@ function SearchResultView(props) {
                 height={15}
               />
               :
-              <a href={obj.website} target="blank" className="card-link">
-                Website Link
-              </a>
+              <OverlayTrigger
+                key="website"
+                placement={"top"}
+                overlay={
+                  <Tooltip id="tooltop-website">Open in new tab </Tooltip>
+                }
+              >
+                <a href={obj.website} target="blank" className="card-link">
+                  Website Link
+                </a>
+              </OverlayTrigger>
             </div>
             <div className="more-info-button">
               <Button
