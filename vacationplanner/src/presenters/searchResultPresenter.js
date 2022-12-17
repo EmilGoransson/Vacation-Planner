@@ -70,9 +70,15 @@ function SearchResult() {
       };
       addToFavorite(favorite);
       setShow(true);
+      setTimeout(() => {
+        setShow(false);
+      }, 4000);
     } else {
       setFailure(e.name);
       setShowFavoriteAlert(true);
+      setTimeout(() => {
+        setShowFavoriteAlert(false);
+      }, 4000);
     }
   }
   function closeAlertBoxACB() {
