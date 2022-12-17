@@ -33,6 +33,8 @@ function SearchResult() {
   const setRecentAddedAttraction = useAttractionStore(
     (state) => state.setRecentAddedAttraction
   );
+  const setFailure = useAttractionStore((state) => state.setRecentAddedFailure);
+  const getFailure = useAttractionStore((state) => state.recentAddedFailure);
 
   const options = {
     method: "GET",
@@ -50,12 +52,12 @@ function SearchResult() {
   function addAttractionToFavoriteACB(e) {
     //sends currentSelectedAttraction to store used to display more details about the attraction
     setSidebarInFocus({ view: "", value: 2 });
-    setRecentAddedAttraction(e);
 
     if (
       favorites.length === 0 ||
       !favorites.map((info) => info.attractionInfo).includes(e)
     ) {
+      setRecentAddedAttraction(e.name);
       let endDate = new Date();
       endDate.setHours(endDate.getHours() + 1);
 
@@ -69,6 +71,7 @@ function SearchResult() {
       addToFavorite(favorite);
       setShow(true);
     } else {
+      setFailure(e.name);
       setShowFavoriteAlert(true);
     }
   }
@@ -156,6 +159,7 @@ function SearchResult() {
         showFavoriteAlertState={showFavoriteAlert}
         closeFavoriteAlert={closeFavoriteAlertBoxACB}
         recentAdddedAttraction={recentAdddedAttraction}
+        failureAdded={getFailure}
       />
     );
   }

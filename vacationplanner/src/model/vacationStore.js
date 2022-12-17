@@ -11,7 +11,8 @@ const attractionStore = (set) => ({
   searchQuery: "Stockholm",
   favorite: [],
   changeTimeInFocusId: "",
-  recentAddedAttraction: {},
+  recentAddedAttraction: "",
+  recentAddedFailure: "",
   inFocus: {
     photo: {
       images: { original: { url: "https://i.imgur.com/xeHzkTj.png" } },
@@ -21,6 +22,9 @@ const attractionStore = (set) => ({
   currentView: { view: "recent", value: 1 },
   setRecentAddedAttraction: (attraction) => {
     set(() => ({ recentAddedAttraction: attraction }));
+  },
+  setRecentAddedFailure: (attractionFail) => {
+    set(() => ({ recentAddedFailure: attractionFail }));
   },
   setCurrentView: (info) => {
     set(() => ({
