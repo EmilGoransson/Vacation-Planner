@@ -1,28 +1,47 @@
-Vacation-Planner
+# Vacation-Planner
+
+- Searching for a famous city displays it's attractions a forecase of the weather
+
+- Save favorite attractions using Firebase Database and Firebase Authentication
+
+- Print the saved plan or save it as PDF
 
 
-Lets you search for a famous city, get the activities/attractions and check the weather
+## Setup the project
 
-What you have done:
-You can search and get activities/attractions and check the weather. You can add your favorite attraction to the sidebar, check recent searches and check details about each attraction
+1. Install npm and Node.js [installed](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-What you still plan to do:
-1) Sign in/Authentication 
-2) Firebase integration (persistance)
-3) Fix race-conditions for search
-4) Further implement functions on "more details"
-5) Make it possible to plan your trip (add time/date to favorized attractions) & print favorites with date
-6) Make favorites clickable in sidebar
+2. In the terminal go to the projects root directory and run 'npm install'. (/Vacation-Planner/vacationplanner)
 
-Your project file structure (short description/purpose of each file):
+4. A new file 'API_CONFIG' will need to be created in /src/ containing ```export const API_KEY = travelKey; 
+export const API_KEY_WEATHER = weatherKey``` where travelKey will equal the key found [here](https://rapidapi.com/apidojo/api/travel-advisor) and weatherKey will equal the key found [here](https://rapidapi.com/weatherapi/api/weatherapi-com/pricing) . Both API will require you to sign up and subscribe the the respective APIs 
 
-MVP structure:
+3. In the terminal run 'npm start' to start a local version of the project. 
 
-Model: 
-recentStore.js (observers/stores latest data of recent searches, add recent, remove recent) & vacationStore.js (observers/stores latest data of favorites, search query, attraction in "focus", remove favorites, add favorites)
+(If it the website is giving errors:
+run 'npm install' inside /Vacation-Planner/ and try 'npm start' again.)
 
-Pages: searchResultPage.js & sidebarPage.js (To organize the page layout code & routing)
+## Members in group 44
+Mahdi Nazari | 125181
 
-Presenters: headerPagePersenter.js , searchFormPresenter.js, searchResultPresenter.js, sidebarRecentPersenter.js, signInPagePresenter.js & weatherPersenter.js (passes info/ACB to corresponding views)
+Emil Göransson | emilgo@kth.se | 99184
 
-Views: HeaderPageView.js (shows logo/title/sign in button), LoadingView.js (Loading animation), searchFormView.js (Shows textbox & search button), searchResultView.js (Shows API results (image/location/rating)), sidebarFavView.js (Shows sidebar with favorites & button to remove), sidebarRecentView.js (Shows sidebar with recent searches & button to remove), signInPageView.js (shows page) & weatherView.js (shows weather)
+Besher Alshikha | 126342
+
+Abud David Zoughbi | 108386
+
+## About the project
+
+### APIs
+
+[Travel Advisor](https://rapidapi.com/apidojo/api/travel-advisor) to fetch attractions.
+
+[WeatherAPI.com](https://rapidapi.com/weatherapi/api/weatherapi-com/pricing) to fetch the weather.
+
+### Link to running version
+
+xxxx
+
+No data fetching means the APIs quota has been exceeded. A local version will then have to be ran. 
+
+
