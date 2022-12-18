@@ -37,7 +37,7 @@ const attractionStore = (set) => ({
 
   addFavorite: (newfavorite) => {
     set((state) => {
-
+      if (!state.userEmail) { alert("Please sign in first") }
       const id = state.userEmail.replaceAll('.', "");
       console.log(id)
       setfirebase(ref(database, 'users/' + id + '/favorite'), [newfavorite, ...state.favorite]);
