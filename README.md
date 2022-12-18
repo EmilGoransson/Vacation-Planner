@@ -38,6 +38,33 @@ Abud David Zoughbi | 108386
 
 [WeatherAPI.com](https://rapidapi.com/weatherapi/api/weatherapi-com/pricing) to fetch the weather.
 
+### Libraries and frameworks
+
+- React
+
+- Zustand (Local state-mangement)
+
+- React-bootstrap (css)
+
+- Axios (API-fetching)
+
+- Firebase Database(Persistance and authentication
+
+- React router 
+
+- Postboot (css)
+
+
+
+### Third party components
+
+- react-print
+
+- date-picker
+
+- react-share
+
+
 ### Link to running version
 
 xxxx
