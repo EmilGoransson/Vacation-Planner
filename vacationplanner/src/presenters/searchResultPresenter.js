@@ -6,6 +6,7 @@ import LoadingView from "../views/LoadingView";
 import useAttractionStore from "../model/vacationStore";
 import NoQueryView from "../views/noQueryView";
 import BadSearchView from "../views/badSearchVIew";
+import { child, get, getDatabase, ref } from "firebase/database";
 
 /*
 @Author Emil <emilgo@kth.se>
@@ -33,8 +34,13 @@ function SearchResult() {
   const setRecentAddedAttraction = useAttractionStore(
     (state) => state.setRecentAddedAttraction
   );
+  const fetchData = useAttractionStore((state) => state.fetchFromFireBase);
   const setFailure = useAttractionStore((state) => state.setRecentAddedFailure);
   const getFailure = useAttractionStore((state) => state.recentAddedFailure);
+  const setFavoritesFirebase = useAttractionStore(
+    (state) => state.fetchFromFireBase
+  );
+  const getUserId = useAttractionStore((state) => state.userEmail);
 
   const options = {
     method: "GET",
@@ -93,6 +99,29 @@ function SearchResult() {
   function closeFavoriteAlertBoxACB() {
     setShowFavoriteAlert(false);
   }
+  //test button ACB to fetch data
+  function fetchDataACB() {
+    console.log("Data fetched");
+    getData();
+  }
+  //correctly fetches data and tries to save it. Problem since the data in firebase is lacking (no dateInfo in firebase)
+  //Every attraction should contain {attractionInfo: {}, dateInfo: {startDate: Date, endDate: Date}}
+  function getData() {
+    let data;
+    const id = getUserId;
+    const dbRef = ref(getDatabase());
+    get(child(dbRef, `users/` + id)).then((snapshot) => {
+      if (snapshot.exists()) {
+        data = snapshot.val();
+        console.log(data);
+        setFavoritesFirebase(data);
+        console.log("Favorites after firebase", favorites);
+      } else {
+        console.log("No data available");
+      }
+    });
+  }
+
   let locationDataJustNow;
   React.useEffect(() => {
     console.log();
@@ -166,6 +195,7 @@ function SearchResult() {
         closeFavoriteAlert={closeFavoriteAlertBoxACB}
         recentAdddedAttraction={recentAdddedAttraction}
         failureAdded={getFailure}
+        fetchData={fetchDataACB}
       />
     );
   }
