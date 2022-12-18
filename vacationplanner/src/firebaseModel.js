@@ -1,23 +1,65 @@
-import firebase from "./firebase";
-import { getDatabase, ref, set } from "firebase/database";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { initializeApp } from "firebase/app";
+import { FacebookAuthProvider } from "firebase/auth";
+import { firebaseConfig } from "./firebase";
+import { getDatabase, ref, set } from "firebase/database";
+import { attractionStore } from "./model/vacationStore";
 
-// Initialise firebase
-initializeApp(firebase);
-const REF = "vacationPlanner";
+
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+// Initialize Realtime Database and get a reference to the service
 const database = getDatabase();
-set(ref(database, "AddToFavorite/"), {
-  usename: "Vasa Museet",
-});
 
-// import { getDatabase, ref, set } from "firebase/database";
+// testing set function 
+set(ref(database, 'user/'), { username: 'dummyyyy' });
 
-// function writeUserData(userId, name, email, imageUrl) {
-//   const db = getDatabase();
-//   set(ref(db, 'users/' + userId), {
-//     username: name,
-//     email: email,
-//     profile_picture : imageUrl
-//   });
+
+
+export const auth = getAuth(app);
+
+
+// export const getCurrentUserID = () => {
+//     const user = auth.currentUser;
+
+//     if (user) {
+//         // get the user id 
+//         const userID = user.uid;
+//         // const userID = user.providerId;
+
+//     }
+// }
+
+
+
+
+export const singInWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    return signInWithPopup(auth, provider)
+        .then((result) => {
+            const name = result.user.displayName;
+            const email = result.user.email;
+            console.log(result)
+            return result;
+            // const profilPic = result.user.photoURL;
+
+            localStorage.setItem("name", name)
+            localStorage.setItem("email", email)
+            //localStorage.setItem("profilPic", profilPic)
+        })
+
+        .catch((error) => { console.log(error); });
+};
+
+
+export const singInWithFacebook = () => {
+    const provider = new FacebookAuthProvider();
+    signInWithPopup(auth, provider)
+        .then((result) => { console.log(result); })
+
+        .catch((error) => { console.log(error); });
+};
 
 export { database };

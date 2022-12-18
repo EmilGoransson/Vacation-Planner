@@ -5,12 +5,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, Routes, Route } from "react-router-dom";
 import { Nav, Container } from "react-bootstrap";
 import HomePage from "./pages/homePage";
-import "./firebaseModel.js";
 import AboutPageView from "./views/aboutParentPageView";
 import AboutVacationPlannerView from "./views/aboutVacationPlannerView";
 import ContactView from "./views/contactView";
 import MakeVisitingPlanView from "./views/makeVisitingPlanView";
-
+import "./firebaseModel.js";
 /*
 @Author Mahdi <mnazari@kth.se>
 @Co-Author Emil <emilgo@kth.se>
