@@ -2,6 +2,8 @@ import create from "zustand";
 import { getDatabase, ref, set } from "firebase/database";
 import { database } from '../firebaseModel';
 import { set as setfirebase } from 'firebase/database';
+import { getCurrentUserID, singInWithGoogle } from "../firebaseModel";
+
 
 /*
 @Author Mahdi <mnazari@kth.se>
@@ -11,6 +13,7 @@ DONE: Serachquery, setSearchQuery
 */
 
 const attractionStore = (set) => ({
+  userEmail: null,
   searchQuery: "Stockholm",
   favorite: [],
   changeTimeInFocusId: "",
@@ -34,37 +37,35 @@ const attractionStore = (set) => ({
 
   addFavorite: (newfavorite) => {
     set((state) => {
-      setfirebase(ref(database, 'users/1231/favorite'), [newfavorite, ...state.favorite]);
+
+      const id = state.userEmail.replaceAll('.', "");
+      console.log(id)
+      setfirebase(ref(database, 'users/' + id + '/favorite'), [newfavorite, ...state.favorite]);
 
       return { favorite: [newfavorite, ...state.favorite] }
     });
 
   },
 
-  /*function addToFavorite(favorite){
-   addToFavoriteCB(state){ 
-     return {favorite : [favorite, ...state.favorite]};
-   }
-   set (addToFavoriteCB);
- },*/
 
 
   removeFavorite: (favoriteId) => {
     set((state) => {
-
-      setfirebase(ref(database, 'users/1231/favorite'), state.favorite.filter((c) => c.attractionInfo.location_id !== favoriteId));
+      const id = state.userEmail.replaceAll('.', "");
+      console.log(id)
+      setfirebase(ref(database, 'users/' + id + '/favorite'), state.favorite.filter((c) => c.attractionInfo.location_id !== favoriteId));
       return { favorite: state.favorite.filter((c) => c.attractionInfo.location_id !== favoriteId) }
     });
   },
 
-  /*
-removeFavorite: (favoriteId) => {
-  set((state) => ({
-    favorite: state.favorite.filter(
-      (c) => c.attractionInfo.location_id !== favoriteId
-    ),
-  }));
-},*/
+  setUserEmail: (email) => {
+
+    set((state) => {
+      return { userEmail: email }
+
+    });
+  },
+
 
 
 });

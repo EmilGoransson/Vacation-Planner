@@ -21,27 +21,28 @@ set(ref(database, 'user/'), { username: 'dummyyyy' });
 export const auth = getAuth(app);
 
 
-export const getCurrentUserID = () => {
-    const user = auth.currentUser;
+// export const getCurrentUserID = () => {
+//     const user = auth.currentUser;
 
-    if (user) {
-        // get the user id 
-        const userID = user.uid;
+//     if (user) {
+//         // get the user id 
+//         const userID = user.uid;
+//         // const userID = user.providerId;
 
-    }
-}
-
-
+//     }
+// }
 
 
 
 
 export const singInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
+    return signInWithPopup(auth, provider)
         .then((result) => {
             const name = result.user.displayName;
             const email = result.user.email;
+            console.log(result)
+            return result;
             // const profilPic = result.user.photoURL;
 
             localStorage.setItem("name", name)
