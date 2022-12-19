@@ -2,9 +2,9 @@ import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
 import Button from "react-bootstrap/Button";
 import { Navigate, useNavigate } from "react-router";
-import GoogleButton from 'react-google-button';
+import GoogleButton from "react-google-button";
 import { singInWithGoogle, singInWithFacebook } from "../firebaseModel";
-import useAttractionStore from "../model/vacationStore"
+import useAttractionStore from "../model/vacationStore";
 /*
 @Author Mahdi <mnazari@kth.se>
 TODO:
@@ -17,9 +17,10 @@ function SignInPageView() {
   const singIN = () => {
     singInWithGoogle().then((result) => {
       setUserEmail(result.user.email);
-      navigate("/")
-    })
-  }
+      navigate("/");
+    });
+  };
+
   return (
     <div className="signInPage">
       <div className="signinBtns">

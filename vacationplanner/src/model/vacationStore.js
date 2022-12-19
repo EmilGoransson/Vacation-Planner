@@ -56,21 +56,29 @@ const attractionStore = (set) => ({
     }));
   },
 
-  //TODO: PROBLEM MED ATT HELA OBJEKTET EJ SPARAS I FIREBASE
-  addFavorite: (newfavorite) => {
-    console.log(newfavorite);
+  //TODO: PROBLEM MED ATT HELA OBJEKTET EJ SPARAS I FIREBASE,
+  // Kanske hittade fel. Av någon anledning gillar inte firebase att spara endDate och startDate som är av objekttypen Date.
+  // Ni Behöver nog ändra dessa dates till strings vilket kommer kräva att ni på vissta ställen i koden (när ni läser date)
+  // behöver ändra tillbaka dessa strings till Date objekt.
+  addFavorite: (newFavorite) => {
+    console.log(newFavorite);
     set((state) => {
       if (!state.userEmail) {
         alert("Please sign in first");
       }
+      const temp1 = newFavorite.dateInfo.endDate.toString();
+      const temp2 = newFavorite.dateInfo.startDate.toString();
+      newFavorite.dateInfo.endDate = temp1;
+      newFavorite.dateInfo.startDate = temp2;
+
       const id = state.userEmail.replaceAll(".", "");
       console.log(id);
       setfirebase(ref(database, "users/" + id + "/favorite"), [
-        newfavorite,
+        newFavorite,
         ...state.favorite,
       ]);
 
-      return { favorite: [newfavorite, ...state.favorite] };
+      return { favorite: [newFavorite, ...state.favorite] };
     });
   },
 
