@@ -10,7 +10,6 @@ import AboutPageView from "./views/aboutParentPageView";
 import AboutVacationPlannerView from "./views/aboutVacationPlannerView";
 import ContactView from "./views/contactView";
 import MakeVisitingPlanView from "./views/makeVisitingPlanView";
-
 /*
 @Author Mahdi <mnazari@kth.se>
 @Co-Author Emil <emilgo@kth.se>

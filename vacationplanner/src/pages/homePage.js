@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Sidebar from "../presenters/sidebarPresenter";
 import SearchResult from "../presenters/searchResultPresenter";
 import Weather from "../presenters/weatherPresenter";
+import useAttractionStore from "../model/vacationStore";
 
 /*
 @Author Mahdi <mnazari@kth.se>
@@ -13,7 +14,6 @@ import Weather from "../presenters/weatherPresenter";
 TODO:
 DONE:
 */
-
 function HomePage() {
   return (
     <div className="main-containt">

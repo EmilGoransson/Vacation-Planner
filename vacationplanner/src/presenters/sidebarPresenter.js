@@ -32,6 +32,7 @@ function Sidebar(props) {
   const componentRef = useRef();
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
+  const fetchData = useAttractionStore((state) => state.fetchFromFireBase);
   const removeFromFavorite = useAttractionStore(
     (state) => state.removeFavorite
   );
@@ -94,9 +95,6 @@ function Sidebar(props) {
     documentTitle: "My Visiting Plan",
     onAfterPrint: () => Alert("Summary was printed!"),
   });
-  function test() {
-    console.log("test");
-  }
 
   return (
     <div>
