@@ -109,7 +109,7 @@ function SearchResult() {
   function getData() {
     let data;
 
-    const id = getUserId().replaceAll(".", "");
+    const id = getUserId.replaceAll(".", "");
 
     const dbRef = ref(getDatabase());
     get(child(dbRef, `users/` + id)).then((snapshot) => {

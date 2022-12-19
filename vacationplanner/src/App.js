@@ -37,22 +37,24 @@ function App() {
         console.log(user);
         setUserEmail(user.email);
 
-        // to retrieve data from firebase for the current user
-        ///////////////////////////////////////
-        // let data;
-        // const id = getUserId().replaceAll(".", "");
-        // const dbRef = ref(getDatabase());
-        // get(child(dbRef, `users/` + id)).then((snapshot) => {
-        //   if (snapshot.exists()) {
-        //     data = snapshot.val();
-        //     console.log(data);
-        //     setFavoritesFirebase(data);
-        //     console.log("Favorites after firebase", favorites);
-        //   } else {
-        //     console.log("No data available");
-        //   }
-        // });
-        //////////////////////////////////////////
+        getData();
+        function getData() {
+          let data;
+
+          const id = getUserId.replaceAll(".", "");
+
+          const dbRef = ref(getDatabase());
+          get(child(dbRef, `users/` + id)).then((snapshot) => {
+            if (snapshot.exists()) {
+              data = snapshot.val();
+              console.log(data);
+              setFavoritesFirebase(data);
+              console.log("Favorites after firebase", favorites);
+            } else {
+              console.log("No data available");
+            }
+          });
+        }
       } else {
         // No user is signed in.
         console.log("No user inlogged!");
