@@ -7,6 +7,9 @@ function ContactView() {
       <br />
       <h5>&#8226; Emil Göransson</h5>
       <h6>Email: emilgo@kth.se</h6>
+      <br />
+      <h5>&#8226; Besher Alshikha</h5>
+      <h6>Email: besher@kth.se</h6>
     </div>
   );
 }

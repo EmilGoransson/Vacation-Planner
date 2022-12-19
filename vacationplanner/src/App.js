@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useEffect } from "react";
 import SignInPage from "./presenters/signInPagePresenter";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, Routes, Route } from "react-router-dom";
@@ -10,6 +10,10 @@ import AboutPageView from "./views/aboutParentPageView";
 import AboutVacationPlannerView from "./views/aboutVacationPlannerView";
 import ContactView from "./views/contactView";
 import MakeVisitingPlanView from "./views/makeVisitingPlanView";
+import { auth } from "./firebaseModel.js";
+import useAttractionStore from "./model/vacationStore";
+import { child, get, getDatabase, ref } from "firebase/database";
+
 /*
 @Author Mahdi <mnazari@kth.se>
 @Co-Author Emil <emilgo@kth.se>
@@ -18,6 +22,45 @@ DONE:
 */
 
 function App() {
+  const setUserEmail = useAttractionStore((state) => state.setUserEmail);
+  const getUserId = useAttractionStore((state) => state.userEmail);
+  const setFavoritesFirebase = useAttractionStore(
+    (state) => state.fetchFromFireBase
+  );
+  const favorites = useAttractionStore((state) => state.favorite);
+
+  function func() {
+    console.log("Hej!");
+    auth.onAuthStateChanged(function (user) {
+      if (user) {
+        // User is signed in.
+        console.log(user);
+        setUserEmail(user.email);
+
+        // to retrieve data from firebase for the current user
+        ///////////////////////////////////////
+        // let data;
+        // const id = getUserId().replaceAll(".", "");
+        // const dbRef = ref(getDatabase());
+        // get(child(dbRef, `users/` + id)).then((snapshot) => {
+        //   if (snapshot.exists()) {
+        //     data = snapshot.val();
+        //     console.log(data);
+        //     setFavoritesFirebase(data);
+        //     console.log("Favorites after firebase", favorites);
+        //   } else {
+        //     console.log("No data available");
+        //   }
+        // });
+        //////////////////////////////////////////
+      } else {
+        // No user is signed in.
+        console.log("No user inlogged!");
+      }
+    });
+  }
+  useEffect(func, []);
+
   return (
     <>
       <Nav bg="primary" variant="tabs">

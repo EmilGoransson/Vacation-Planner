@@ -8,10 +8,21 @@ import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
 function AboutPageView() {
   const navigate = useNavigate();
   return (
-    <div>
-      <Button variant="primary" size="sm" onClick={() => navigate("/")}>
-        Back to Home
-      </Button>
+    <div className="signingViewParent">
+      <img src={"https://i.imgur.com/CJBGl6T.png"} width={75} height={75} />
+      <div className="signingBtns">
+        <Button variant="primary" size="sm" onClick={() => navigate("/")}>
+          Back to Home
+        </Button>
+      </div>
+      <h3
+        style={{
+          fontSize: "2.2rem",
+          marginBottom: "2rem",
+        }}
+      >
+        Vacation Planner
+      </h3>
       <div className="aboutParent">
         <Nav bg="primary" variant="tabs">
           <Container>

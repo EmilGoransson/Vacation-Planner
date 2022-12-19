@@ -108,7 +108,9 @@ function SearchResult() {
   //Every attraction should contain {attractionInfo: {}, dateInfo: {startDate: Date, endDate: Date}}
   function getData() {
     let data;
-    const id = getUserId.replaceAll(".", "");
+
+    const id = getUserId().replaceAll(".", "");
+
     const dbRef = ref(getDatabase());
     get(child(dbRef, `users/` + id)).then((snapshot) => {
       if (snapshot.exists()) {
