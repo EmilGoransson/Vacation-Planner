@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { API_KEY, API_KEY_WEATHER } from "../apiConfig";
+import { API_KEY_WEATHER } from "../apiConfig";
 import WeatherView from "../views/weatherView";
 import LoadingView from "../views/LoadingView";
 import useAttractionStore from "../model/vacationStore";

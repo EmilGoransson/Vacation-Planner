@@ -1,8 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
 import Button from "react-bootstrap/Button";
-import { Navigate, useNavigate } from "react-router";
-import useAttractionStore from "../model/vacationStore";
+
 /*
 @Author Mahdi <mnazari@kth.se>
 @Co-Author Emil <emilgo@kth.se>
@@ -10,41 +9,43 @@ TODO:
 DONE:
 */
 
-function HeaderPageView() {
-  const temp = useAttractionStore((state) => state.userEmail);
+function HeaderPageView(props) {
+  function signOutACB() {
+    props.onSignOut();
+  }
+  function signInACB() {
+    props.navigateToSignIn();
+  }
 
-  const navigate = useNavigate();
+  function aboutButtonACB() {
+    props.navigateToAbout();
+  }
   return (
-    <div className="signingViewParent">
-      <img src={"https://i.imgur.com/CJBGl6T.png"} width={75} height={75} />
-
-      <div className="signingBtns">
-        {!temp ? (
-          <Button
-            variant="primary"
-            size="lm"
-            onClick={() => navigate("/signin")}
-          >
-            Sign in
-          </Button>
+    <div>
+      <div className="signingViewParent">
+        <img src={"https://i.imgur.com/CJBGl6T.png"} width={75} height={75} />
+        {!props.anyUser ? (
+          <div className="signingBtns">
+            <Button variant="primary" size="lm" onClick={signInACB}>
+              Sign in
+            </Button>
+          </div>
         ) : (
           <>
-            <Button
-              variant="primary"
-              size="lm"
-              onClick={() => navigate("/signin")}
-            >
-              Sign out
-            </Button>
-            <h5>Welcome {console.log(" " + temp)}</h5>
+            <div className="signingBtns">
+              <Button variant="primary" size="lm" onClick={signOutACB}>
+                Sign out
+              </Button>
+            </div>
           </>
         )}
+        <div className="signingBtns">
+          <Button variant="info" size="lm" onClick={aboutButtonACB}>
+            About
+          </Button>
+        </div>
       </div>
-      <div className="signingBtns">
-        <Button variant="info" size="lm" onClick={() => navigate("/about")}>
-          About
-        </Button>
-      </div>
+
       <h3
         style={{
           fontSize: "2.2rem",
@@ -53,6 +54,13 @@ function HeaderPageView() {
       >
         Vacation Planner
       </h3>
+      {props.anyUser ? (
+        <div className="greetingMessage">
+          <h5>Logged in as: "{props.userName}"!</h5>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

@@ -4,8 +4,6 @@ import useAttractionStore from "../model/vacationStore";
 import useRecentStore from "../model/recentStore";
 import SidebarRecentView from "../views/sidebarRecentView";
 import { Alert } from "react-bootstrap";
-import ToggleButton from "react-bootstrap/ToggleButton";
-import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import { useReactToPrint } from "react-to-print";
 import SidebarParentsView from "../views/sidebarParentsView";
 import { ref, set as setfirebase } from "firebase/database";
@@ -36,7 +34,6 @@ function Sidebar(props) {
   const componentRef = useRef();
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
-  const fetchData = useAttractionStore((state) => state.fetchFromFireBase);
   const removeFromFavorite = useAttractionStore(
     (state) => state.removeFavorite
   );

@@ -1,8 +1,7 @@
 import create from "zustand";
-import { getDatabase, ref, set, onValue, get, child } from "firebase/database";
+import { ref } from "firebase/database";
 import { database } from "../firebaseModel";
 import { set as setfirebase } from "firebase/database";
-import { getCurrentUserID, singInWithGoogle } from "../firebaseModel";
 
 /*
 @Author Mahdi <mnazari@kth.se>

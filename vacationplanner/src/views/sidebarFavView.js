@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
 import Button from "react-bootstrap/Button";
-import { Alert, Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Zoom from "react-medium-image-zoom";
 import DatePicker from "react-datepicker";
 

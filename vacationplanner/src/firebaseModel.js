@@ -3,7 +3,6 @@ import { initializeApp } from "firebase/app";
 import { FacebookAuthProvider } from "firebase/auth";
 import { firebaseConfig } from "./firebase";
 import { getDatabase, ref, set } from "firebase/database";
-import { attractionStore } from "./model/vacationStore";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

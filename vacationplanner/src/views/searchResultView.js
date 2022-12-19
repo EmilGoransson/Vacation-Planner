@@ -109,8 +109,6 @@ function SearchResultView(props) {
   }
   return (
     <div>
-      <Button onClick={props.fetchData}>fetch data here:</Button>
-
       <Alert
         show={props.showFavoriteAlertState}
         key={"danger"}

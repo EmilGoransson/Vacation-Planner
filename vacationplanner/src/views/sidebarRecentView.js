@@ -1,7 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
 import "./viewStyles.css";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
@@ -39,11 +37,7 @@ function SidebarRecentView(props) {
                     </Tooltip>
                   }
                 >
-                  <a
-                    href="#"
-                    onClick="IDClick(id);event.preventDefault();"
-                    onClick={addButtonACB}
-                  >
+                  <a href="#" onClick={addButtonACB}>
                     {obj.charAt(0).toUpperCase() + obj.slice(1)}
                   </a>
                 </OverlayTrigger>

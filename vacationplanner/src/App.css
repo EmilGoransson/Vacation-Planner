@@ -18,13 +18,12 @@ DONE:
 }
 .signingBtns {
   padding: 3px;
-  text-align: center;
-  text-decoration: none;
+  height: 45px;
   display: inline-block;
-  cursor: pointer;
+  text-align: right;
   float: right;
+  cursor: pointer;
 }
-
 .printBtn {
   padding: 3px;
   width: auto;
@@ -153,4 +152,7 @@ DONE:
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+}
+.greetingMessage {
+  text-align: center;
 }

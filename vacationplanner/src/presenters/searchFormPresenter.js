@@ -26,14 +26,10 @@ const SearchForm = () => {
   }
 
   return (
-    <div>
-      {
-        <SearchFormView
-          doSearch={doSearchWithQueryACB}
-          setSearchTest={setSearchQueryACB}
-        />
-      }
-    </div>
+    <SearchFormView
+      doSearch={doSearchWithQueryACB}
+      setSearchTest={setSearchQueryACB}
+    />
   );
 };
 export default SearchForm;

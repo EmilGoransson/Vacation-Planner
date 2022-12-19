@@ -1,17 +1,19 @@
 import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
 import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router";
 import { Nav, Container } from "react-bootstrap";
-import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
-function AboutPageView() {
-  const navigate = useNavigate();
+function AboutParentPageView(props) {
   return (
     <div className="signingViewParent">
       <img src={"https://i.imgur.com/CJBGl6T.png"} width={75} height={75} />
       <div className="signingBtns">
-        <Button variant="primary" size="sm" onClick={() => navigate("/")}>
+        <Button
+          variant="primary"
+          size="sm"
+          onClick={() => props.navigateToHome()}
+        >
           Back to Home
         </Button>
       </div>
@@ -45,4 +47,4 @@ function AboutPageView() {
     </div>
   );
 }
-export default AboutPageView;
+export default AboutParentPageView;
