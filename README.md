@@ -67,7 +67,7 @@ Abud David Zoughbi | 108386
 
 ### Link to running version
 
-xxxx
+https://vacationplanner-d5ea1.web.app/
 
 No data fetching means the APIs quota has been exceeded. A local version will then have to be ran. 
 
